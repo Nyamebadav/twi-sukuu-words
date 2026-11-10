@@ -66,12 +66,13 @@ function all(){return new Promise(r=>{const out={},t=db.transaction('clips').obj
 function render(){const L=$('list');L.innerHTML='';let n=0;
  words.forEach((w,i)=>{const k=keyOf(w),c=clips[k];if(c)n++;
   const d=document.createElement('div');d.className='card'+(c?' done':'');
-  d.innerHTML=`<div class="row" style="justify-content:space-between"><div><div class="word">${esc(w.en)}</div><div class="twi">${w.pangram?'<span class="note">Pangram: uses every letter A to Z</span>':(w.tw?'Twi: '+esc(w.tw):'<span class="note">Twi: (add later)</span>')}</div></div>${c?'<span class="tag">✓ recorded</span>':''}</div>
+  d.innerHTML=`<div class="row" style="justify-content:space-between"><div><div class="word">${esc(w.en)}</div><div class="twi">${w.pangram?'<span class="note">Pangram: uses every letter A to Z</span>':`<span class="note">Twi:</span> <input class="twin" data-tw="${i}" value="${esc(w.tw||'')}" placeholder="tap to type Twi" style="width:60%;padding:4px 6px;font-size:16px;border:1px dashed #bbb;border-radius:6px">`}</div></div>${c?'<span class="tag">✓ recorded</span>':''}</div>
   <div class="row"><button class="rec" data-k="${i}">${recKey===k?'⏹ Stop':(c?'🔁 Re-record':'🎙 Record')}</button>${c?`<button data-play="${i}">▶️ Listen</button><button data-del="${i}">Delete</button>`:''}${w.custom?`<button data-rm="${i}">Remove word</button>`:''}</div>
   `;
   if(recKey===k)d.querySelector('.rec').classList.add('on');L.appendChild(d)});
  $('pt').textContent=`${n} / ${words.length}`;$('pi').style.width=(words.length?100*n/words.length:0)+'%';$('dl').disabled=$('dlEach').disabled=!n;
  L.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>toggle(words[+b.dataset.k]));
+ L.querySelectorAll('[data-tw]').forEach(x=>x.onchange=async()=>{const w=words[+x.dataset.tw];w.tw=x.value.trim();saveWords();const c=clips[keyOf(w)];if(c){c.tw=w.tw;await put(keyOf(w),c)}});
  L.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>play(clips[keyOf(words[+b.dataset.play])],b));
  L.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{const k=keyOf(words[+b.dataset.del]);delete clips[k];await put(k,null);render()});
  L.querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{const w=words[+b.dataset.rm];if(!confirm('Remove "'+w.en+'"?'))return;delete clips[keyOf(w)];await put(keyOf(w),null);words.splice(+b.dataset.rm,1);saveWords();render()});
