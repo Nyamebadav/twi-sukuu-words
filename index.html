@@ -59,9 +59,9 @@ $('speaker').value=LS.get('tsw_speaker')||'';$('speaker').oninput=e=>LS.set('tsw
 const keyOf=w=>w.en.trim().toLowerCase();
 function saveWords(){LS.set('tsw_words',JSON.stringify(words))}
 function openDB(){return new Promise((res,rej)=>{if(!window.indexedDB)return rej('no idb');const r=indexedDB.open('twi-sukuu-preschool',1);r.onupgradeneeded=()=>r.result.createObjectStore('clips');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
-async function put(k,v){if(!db)return;let rec=v;if(v!==null){rec=Object.assign({},v);delete rec.blob;rec.buf=await v.blob.arrayBuffer();rec.type=v.blob.type}
+async function put(k,v){if(!db)return;let rec=v;if(v!==null){rec=Object.assign({},v);delete rec.blob;delete rec.bytes;rec.buf=v.bytes.buffer.slice(0);rec.type=v.type||'audio/wav'}
  return new Promise(r=>{const t=db.transaction('clips','readwrite');rec===null?t.objectStore('clips').delete(k):t.objectStore('clips').put(rec,k);t.oncomplete=r;t.onerror=r})}
-async function revive(o){const out={};for(const k in o){const v=o[k];try{let buf=v.buf;if(!buf&&v.blob)buf=await v.blob.arrayBuffer();if(!buf||!buf.byteLength)continue;out[k]=Object.assign({},v,{blob:new Blob([buf],{type:v.type||(v.blob&&v.blob.type)||'audio/wav'})})}catch(e){}}return out}
+async function revive(o){const out={};for(const k in o){const v=o[k];try{let buf=v.buf;if(!buf&&v.blob)buf=await v.blob.arrayBuffer();if(!buf||buf.byteLength<=44)continue;const o2=Object.assign({},v,{bytes:new Uint8Array(buf.slice(0)),type:v.type||'audio/wav'});delete o2.blob;delete o2.buf;out[k]=o2}catch(e){}}return out}
 function all(){return new Promise(r=>{const out={},t=db.transaction('clips').objectStore('clips').openCursor();t.onsuccess=e=>{const c=e.target.result;if(c){out[c.key]=c.value;c.continue()}else r(out)}})}
 function render(){const L=$('list');L.innerHTML='';let n=0;
  words.forEach((w,i)=>{const k=keyOf(w),c=clips[k];if(c)n++;
@@ -78,9 +78,9 @@ function render(){const L=$('list');L.innerHTML='';let n=0;
 }
 let AC=null,src=null;
 async function play(c,b){if(!c)return;$('msg').textContent='';try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')await AC.resume();if(src){try{src.stop()}catch(e){}}
- const ab=await c.blob.arrayBuffer();const buf=await new Promise((res,rej)=>{const p=AC.decodeAudioData(ab.slice(0),res,rej);if(p&&p.then)p.then(res,rej)});
+ const ab=c.bytes.buffer.slice(c.bytes.byteOffset,c.bytes.byteOffset+c.bytes.byteLength);const buf=await new Promise((res,rej)=>{const p=AC.decodeAudioData(ab.slice(0),res,rej);if(p&&p.then)p.then(res,rej)});
  src=AC.createBufferSource();src.buffer=buf;src.connect(AC.destination);b.textContent='🔊 Playing';src.onended=()=>{b.textContent='▶️ Listen'};src.start(0)}
- catch(e){try{const a=new Audio(URL.createObjectURL(c.blob));await a.play()}catch(e2){$('msg').textContent='Could not play this one. Please re-record it.'}}}
+ catch(e){try{const a=new Audio(URL.createObjectURL(new Blob([c.bytes],{type:c.type})));await a.play()}catch(e2){$('msg').textContent='Could not play this one. Please re-record it.'}}}
 function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 async function toggle(w){const k=keyOf(w);$('msg').textContent='';
  if(rec&&recKey===k){rec.stop();return}
@@ -92,7 +92,9 @@ async function toggle(w){const k=keyOf(w);$('msg').textContent='';
  rec.onstop=async()=>{const raw=new Blob(chunks,{type:rec.mimeType||'audio/webm'});rec=null;recKey=null;
   let blob=raw,ext=(raw.type.includes('mp4')?'m4a':'webm');
   try{blob=await toWav(raw);ext='wav'}catch(e){}
-  clips[k]={blob,ext,en:w.en,tw:w.tw||'',at:new Date().toISOString()};await put(k,clips[k]);render()};
+  let bytes=null;try{bytes=new Uint8Array(await blob.arrayBuffer())}catch(e){}
+  if(!bytes||bytes.length<=44){$('msg').textContent='That recording came out empty. Please tap Record and try "'+w.en+'" again.';render();return}
+  clips[k]={bytes,type:blob.type||'audio/wav',ext,en:w.en,tw:w.tw||'',at:new Date().toISOString()};await put(k,clips[k]);render()};
  rec.start();render()}
 async function toWav(b){const ac=new (window.AudioContext||window.webkitAudioContext)();const buf=await ac.decodeAudioData(await b.arrayBuffer());ac.close&&ac.close();
  const ch=buf.getChannelData(0),sr=buf.sampleRate,n=ch.length,v=new DataView(new ArrayBuffer(44+n*2));
@@ -101,21 +103,22 @@ async function toWav(b){const ac=new (window.AudioContext||window.webkitAudioCon
  for(let i=0;i<n;i++){const x=Math.max(-1,Math.min(1,ch[i]));v.setInt16(44+i*2,x<0?x*0x8000:x*0x7fff,true)}return new Blob([v],{type:'audio/wav'})}
 const slug=s=>s.trim().toLowerCase().replace(/[^a-z0-9ɛɔ]+/g,'_').replace(/^_|_$/g,'')||'word';
 function files(){const sp=slug($('speaker').value||'speaker');const out=[];let csv='\ufefffilename,english,twi,speaker,recorded_at\n';let i=0;
- words.forEach(w=>{const c=clips[keyOf(w)];if(!c)return;i++;const fn=`${String(i).padStart(3,'0')}_${slug(w.en)}_${sp}.${c.ext}`;out.push([fn,c.blob]);
+ words.forEach(w=>{const c=clips[keyOf(w)];if(!c)return;i++;const fn=`${String(i).padStart(3,'0')}_${slug(w.en)}_${sp}.${c.ext}`;out.push([fn,c.bytes]);
   csv+=[fn,w.en,w.tw||'',$('speaker').value||'',c.at].map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')+'\n'});
- out.push(['transcript.csv',new Blob([csv],{type:'text/csv'})]);
- out.push(['metadata.txt',new Blob([`Twi Sukuu Translator Village - preschool word recordings\nSpeaker: ${$('speaker').value||''}\nExported: ${new Date().toString()}\nClips: ${i}\n`])]);return out}
+ out.push(['transcript.csv',new TextEncoder().encode(csv)]);
+ out.push(['metadata.txt',new TextEncoder().encode(`Twi Sukuu Translator Village - preschool word recordings\nSpeaker: ${$('speaker').value||''}\nExported: ${new Date().toString()}\nClips: ${i}\n`)]);return out}
 const CRC=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
 function crc(u){let c=0xFFFFFFFF;for(let i=0;i<u.length;i++)c=CRC[(c^u[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0}
 async function zip(list){const enc=new TextEncoder(),parts=[],cd=[];let off=0;
- for(const [name,blob] of list){const d=new Uint8Array(await blob.arrayBuffer()),nm=enc.encode(name),c=crc(d);
-  const h=new DataView(new ArrayBuffer(30));h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint32(14,c,true);h.setUint32(18,d.length,true);h.setUint32(22,d.length,true);h.setUint16(26,nm.length,true);
-  parts.push(h,nm,d);const e=new DataView(new ArrayBuffer(46));e.setUint32(0,0x02014b50,true);e.setUint16(4,20,true);e.setUint16(6,20,true);e.setUint16(8,0x0800,true);e.setUint32(16,c,true);e.setUint32(20,d.length,true);e.setUint32(24,d.length,true);e.setUint16(28,nm.length,true);e.setUint32(42,off,true);cd.push(e,nm);off+=30+nm.length+d.length}
+ const now=new Date(),dt=((now.getHours()<<11)|(now.getMinutes()<<5)|(now.getSeconds()>>1)),dd=(((now.getFullYear()-1980)<<9)|((now.getMonth()+1)<<5)|now.getDate());
+ for(const [name,data] of list){const d=data instanceof Uint8Array?data:new Uint8Array(await data.arrayBuffer()),nm=enc.encode(name),c=crc(d);
+  const h=new DataView(new ArrayBuffer(30));h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(10,dt,true);h.setUint16(12,dd,true);h.setUint32(14,c,true);h.setUint32(18,d.length,true);h.setUint32(22,d.length,true);h.setUint16(26,nm.length,true);
+  parts.push(h,nm,d);const e=new DataView(new ArrayBuffer(46));e.setUint32(0,0x02014b50,true);e.setUint16(4,20,true);e.setUint16(6,20,true);e.setUint16(8,0x0800,true);e.setUint16(12,dt,true);e.setUint16(14,dd,true);e.setUint32(16,c,true);e.setUint32(20,d.length,true);e.setUint32(24,d.length,true);e.setUint16(28,nm.length,true);e.setUint32(42,off,true);cd.push(e,nm);off+=30+nm.length+d.length}
  const cdSize=cd.reduce((a,x)=>a+(x.byteLength),0),end=new DataView(new ArrayBuffer(22));end.setUint32(0,0x06054b50,true);end.setUint16(8,list.length,true);end.setUint16(10,list.length,true);end.setUint32(12,cdSize,true);end.setUint32(16,off,true);
  return new Blob([...parts,...cd,end],{type:'application/zip'})}
 function save(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000)}
 $('dl').onclick=async()=>{const z=await zip(files());save(z,`twi-sukuu-preschool-${slug($('speaker').value||'speaker')}-${new Date().toISOString().slice(0,10)}.zip`)};
-$('dlEach').onclick=async()=>{for(const [n,b] of files()){save(b,n);await new Promise(r=>setTimeout(r,600))}};
+$('dlEach').onclick=async()=>{for(const [n,b] of files()){save(new Blob([b]),n);await new Promise(r=>setTimeout(r,600))}};
 $('addb').onclick=()=>{const en=$('nw').value.trim();if(!en)return;if(words.some(w=>keyOf(w)===en.toLowerCase())){$('msg').textContent='That word is already on the list.';return}words.push({en,tw:$('nt').value.trim(),custom:true});saveWords();$('nw').value=$('nt').value='';render();window.scrollTo(0,document.body.scrollHeight)};
 render();
 (async()=>{try{db=await openDB();Object.assign(clips,await revive(await all()));render()}catch(e){db=null;$('msg').textContent='Note: this browser will not keep recordings after closing the page. Download before you leave.'}})();
