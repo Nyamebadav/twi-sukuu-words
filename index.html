@@ -59,20 +59,28 @@ $('speaker').value=LS.get('tsw_speaker')||'';$('speaker').oninput=e=>LS.set('tsw
 const keyOf=w=>w.en.trim().toLowerCase();
 function saveWords(){LS.set('tsw_words',JSON.stringify(words))}
 function openDB(){return new Promise((res,rej)=>{if(!window.indexedDB)return rej('no idb');const r=indexedDB.open('twi-sukuu-preschool',1);r.onupgradeneeded=()=>r.result.createObjectStore('clips');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
-function put(k,v){if(!db)return Promise.resolve();return new Promise(r=>{const t=db.transaction('clips','readwrite');v===null?t.objectStore('clips').delete(k):t.objectStore('clips').put(v,k);t.oncomplete=r})}
+async function put(k,v){if(!db)return;let rec=v;if(v!==null){rec=Object.assign({},v);delete rec.blob;rec.buf=await v.blob.arrayBuffer();rec.type=v.blob.type}
+ return new Promise(r=>{const t=db.transaction('clips','readwrite');rec===null?t.objectStore('clips').delete(k):t.objectStore('clips').put(rec,k);t.oncomplete=r;t.onerror=r})}
+async function revive(o){const out={};for(const k in o){const v=o[k];try{let buf=v.buf;if(!buf&&v.blob)buf=await v.blob.arrayBuffer();if(!buf||!buf.byteLength)continue;out[k]=Object.assign({},v,{blob:new Blob([buf],{type:v.type||(v.blob&&v.blob.type)||'audio/wav'})})}catch(e){}}return out}
 function all(){return new Promise(r=>{const out={},t=db.transaction('clips').objectStore('clips').openCursor();t.onsuccess=e=>{const c=e.target.result;if(c){out[c.key]=c.value;c.continue()}else r(out)}})}
 function render(){const L=$('list');L.innerHTML='';let n=0;
  words.forEach((w,i)=>{const k=keyOf(w),c=clips[k];if(c)n++;
   const d=document.createElement('div');d.className='card'+(c?' done':'');
   d.innerHTML=`<div class="row" style="justify-content:space-between"><div><div class="word">${esc(w.en)}</div><div class="twi">${w.pangram?'<span class="note">Pangram: uses every letter A to Z</span>':(w.tw?'Twi: '+esc(w.tw):'<span class="note">Twi: (add later)</span>')}</div></div>${c?'<span class="tag">✓ recorded</span>':''}</div>
-  <div class="row"><button class="rec" data-k="${i}">${recKey===k?'⏹ Stop':(c?'🔁 Re-record':'🎙 Record')}</button>${c?`<button data-del="${i}">Delete</button>`:''}${w.custom?`<button data-rm="${i}">Remove word</button>`:''}</div>
-  ${c?`<audio controls src="${URL.createObjectURL(c.blob)}"></audio>`:''}`;
+  <div class="row"><button class="rec" data-k="${i}">${recKey===k?'⏹ Stop':(c?'🔁 Re-record':'🎙 Record')}</button>${c?`<button data-play="${i}">▶️ Listen</button><button data-del="${i}">Delete</button>`:''}${w.custom?`<button data-rm="${i}">Remove word</button>`:''}</div>
+  `;
   if(recKey===k)d.querySelector('.rec').classList.add('on');L.appendChild(d)});
  $('pt').textContent=`${n} / ${words.length}`;$('pi').style.width=(words.length?100*n/words.length:0)+'%';$('dl').disabled=$('dlEach').disabled=!n;
  L.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>toggle(words[+b.dataset.k]));
+ L.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>play(clips[keyOf(words[+b.dataset.play])],b));
  L.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{const k=keyOf(words[+b.dataset.del]);delete clips[k];await put(k,null);render()});
  L.querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{const w=words[+b.dataset.rm];if(!confirm('Remove "'+w.en+'"?'))return;delete clips[keyOf(w)];await put(keyOf(w),null);words.splice(+b.dataset.rm,1);saveWords();render()});
 }
+let AC=null,src=null;
+async function play(c,b){if(!c)return;$('msg').textContent='';try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')await AC.resume();if(src){try{src.stop()}catch(e){}}
+ const ab=await c.blob.arrayBuffer();const buf=await new Promise((res,rej)=>{const p=AC.decodeAudioData(ab.slice(0),res,rej);if(p&&p.then)p.then(res,rej)});
+ src=AC.createBufferSource();src.buffer=buf;src.connect(AC.destination);b.textContent='🔊 Playing';src.onended=()=>{b.textContent='▶️ Listen'};src.start(0)}
+ catch(e){try{const a=new Audio(URL.createObjectURL(c.blob));await a.play()}catch(e2){$('msg').textContent='Could not play this one. Please re-record it.'}}}
 function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 async function toggle(w){const k=keyOf(w);$('msg').textContent='';
  if(rec&&recKey===k){rec.stop();return}
@@ -110,7 +118,7 @@ $('dl').onclick=async()=>{const z=await zip(files());save(z,`twi-sukuu-preschool
 $('dlEach').onclick=async()=>{for(const [n,b] of files()){save(b,n);await new Promise(r=>setTimeout(r,600))}};
 $('addb').onclick=()=>{const en=$('nw').value.trim();if(!en)return;if(words.some(w=>keyOf(w)===en.toLowerCase())){$('msg').textContent='That word is already on the list.';return}words.push({en,tw:$('nt').value.trim(),custom:true});saveWords();$('nw').value=$('nt').value='';render();window.scrollTo(0,document.body.scrollHeight)};
 render();
-(async()=>{try{db=await openDB();Object.assign(clips,await all());render()}catch(e){db=null;$('msg').textContent='Note: this browser will not keep recordings after closing the page. Download before you leave.'}})();
+(async()=>{try{db=await openDB();Object.assign(clips,await revive(await all()));render()}catch(e){db=null;$('msg').textContent='Note: this browser will not keep recordings after closing the page. Download before you leave.'}})();
 window.onerror=(m)=>{$('msg').textContent='Error: '+m};
 </script>
 </body>
