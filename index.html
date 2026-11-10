@@ -51,6 +51,8 @@ const ABC='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l=>({en:'Letter '+l,tw:''})
 const TWI_ABC='a b d e ɛ f g h i k l m n o ɔ p r s t u w y'.split(' ').map(l=>({en:'Twi letter '+l,tw:l}));
 let words;try{words=JSON.parse(LS.get('tsw_words')||'null')}catch(e){words=null}
 if(!Array.isArray(words)||!words.length)words=STARTER.map(([en,tw])=>({en,tw})).concat(ABC,TWI_ABC);
+const PANGRAM={en:'The quick brown fox jumps over the lazy dog.',tw:'',pangram:true};
+if(!words.some(w=>w.en===PANGRAM.en))words.push(PANGRAM);
 const clips={};let db,rec=null,stream=null,chunks=[],recKey=null;
 const $=id=>document.getElementById(id);
 $('speaker').value=LS.get('tsw_speaker')||'';$('speaker').oninput=e=>LS.set('tsw_speaker',e.target.value);
@@ -62,7 +64,7 @@ function all(){return new Promise(r=>{const out={},t=db.transaction('clips').obj
 function render(){const L=$('list');L.innerHTML='';let n=0;
  words.forEach((w,i)=>{const k=keyOf(w),c=clips[k];if(c)n++;
   const d=document.createElement('div');d.className='card'+(c?' done':'');
-  d.innerHTML=`<div class="row" style="justify-content:space-between"><div><div class="word">${esc(w.en)}</div><div class="twi">${w.tw?'Twi: '+esc(w.tw):'<span class="note">Twi: (add later)</span>'}</div></div>${c?'<span class="tag">✓ recorded</span>':''}</div>
+  d.innerHTML=`<div class="row" style="justify-content:space-between"><div><div class="word">${esc(w.en)}</div><div class="twi">${w.pangram?'<span class="note">Pangram: uses every letter A to Z</span>':(w.tw?'Twi: '+esc(w.tw):'<span class="note">Twi: (add later)</span>')}</div></div>${c?'<span class="tag">✓ recorded</span>':''}</div>
   <div class="row"><button class="rec" data-k="${i}">${recKey===k?'⏹ Stop':(c?'🔁 Re-record':'🎙 Record')}</button>${c?`<button data-del="${i}">Delete</button>`:''}${w.custom?`<button data-rm="${i}">Remove word</button>`:''}</div>
   ${c?`<audio controls src="${URL.createObjectURL(c.blob)}"></audio>`:''}`;
   if(recKey===k)d.querySelector('.rec').classList.add('on');L.appendChild(d)});
