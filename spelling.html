@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Twi Sukuu — Spelling check</title>
+<style>
+
+:root{--g:#0a7d3b;--y:#f2b705;--r:#c0392b;--bg:#fffaf0;--card:#fff;--ink:#222}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(90deg,var(--r),var(--y),var(--g));color:#fff;padding:16px;text-align:center;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:1.25rem;text-shadow:0 1px 2px #0006}header p{margin:4px 0 0;font-size:.85rem;text-shadow:0 1px 2px #0006}
+main{max-width:640px;margin:auto;padding:12px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.prog{flex:1;height:10px;background:#ddd;border-radius:6px;overflow:hidden}.prog i{display:block;height:100%;background:var(--g);width:0}
+input{font-size:1rem;padding:10px;border:1px solid #ccc;border-radius:10px;width:100%}
+button{font-size:1rem;padding:10px 14px;border:0;border-radius:12px;cursor:pointer;background:#eee}
+button.rec{background:var(--r);color:#fff}button.rec.on{animation:p 1s infinite}button.go{background:var(--g);color:#fff}
+button:disabled{opacity:.45}@keyframes p{50%{opacity:.5}}
+.card{background:var(--card);border-radius:16px;padding:12px;margin:10px 0;box-shadow:0 1px 4px #0002}
+.word{font-size:1.5rem;font-weight:700}.twi{color:#555;margin:4px 0 8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}audio{width:100%;margin-top:8px}
+.done{border-left:6px solid var(--g)}.picked{border-left:6px solid var(--y)}.tag{font-size:.8rem;color:var(--g);font-weight:700}
+.add{display:grid;grid-template-columns:1fr 1fr auto;gap:8px}.note{font-size:.85rem;color:#666}
+#msg{color:var(--r);font-weight:600}
+.who{background:#fff6d6;border:3px solid var(--y);border-radius:16px;padding:14px;margin:10px 0;box-shadow:0 0 0 4px #f2b70533}
+.who label{font-weight:800;display:block;margin-bottom:4px;font-size:1.05rem}
+.who input{border:2px solid var(--y);background:#fff;font-size:1.15rem;padding:12px}
+.chk{font-size:.7rem;background:var(--y);color:#222;border-radius:8px;padding:2px 7px;margin-left:6px;font-weight:800;white-space:nowrap;vertical-align:middle}
+.sec{font-size:1.05rem;margin:18px 0 6px;padding:8px 12px;background:linear-gradient(90deg,var(--g),var(--y));color:#fff;border-radius:10px;font-weight:700;text-shadow:0 1px 1px #0004}
+.storynote{background:#fff6d6;border:2px solid var(--y);border-radius:12px;padding:12px;font-weight:800;margin:8px 0;font-size:1rem}
+.storytw{width:95%;padding:8px 10px;font-size:1.25rem;font-weight:700;border:1px dashed #bbb;border-radius:8px;margin-bottom:4px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.opt{background:#fff;border:2px solid #ccc;padding:8px 12px;border-radius:12px;font-size:1.1rem;font-weight:800;text-align:left}
+.opt small{display:block;font-weight:600;font-size:.7rem;opacity:.75}
+.opt.on{background:var(--g);color:#fff;border-color:var(--g)}
+.next{text-align:center;margin:28px 0 16px}
+.next a{color:var(--g);font-weight:800;text-decoration:none;border:2px solid var(--g);padding:10px 16px;border-radius:12px;display:inline-block}
+
+</style>
+</head>
+<body>
+<header>
+ <h1>📚 Twi Sukuu — Spelling check</h1>
+ <p>These are words you already recorded. Tap the spelling you want the app to use. You can type a different one, and re-record if you like.</p>
+</header>
+<main>
+<div class="who">
+ <label for="speaker">What's your name?</label>
+ <input id="speaker" placeholder="Type your name here, e.g. Ama">
+ <p class="note" style="margin:8px 0 0">Optional, but please add it so the files have your name on them.</p>
+</div>
+<div class="card">
+ <div class="bar"><div class="prog"><i id="pi"></i></div><span id="pt">0 / 0</span></div>
+ <div class="row">
+  <button class="go" id="dl" disabled>⬇️ Download All (zip)</button>
+  <button id="dlEach" disabled>Download one by one</button>
+ </div>
+ <p id="msg"></p>
+</div>
+
+<div id="list"></div>
+<p class="note">Tap one spelling, or type your own in the box. Recording is optional — only re-record if you want a new clip. Your choices go into transcript.csv under chosen_spelling. Nothing is uploaded anywhere.</p>
+<p class="note" style="text-align:center;margin:24px 0">This is the last page. Tap Download All and send the zip when you are done.</p>
+</main>
+<script>
+const MODE='spell';
+const KEYS={words:'tswspell_words',speaker:'tswspell_speaker',idb:'twi-sukuu-spelling',zip:'twi-sukuu-spelling'};
+const META="Twi Sukuu Translator Village - Spelling check (chosen spellings from batch 1 variants)\n";
+const STARTER=[
+ {
+  "group": "Spelling check",
+  "en": "sun",
+  "hers": "awia",
+  "alts": [
+   "owia"
+  ],
+  "hint": "The Twi Sukuu app uses owia"
+ },
+ {
+  "group": "Spelling check",
+  "en": "water",
+  "hers": "nsuo",
+  "alts": [
+   "nsu"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "thank you",
+  "hers": "medaase",
+  "alts": [
+   "meda wo ase"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "food",
+  "hers": "aduane",
+  "alts": [
+   "aduan"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "fish",
+  "hers": "Mpataa",
+  "alts": [
+   "apataa"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "friend",
+  "hers": "adamfo",
+  "alts": [
+   "adamfoɔ"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "moon",
+  "hers": "bosome",
+  "alts": [
+   "bosom"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "bird",
+  "hers": "anomaa",
+  "alts": [
+   "anoma"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "please",
+  "hers": "Mepakyew",
+  "alts": [
+   "mepa wo kyɛw"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "star",
+  "hers": "nsoromma",
+  "alts": [
+   "nsoroma"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "play",
+  "hers": "di agorɔ",
+  "alts": [
+   "di agoro"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "My Voice",
+  "hers": "Me nɛ",
+  "alts": [
+   "me nne"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "Students",
+  "hers": "Ɔsukuuni",
+  "alts": [
+   "nsukufoɔ"
+  ],
+  "hint": "Ɔsukuuni is usually one student"
+ },
+ {
+  "group": "Spelling check",
+  "en": "dog",
+  "hers": "kraman",
+  "alts": [
+   "ɔkraman"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "Sweet",
+  "hers": "Ɛdɛ",
+  "alts": [
+   "ɛdɛɛ"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "hello",
+  "hers": "Agoo!",
+  "alts": [
+   "Mae"
+  ],
+  "hint": "Agoo is often said when entering; Mae is a greeting"
+ },
+ {
+  "group": "Spelling check",
+  "en": "Forgive",
+  "hers": "Fakyɛ",
+  "alts": [
+   "fa kyɛ"
+  ]
+ },
+ {
+  "group": "Spelling check",
+  "en": "cat",
+  "hers": "agyinamoa",
+  "alts": [
+   "ɔgyinamoa"
+  ]
+ }
+];
+
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let words;try{words=JSON.parse(LS.get(KEYS.words)||'null')}catch(e){words=null}
+if(!Array.isArray(words)||!words.length)words=STARTER.map(w=>Object.assign({},w,{check:w.check!==false}));
+const clips={};let db,rec=null,stream=null,chunks=[],recKey=null;
+const $=id=>document.getElementById(id);
+$('speaker').value=LS.get(KEYS.speaker)||'';$('speaker').oninput=e=>LS.set(KEYS.speaker,e.target.value);
+const keyOf=w=>w.en.trim().toLowerCase();
+function saveWords(){LS.set(KEYS.words,JSON.stringify(words))}
+function openDB(){return new Promise((res,rej)=>{if(!window.indexedDB)return rej('no idb');const r=indexedDB.open(KEYS.idb,1);r.onupgradeneeded=()=>r.result.createObjectStore('clips');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+async function put(k,v){if(!db)return;let rec=v;if(v!==null){rec=Object.assign({},v);delete rec.blob;delete rec.bytes;rec.buf=v.bytes.buffer.slice(0);rec.type=v.type||'audio/wav'}
+ return new Promise(r=>{const t=db.transaction('clips','readwrite');rec===null?t.objectStore('clips').delete(k):t.objectStore('clips').put(rec,k);t.oncomplete=r;t.onerror=r})}
+async function revive(o){const out={};for(const k in o){const v=o[k];try{let buf=v.buf;if(!buf&&v.blob)buf=await v.blob.arrayBuffer();if(!buf||buf.byteLength<=44)continue;const o2=Object.assign({},v,{bytes:new Uint8Array(buf.slice(0)),type:v.type||'audio/wav'});delete o2.blob;delete o2.buf;out[k]=o2}catch(e){}}return out}
+function all(){return new Promise(r=>{const out={},t=db.transaction('clips').objectStore('clips').openCursor();t.onsuccess=e=>{const c=e.target.result;if(c){out[c.key]=c.value;c.continue()}else r(out)}})}
+function twVal(w){return (MODE==='spell'?(w.chosen||w.hers||w.tw||''):(w.tw||''))}
+function render(){const L=$('list');L.innerHTML='';let n=0,nChoice=0,prev='';
+ words.forEach((w,i)=>{const k=keyOf(w),c=clips[k];if(c)n++;if(MODE==='spell'&&(w.chosen||'').trim())nChoice++;
+  if(w.group&&w.group!==prev){const h=document.createElement('div');h.className='sec';h.textContent=w.group;L.appendChild(h);
+   if(w.kind==='story'){const note=document.createElement('p');note.className='storynote';note.textContent='Read slowly and clearly, like reading to a small child.';L.appendChild(note)}
+   prev=w.group}
+  const d=document.createElement('div');d.className='card'+(c?' done':'')+(MODE==='spell'&&(w.chosen||'').trim()?' picked':'');
+  if(MODE==='spell'){
+   const hers=esc(w.hers||''),chosen=(w.chosen||'').trim();
+   const opts=[{sp:w.hers,lab:'you wrote this'},...((w.alts||[]).map(s=>({sp:s,lab:w.altLabel||'also common'})))];
+   const btns=opts.map(o=>`<button type="button" class="opt${chosen===o.sp?' on':''}" data-pick="${i}" data-sp="${esc(o.sp)}">${esc(o.sp)} <small>${esc(o.lab)}</small></button>`).join('');
+   d.innerHTML=`<div class="row" style="justify-content:space-between"><div><div class="word">${esc(w.en)}</div><p class="note" style="margin:4px 0 0">You wrote: <b>${hers}</b>${w.hint?` · ${esc(w.hint)}`:''}</p></div>${c?'<span class="tag">✓ recorded</span>':(chosen?'<span class="tag">✓ chosen</span>':'')}</div>
+    <div class="opts">${btns}</div>
+    <div class="other"><input class="oth" data-oth="${i}" value="${chosen && !opts.some(o=>o.sp===chosen)?esc(chosen):''}" placeholder="or type another spelling" style="width:100%;padding:8px 10px;font-size:16px;border:1px dashed #bbb;border-radius:8px"></div>
+    <div class="row" style="margin-top:8px"><button class="rec" data-k="${i}">${recKey===k?'⏹ Stop':(c?'🔁 Re-record':'🎙 Record (optional)')}</button>${c?`<button data-play="${i}">▶️ Listen</button><button data-del="${i}">Delete</button>`:''}</div>`;
+  }else if(w.kind==='story'){
+   d.innerHTML=`<div class="row" style="justify-content:space-between"><div style="flex:1"><div class="twi" style="margin:0 0 6px"><input class="twin storytw" data-tw="${i}" value="${esc(w.tw||'')}" placeholder="tap to type Twi">${w.check?'<span class="chk">check me</span>':''}</div><div class="note">${esc(w.en)}</div></div>${c?'<span class="tag">✓ recorded</span>':''}</div>
+    <div class="row"><button class="rec" data-k="${i}">${recKey===k?'⏹ Stop':(c?'🔁 Re-record':'🎙 Record')}</button>${c?`<button data-play="${i}">▶️ Listen</button><button data-del="${i}">Delete</button>`:''}${w.custom?`<button data-rm="${i}">Remove word</button>`:''}</div>`;
+  }else{
+   d.innerHTML=`<div class="row" style="justify-content:space-between"><div><div class="word">${esc(w.en)}</div><div class="twi"><span class="note">Twi:</span> <input class="twin" data-tw="${i}" value="${esc(w.tw||'')}" placeholder="tap to type Twi" style="width:60%;padding:4px 6px;font-size:16px;border:1px dashed #bbb;border-radius:6px">${w.check?'<span class="chk">check me</span>':''}</div></div>${c?'<span class="tag">✓ recorded</span>':''}</div>
+    <div class="row"><button class="rec" data-k="${i}">${recKey===k?'⏹ Stop':(c?'🔁 Re-record':'🎙 Record')}</button>${c?`<button data-play="${i}">▶️ Listen</button><button data-del="${i}">Delete</button>`:''}${w.custom?`<button data-rm="${i}">Remove word</button>`:''}</div>`;
+  }
+  if(recKey===k){const rb=d.querySelector('.rec');if(rb)rb.classList.add('on')}L.appendChild(d)});
+ if(MODE==='spell'){$('pt').textContent=`${nChoice} / ${words.length} chosen`+(n?`, ${n} re-recorded`:'');$('pi').style.width=(words.length?100*nChoice/words.length:0)+'%';$('dl').disabled=$('dlEach').disabled=!(n||nChoice)}
+ else{$('pt').textContent=`${n} / ${words.length}`;$('pi').style.width=(words.length?100*n/words.length:0)+'%';$('dl').disabled=$('dlEach').disabled=!n}
+ L.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>toggle(words[+b.dataset.k]));
+ L.querySelectorAll('[data-tw]').forEach(x=>x.onchange=async()=>{const w=words[+x.dataset.tw];w.tw=x.value.trim();saveWords();const c=clips[keyOf(w)];if(c){c.tw=w.tw;await put(keyOf(w),c)}});
+ L.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>play(clips[keyOf(words[+b.dataset.play])],b));
+ L.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{const k=keyOf(words[+b.dataset.del]);delete clips[k];await put(k,null);render()});
+ L.querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{const w=words[+b.dataset.rm];if(!confirm('Remove "'+w.en+'"?'))return;delete clips[keyOf(w)];await put(keyOf(w),null);words.splice(+b.dataset.rm,1);saveWords();render()});
+ L.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{const w=words[+b.dataset.pick];w.chosen=b.dataset.sp;saveWords();const c=clips[keyOf(w)];if(c){c.tw=w.chosen;put(keyOf(w),c)}render()});
+ L.querySelectorAll('[data-oth]').forEach(x=>x.onchange=()=>{const w=words[+x.dataset.oth];w.chosen=x.value.trim();saveWords();const c=clips[keyOf(w)];if(c){c.tw=w.chosen||w.hers||'';put(keyOf(w),c)}render()});
+}
+let AC=null,src=null;
+async function play(c,b){if(!c)return;$('msg').textContent='';try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')await AC.resume();if(src){try{src.stop()}catch(e){}}
+ const ab=c.bytes.buffer.slice(c.bytes.byteOffset,c.bytes.byteOffset+c.bytes.byteLength);const buf=await new Promise((res,rej)=>{const p=AC.decodeAudioData(ab.slice(0),res,rej);if(p&&p.then)p.then(res,rej)});
+ src=AC.createBufferSource();src.buffer=buf;src.connect(AC.destination);b.textContent='🔊 Playing';src.onended=()=>{b.textContent='▶️ Listen'};src.start(0)}
+ catch(e){try{const a=new Audio(URL.createObjectURL(new Blob([c.bytes],{type:c.type})));await a.play()}catch(e2){$('msg').textContent='Could not play this one. Please re-record it.'}}}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+async function toggle(w){const k=keyOf(w);$('msg').textContent='';
+ if(rec&&recKey===k){rec.stop();return}
+ if(rec){rec.stop()}
+ try{stream=stream||await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}})}
+ catch(e){$('msg').textContent='Microphone blocked. Allow the microphone for this page in your browser settings, then try again.';return}
+ chunks=[];rec=new MediaRecorder(stream);recKey=k;
+ rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+ rec.onstop=async()=>{const raw=new Blob(chunks,{type:rec.mimeType||'audio/webm'});rec=null;recKey=null;
+  let blob=raw,ext=(raw.type.includes('mp4')?'m4a':'webm');
+  try{blob=await toWav(raw);ext='wav'}catch(e){}
+  let bytes=null;try{bytes=new Uint8Array(await blob.arrayBuffer())}catch(e){}
+  if(!bytes||bytes.length<=44){$('msg').textContent='That recording came out empty. Please tap Record and try "'+w.en+'" again.';render();return}
+  clips[k]={bytes,type:blob.type||'audio/wav',ext,en:w.en,tw:twVal(w),at:new Date().toISOString()};await put(k,clips[k]);render()};
+ rec.start();render()}
+async function toWav(b){const ac=new (window.AudioContext||window.webkitAudioContext)();const buf=await ac.decodeAudioData(await b.arrayBuffer());ac.close&&ac.close();
+ const ch=buf.getChannelData(0),sr=buf.sampleRate,n=ch.length,v=new DataView(new ArrayBuffer(44+n*2));
+ const s=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i))};
+ s(0,'RIFF');v.setUint32(4,36+n*2,true);s(8,'WAVE');s(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);s(36,'data');v.setUint32(40,n*2,true);
+ for(let i=0;i<n;i++){const x=Math.max(-1,Math.min(1,ch[i]));v.setInt16(44+i*2,x<0?x*0x8000:x*0x7fff,true)}return new Blob([v],{type:'audio/wav'})}
+const slug=s=>s.trim().toLowerCase().replace(/[^a-z0-9ɛɔ]+/g,'_').replace(/^_|_$/g,'')||'word';
+function files(){const sp=slug($('speaker').value||'speaker');const out=[];
+ let csv=MODE==='spell'?'\ufefffilename,english,her_spelling,chosen_spelling,speaker,recorded_at\n':'\ufefffilename,english,twi,speaker,recorded_at\n';
+ let i=0;
+ words.forEach(w=>{const c=clips[keyOf(w)];const fn=c?(++i,`${String(i).padStart(3,'0')}_${slug(w.en)}_${sp}.${c.ext}`):'';
+  if(c)out.push([fn,c.bytes]);
+  if(MODE==='spell'){
+   csv+=[fn,w.en,w.hers||'',w.chosen||'',$('speaker').value||'',c?c.at:''].map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')+'\n';
+  }else if(c){
+   csv+=[fn,w.en,w.tw||'',$('speaker').value||'',c.at].map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')+'\n';
+  }
+ });
+ out.push(['transcript.csv',new TextEncoder().encode(csv)]);
+ out.push(['metadata.txt',new TextEncoder().encode(META+`Speaker: ${$('speaker').value||''}\nExported: ${new Date().toString()}\nClips: ${i}\n`)]);return out}
+const CRC=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+function crc(u){let c=0xFFFFFFFF;for(let i=0;i<u.length;i++)c=CRC[(c^u[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0}
+async function zip(list){const enc=new TextEncoder(),parts=[],cd=[];let off=0;
+ const now=new Date(),dt=((now.getHours()<<11)|(now.getMinutes()<<5)|(now.getSeconds()>>1)),dd=(((now.getFullYear()-1980)<<9)|((now.getMonth()+1)<<5)|now.getDate());
+ for(const [name,data] of list){const d=data instanceof Uint8Array?data:new Uint8Array(await data.arrayBuffer()),nm=enc.encode(name),c=crc(d);
+  const h=new DataView(new ArrayBuffer(30));h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(10,dt,true);h.setUint16(12,dd,true);h.setUint32(14,c,true);h.setUint32(18,d.length,true);h.setUint32(22,d.length,true);h.setUint16(26,nm.length,true);
+  parts.push(h,nm,d);const e=new DataView(new ArrayBuffer(46));e.setUint32(0,0x02014b50,true);e.setUint16(4,20,true);e.setUint16(6,20,true);e.setUint16(8,0x0800,true);e.setUint16(12,dt,true);e.setUint16(14,dd,true);e.setUint32(16,c,true);e.setUint32(20,d.length,true);e.setUint32(24,d.length,true);e.setUint16(28,nm.length,true);e.setUint32(42,off,true);cd.push(e,nm);off+=30+nm.length+d.length}
+ const cdSize=cd.reduce((a,x)=>a+(x.byteLength),0),end=new DataView(new ArrayBuffer(22));end.setUint32(0,0x06054b50,true);end.setUint16(8,list.length,true);end.setUint16(10,list.length,true);end.setUint32(12,cdSize,true);end.setUint32(16,off,true);
+ return new Blob([...parts,...cd,end],{type:'application/zip'})}
+function save(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000)}
+$('dl').onclick=async()=>{const z=await zip(files());save(z,`${KEYS.zip}-${slug($('speaker').value||'speaker')}-${new Date().toISOString().slice(0,10)}.zip`)};
+$('dlEach').onclick=async()=>{for(const [n,b] of files()){save(new Blob([b]),n);await new Promise(r=>setTimeout(r,600))}};
+if($('addb'))$('addb').onclick=()=>{const en=$('nw').value.trim();if(!en)return;if(words.some(w=>keyOf(w)===en.toLowerCase())){$('msg').textContent='That word is already on the list.';return}words.push({en,tw:$('nt').value.trim(),custom:true,group:'Added by you',check:true});saveWords();$('nw').value=$('nt').value='';render();window.scrollTo(0,document.body.scrollHeight)};
+render();
+(async()=>{try{db=await openDB();Object.assign(clips,await revive(await all()));render()}catch(e){db=null;$('msg').textContent='Note: this browser will not keep recordings after closing the page. Download before you leave.'}})();
+window.onerror=(m)=>{$('msg').textContent='Error: '+m};
+
+</script>
+</body>
+</html>
