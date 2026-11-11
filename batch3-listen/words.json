@@ -1,0 +1,272 @@
+[
+  {
+    "number": 1,
+    "english": "I'm hungry",
+    "twi": "ɛkɔm de me",
+    "mp3": "audio/001_ekom_de_me_im_hungry.mp3"
+  },
+  {
+    "number": 2,
+    "english": "I'm thirsty",
+    "twi": "sukɔm de me",
+    "mp3": "audio/002_sukom_de_me_im_thirsty.mp3"
+  },
+  {
+    "number": 3,
+    "english": "let's go",
+    "twi": "momma yɛnkɔ",
+    "mp3": "audio/003_momma_yenko_lets_go.mp3"
+  },
+  {
+    "number": 4,
+    "english": "come and eat",
+    "twi": "bra bɛdidi",
+    "mp3": "audio/004_bra_bedidi_come_and_eat.mp3"
+  },
+  {
+    "number": 5,
+    "english": "wash your hands",
+    "twi": "hohoro wo nsa",
+    "mp3": "audio/005_hohoro_wo_nsa_wash_your_hands.mp3"
+  },
+  {
+    "number": 6,
+    "english": "go to sleep",
+    "twi": "kɔ da",
+    "mp3": "audio/006_ko_da_go_to_sleep.mp3"
+  },
+  {
+    "number": 7,
+    "english": "wake up",
+    "twi": "sɔre",
+    "mp3": "audio/007_sore_wake_up.mp3"
+  },
+  {
+    "number": 8,
+    "english": "what is this?",
+    "twi": "ɛyɛ deɛn?",
+    "mp3": "audio/008_eye_deen_what_is_this.mp3"
+  },
+  {
+    "number": 9,
+    "english": "I don't know",
+    "twi": "mennim",
+    "mp3": "audio/009_mennim_i_dont_know.mp3"
+  },
+  {
+    "number": 10,
+    "english": "help me",
+    "twi": "boa me",
+    "mp3": "audio/010_boa_me_help_me.mp3"
+  },
+  {
+    "number": 11,
+    "english": "well done",
+    "twi": "mo",
+    "mp3": "audio/011_mo_well_done.mp3"
+  },
+  {
+    "number": 12,
+    "english": "be quiet",
+    "twi": "yɛ dinn",
+    "mp3": "audio/012_ye_dinn_be_quiet.mp3"
+  },
+  {
+    "number": 13,
+    "english": "open the door",
+    "twi": "bue ɛpono no",
+    "mp3": "audio/013_bue_epono_no_open_the_door.mp3"
+  },
+  {
+    "number": 14,
+    "english": "close the door",
+    "twi": "to ɛpono no mu",
+    "mp3": "audio/014_to_epono_no_mu_close_the_door.mp3"
+  },
+  {
+    "number": 15,
+    "english": "I love you",
+    "twi": "medɔ wo",
+    "mp3": "audio/015_medo_wo_i_love_you.mp3"
+  },
+  {
+    "number": 16,
+    "english": "I'm tired",
+    "twi": "m’abrɛ",
+    "mp3": "audio/016_mabre_im_tired.mp3"
+  },
+  {
+    "number": 17,
+    "english": "I'm happy",
+    "twi": "m'ani agye",
+    "mp3": "audio/017_mani_agye_im_happy.mp3"
+  },
+  {
+    "number": 18,
+    "english": "let's play",
+    "twi": "momma yɛnni agorɔ",
+    "mp3": "audio/018_momma_yenni_agoro_lets_play.mp3"
+  },
+  {
+    "number": 19,
+    "english": "look",
+    "twi": "hwɛ",
+    "mp3": "audio/019_hwe_look.mp3"
+  },
+  {
+    "number": 20,
+    "english": "listen",
+    "twi": "tie",
+    "mp3": "audio/020_tie_listen.mp3"
+  },
+  {
+    "number": 21,
+    "english": "wait",
+    "twi": "twɛn",
+    "mp3": "audio/021_twen_wait.mp3"
+  },
+  {
+    "number": 22,
+    "english": "give me",
+    "twi": "ma me",
+    "mp3": "audio/022_ma_me_give_me.mp3"
+  },
+  {
+    "number": 23,
+    "english": "I need the bathroom",
+    "twi": "mepɛ sɛ mekɔ tiafi",
+    "mp3": "audio/023_mepe_se_meko_tiafi_i_need_the_bathroom.mp3"
+  },
+  {
+    "number": 24,
+    "english": "I'm sick",
+    "twi": "meyare",
+    "mp3": "audio/024_meyare_im_sick.mp3"
+  },
+  {
+    "number": 25,
+    "english": "it hurts",
+    "twi": "ɛyɛ me ya",
+    "mp3": "audio/025_eye_me_ya_it_hurts.mp3"
+  },
+  {
+    "number": 26,
+    "english": "where is it?",
+    "twi": "ɛwɔ he?",
+    "mp3": "audio/026_ewo_he_where_is_it.mp3"
+  },
+  {
+    "number": 27,
+    "english": "I don't want it",
+    "twi": "mempɛ",
+    "mp3": "audio/027_mempe_i_dont_want_it.mp3"
+  },
+  {
+    "number": 28,
+    "english": "more, please",
+    "twi": "bio, mepa wo kyɛw",
+    "mp3": "audio/028_bio_mepa_wo_kyew_more_please.mp3"
+  },
+  {
+    "number": 29,
+    "english": "all done",
+    "twi": "mɛ wie",
+    "mp3": "audio/029_me_wie_all_done.mp3"
+  },
+  {
+    "number": 30,
+    "english": "red",
+    "twi": "kɔkɔɔ",
+    "mp3": "audio/030_kokoo_red.mp3"
+  },
+  {
+    "number": 31,
+    "english": "white",
+    "twi": "fitaa",
+    "mp3": "audio/031_fitaa_white.mp3"
+  },
+  {
+    "number": 32,
+    "english": "black",
+    "twi": "tuntum",
+    "mp3": "audio/032_tuntum_black.mp3"
+  },
+  {
+    "number": 33,
+    "english": "green",
+    "twi": "ahabanmono",
+    "mp3": "audio/033_ahabanmono_green.mp3"
+  },
+  {
+    "number": 34,
+    "english": "blue",
+    "twi": "bibire",
+    "mp3": "audio/034_bibire_blue.mp3"
+  },
+  {
+    "number": 35,
+    "english": "yellow",
+    "twi": "akokɔsradeɛ",
+    "mp3": "audio/035_akokosradee_yellow.mp3"
+  },
+  {
+    "number": 36,
+    "english": "head",
+    "twi": "ti",
+    "mp3": "audio/036_ti_head.mp3"
+  },
+  {
+    "number": 37,
+    "english": "eyes",
+    "twi": "ani",
+    "mp3": "audio/037_ani_eyes.mp3"
+  },
+  {
+    "number": 38,
+    "english": "ears",
+    "twi": "aso",
+    "mp3": "audio/038_aso_ears.mp3"
+  },
+  {
+    "number": 39,
+    "english": "nose",
+    "twi": "hwene",
+    "mp3": "audio/039_hwene_nose.mp3"
+  },
+  {
+    "number": 40,
+    "english": "mouth",
+    "twi": "ano",
+    "mp3": "audio/040_ano_mouth.mp3"
+  },
+  {
+    "number": 41,
+    "english": "teeth",
+    "twi": "ɛse",
+    "mp3": "audio/041_ese_teeth.mp3"
+  },
+  {
+    "number": 42,
+    "english": "hand",
+    "twi": "nsa",
+    "mp3": "audio/042_nsa_hand.mp3"
+  },
+  {
+    "number": 43,
+    "english": "leg / foot",
+    "twi": "nan",
+    "mp3": "audio/043_nan_leg_foot.mp3"
+  },
+  {
+    "number": 44,
+    "english": "stomach",
+    "twi": "yafunu",
+    "mp3": "audio/044_yafunu_stomach.mp3"
+  },
+  {
+    "number": 45,
+    "english": "hair",
+    "twi": "nwi",
+    "mp3": "audio/045_nwi_hair.mp3"
+  }
+]

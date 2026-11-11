@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0F6B4C">
+<title>Twi Sukuu Batch 3: Phrases, Colors, Body</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --cream: #FFF6E8;
+    --ink: #1C2418;
+    --green: #0F6B4C;
+    --green-dark: #0A4D37;
+    --gold: #F0C14B;
+    --red: #C83A2A;
+    --card-radius: 22px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bot: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: rgba(15,107,76,.18); }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink);
+    font-family: ui-rounded, "SF Pro Rounded", "Avenir Next Rounded", "Nunito", "Segoe UI", system-ui, sans-serif;
+    min-height: 100%; }
+  body { padding-top: var(--safe-top); padding-bottom: calc(16px + var(--safe-bot)); }
+  button { font: inherit; cursor: pointer; }
+  h1, h2, p { margin: 0; }
+
+  header.top {
+    background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    padding: 18px 18px 14px;
+    text-align: center;
+    position: relative;
+  }
+  header.top h1 { font-size: 1.7rem; letter-spacing: .02em; font-weight: 800; }
+  header.top p { margin-top: 4px; font-size: .95rem; opacity: .92; }
+  .flag { height: 6px; display: flex; }
+  .flag span { flex: 1; }
+  .flag .r { background: #CE1126; }
+  .flag .g { background: #FCD116; }
+  .flag .n { background: #006B3F; }
+
+  nav.tabs {
+    display: flex;
+    gap: 8px;
+    padding: 12px 12px 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(255,246,232,.94);
+    backdrop-filter: blur(8px);
+    scrollbar-width: none;
+  }
+  nav.tabs::-webkit-scrollbar { display: none; }
+  nav.tabs button {
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 999px;
+    padding: 10px 16px;
+    background: #fff;
+    color: var(--green-dark);
+    font-weight: 700;
+    font-size: .95rem;
+    box-shadow: 0 2px 0 #e6d3b0;
+  }
+  nav.tabs button[aria-selected="true"] {
+    background: var(--green);
+    color: #fff;
+    box-shadow: 0 3px 0 var(--green-dark);
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .toolbar .hint { flex: 1; font-size: .92rem; color: #4d5a45; min-width: 120px; }
+  .toolbar button {
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 16px;
+    font-weight: 800;
+    color: var(--green-dark);
+    background: var(--gold);
+    box-shadow: 0 3px 0 #c9991a;
+  }
+  .toolbar button.stop { background: #ffd0c8; color: #8a2418; box-shadow: 0 3px 0 #d58a7e; }
+  .toolbar button.quiz { background: #c8ecff; color: #0a4a6b; box-shadow: 0 3px 0 #8ec5e0; }
+  .toolbar button:active { transform: translateY(2px); box-shadow: none; }
+
+  main { padding: 4px 12px 24px; }
+  .section { display: none; }
+  .section.active { display: block; }
+  .subhead {
+    margin: 10px 6px 8px;
+    font-size: .85rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #6a7a5c;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .grid.letters { grid-template-columns: repeat(3, 1fr); }
+  .grid.bonus { grid-template-columns: 1fr; }
+
+  .card {
+    appearance: none;
+    border: 0;
+    border-radius: var(--card-radius);
+    padding: 16px 10px 14px;
+    text-align: center;
+    color: var(--ink);
+    min-height: 148px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    box-shadow: 0 6px 0 rgba(0,0,0,.08);
+    transition: transform .15s ease, box-shadow .15s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    position: relative;
+  }
+  .card:active { transform: translateY(3px) scale(.98); box-shadow: 0 2px 0 rgba(0,0,0,.08); }
+  .card.playing {
+    outline: 4px solid var(--green);
+    outline-offset: 1px;
+    transform: scale(1.03);
+    z-index: 1;
+  }
+  .card.correct { outline: 4px solid #1f9d5a; }
+  .card.wrong { animation: shake .4s ease; outline: 4px solid #d35a4a; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-7px); }
+    40% { transform: translateX(7px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  .emoji { font-size: 2.3rem; line-height: 1; filter: drop-shadow(0 2px 0 rgba(0,0,0,.06)); }
+  .twi { font-size: 1.45rem; font-weight: 800; line-height: 1.2; margin-top: 6px; word-break: break-word; }
+  .eng { font-size: .92rem; opacity: .75; margin-top: 2px; font-weight: 600; }
+  .letter-glyph { font-size: 3.1rem; font-weight: 800; line-height: 1; }
+  .card.pangram { padding: 22px 18px; min-height: 180px; }
+  .card.pangram .twi { font-size: 1.2rem; }
+  .card.pangram .eng { font-size: 1.05rem; }
+
+  .quiz-wrap { display: none; padding: 8px 4px 24px; }
+  .quiz-wrap.on { display: block; }
+  .quiz-head { text-align: center; margin-bottom: 12px; }
+  .quiz-head h2 { font-size: 1.35rem; }
+  .quiz-score { margin-top: 4px; color: #4d5a45; font-weight: 700; }
+  .quiz-actions { display: flex; gap: 10px; justify-content: center; margin: 12px 0 16px; flex-wrap: wrap; }
+  .quiz-actions button, .quiz-done button {
+    border: 0; border-radius: 999px; padding: 12px 18px; font-weight: 800;
+    background: var(--gold); color: var(--green-dark); box-shadow: 0 3px 0 #c9991a;
+  }
+  .quiz-actions button.ghost, .quiz-done button.ghost {
+    background: #fff; box-shadow: 0 3px 0 #e6d3b0;
+  }
+  .feedback {
+    text-align: center; font-weight: 800; font-size: 1.2rem; min-height: 1.4em; margin: 8px 0 4px;
+  }
+  .feedback.good { color: #1f9d5a; }
+  .feedback.bad { color: #b5473a; }
+  .quiz-done { display: none; text-align: center; padding: 28px 12px; }
+  .quiz-done.on { display: block; }
+  .quiz-done .stars { font-size: 2.4rem; margin: 8px 0 12px; }
+  .quiz-done h2 { font-size: 1.6rem; margin-bottom: 8px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(24px + var(--safe-bot));
+    transform: translateX(-50%) translateY(20px);
+    background: var(--green-dark); color: #fff; padding: 10px 16px;
+    border-radius: 999px; font-weight: 700; opacity: 0; pointer-events: none;
+    transition: opacity .2s, transform .2s; z-index: 20;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (min-width: 720px) {
+    .grid { grid-template-columns: repeat(4, 1fr); }
+    .grid.letters { grid-template-columns: repeat(6, 1fr); }
+    .wrap { max-width: 980px; margin: 0 auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card, .toast { transition: none; }
+    .card.wrong { animation: none; }
+  }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .grid.bonus { grid-template-columns: minmax(0, 1fr); } .grid.letters { grid-template-columns: repeat(3, minmax(0, 1fr)); } .card { min-width: 0; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+  <header class="top">
+    <h1>Twi Sukuu Batch 3</h1>
+    <p>Tap a card to hear the word</p>
+  </header>
+  <div class="flag" aria-hidden="true"><span class="r"></span><span class="g"></span><span class="n"></span></div>
+
+  <div class="wrap">
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button type="button" role="tab" id="tab-words" aria-selected="true" data-sec="words">Phrases</button>
+      <button type="button" role="tab" id="tab-colors" aria-selected="false" data-sec="colors">Colors</button>
+      <button type="button" role="tab" id="tab-body" aria-selected="false" data-sec="body">Body</button>
+    </nav>
+
+    <div class="toolbar" id="toolbar">
+      <p class="hint" id="hint">Listen, then say it with her.</p>
+      <button type="button" id="btn-playall">Play all</button>
+      <button type="button" id="btn-stop" class="stop" hidden>Stop</button>
+      <button type="button" id="btn-quiz" class="quiz">Which one?</button>
+    </div>
+
+    <main id="main">
+      <section class="section active" id="sec-words" role="tabpanel"></section>
+      <section class="section" id="sec-colors" role="tabpanel"></section>
+      <section class="section" id="sec-body" role="tabpanel"></section>
+    </main>
+
+    <div class="quiz-wrap" id="quiz-wrap" hidden>
+      <div id="quiz-play">
+        <div class="quiz-head">
+          <h2>Which one did you hear?</h2>
+          <p class="quiz-score" id="quiz-score"></p>
+        </div>
+        <div class="quiz-actions">
+          <button type="button" id="btn-hear">Hear it again</button>
+          <button type="button" class="ghost" id="btn-quiz-exit">Back to cards</button>
+        </div>
+        <p class="feedback" id="quiz-feedback" aria-live="polite"></p>
+        <div class="grid" id="quiz-grid"></div>
+      </div>
+      <div class="quiz-done" id="quiz-done">
+        <div class="stars" aria-hidden="true">⭐⭐⭐</div>
+        <h2>Great job!</h2>
+        <p class="quiz-score" id="quiz-final"></p>
+        <div class="quiz-actions">
+          <button type="button" id="btn-quiz-again">Play again</button>
+          <button type="button" class="ghost" id="btn-quiz-back">Back to cards</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+
+<script id="words-data" type="application/json">[{"number": 1, "english": "I'm hungry", "twi": "ɛkɔm de me", "mp3": "audio/001_ekom_de_me_im_hungry.mp3"}, {"number": 2, "english": "I'm thirsty", "twi": "sukɔm de me", "mp3": "audio/002_sukom_de_me_im_thirsty.mp3"}, {"number": 3, "english": "let's go", "twi": "momma yɛnkɔ", "mp3": "audio/003_momma_yenko_lets_go.mp3"}, {"number": 4, "english": "come and eat", "twi": "bra bɛdidi", "mp3": "audio/004_bra_bedidi_come_and_eat.mp3"}, {"number": 5, "english": "wash your hands", "twi": "hohoro wo nsa", "mp3": "audio/005_hohoro_wo_nsa_wash_your_hands.mp3"}, {"number": 6, "english": "go to sleep", "twi": "kɔ da", "mp3": "audio/006_ko_da_go_to_sleep.mp3"}, {"number": 7, "english": "wake up", "twi": "sɔre", "mp3": "audio/007_sore_wake_up.mp3"}, {"number": 8, "english": "what is this?", "twi": "ɛyɛ deɛn?", "mp3": "audio/008_eye_deen_what_is_this.mp3"}, {"number": 9, "english": "I don't know", "twi": "mennim", "mp3": "audio/009_mennim_i_dont_know.mp3"}, {"number": 10, "english": "help me", "twi": "boa me", "mp3": "audio/010_boa_me_help_me.mp3"}, {"number": 11, "english": "well done", "twi": "mo", "mp3": "audio/011_mo_well_done.mp3"}, {"number": 12, "english": "be quiet", "twi": "yɛ dinn", "mp3": "audio/012_ye_dinn_be_quiet.mp3"}, {"number": 13, "english": "open the door", "twi": "bue ɛpono no", "mp3": "audio/013_bue_epono_no_open_the_door.mp3"}, {"number": 14, "english": "close the door", "twi": "to ɛpono no mu", "mp3": "audio/014_to_epono_no_mu_close_the_door.mp3"}, {"number": 15, "english": "I love you", "twi": "medɔ wo", "mp3": "audio/015_medo_wo_i_love_you.mp3"}, {"number": 16, "english": "I'm tired", "twi": "m’abrɛ", "mp3": "audio/016_mabre_im_tired.mp3"}, {"number": 17, "english": "I'm happy", "twi": "m'ani agye", "mp3": "audio/017_mani_agye_im_happy.mp3"}, {"number": 18, "english": "let's play", "twi": "momma yɛnni agorɔ", "mp3": "audio/018_momma_yenni_agoro_lets_play.mp3"}, {"number": 19, "english": "look", "twi": "hwɛ", "mp3": "audio/019_hwe_look.mp3"}, {"number": 20, "english": "listen", "twi": "tie", "mp3": "audio/020_tie_listen.mp3"}, {"number": 21, "english": "wait", "twi": "twɛn", "mp3": "audio/021_twen_wait.mp3"}, {"number": 22, "english": "give me", "twi": "ma me", "mp3": "audio/022_ma_me_give_me.mp3"}, {"number": 23, "english": "I need the bathroom", "twi": "mepɛ sɛ mekɔ tiafi", "mp3": "audio/023_mepe_se_meko_tiafi_i_need_the_bathroom.mp3"}, {"number": 24, "english": "I'm sick", "twi": "meyare", "mp3": "audio/024_meyare_im_sick.mp3"}, {"number": 25, "english": "it hurts", "twi": "ɛyɛ me ya", "mp3": "audio/025_eye_me_ya_it_hurts.mp3"}, {"number": 26, "english": "where is it?", "twi": "ɛwɔ he?", "mp3": "audio/026_ewo_he_where_is_it.mp3"}, {"number": 27, "english": "I don't want it", "twi": "mempɛ", "mp3": "audio/027_mempe_i_dont_want_it.mp3"}, {"number": 28, "english": "more, please", "twi": "bio, mepa wo kyɛw", "mp3": "audio/028_bio_mepa_wo_kyew_more_please.mp3"}, {"number": 29, "english": "all done", "twi": "mɛ wie", "mp3": "audio/029_me_wie_all_done.mp3"}, {"number": 30, "english": "red", "twi": "kɔkɔɔ", "mp3": "audio/030_kokoo_red.mp3"}, {"number": 31, "english": "white", "twi": "fitaa", "mp3": "audio/031_fitaa_white.mp3"}, {"number": 32, "english": "black", "twi": "tuntum", "mp3": "audio/032_tuntum_black.mp3"}, {"number": 33, "english": "green", "twi": "ahabanmono", "mp3": "audio/033_ahabanmono_green.mp3"}, {"number": 34, "english": "blue", "twi": "bibire", "mp3": "audio/034_bibire_blue.mp3"}, {"number": 35, "english": "yellow", "twi": "akokɔsradeɛ", "mp3": "audio/035_akokosradee_yellow.mp3"}, {"number": 36, "english": "head", "twi": "ti", "mp3": "audio/036_ti_head.mp3"}, {"number": 37, "english": "eyes", "twi": "ani", "mp3": "audio/037_ani_eyes.mp3"}, {"number": 38, "english": "ears", "twi": "aso", "mp3": "audio/038_aso_ears.mp3"}, {"number": 39, "english": "nose", "twi": "hwene", "mp3": "audio/039_hwene_nose.mp3"}, {"number": 40, "english": "mouth", "twi": "ano", "mp3": "audio/040_ano_mouth.mp3"}, {"number": 41, "english": "teeth", "twi": "ɛse", "mp3": "audio/041_ese_teeth.mp3"}, {"number": 42, "english": "hand", "twi": "nsa", "mp3": "audio/042_nsa_hand.mp3"}, {"number": 43, "english": "leg / foot", "twi": "nan", "mp3": "audio/043_nan_leg_foot.mp3"}, {"number": 44, "english": "stomach", "twi": "yafunu", "mp3": "audio/044_yafunu_stomach.mp3"}, {"number": 45, "english": "hair", "twi": "nwi", "mp3": "audio/045_nwi_hair.mp3"}]</script>
+<script>
+(function () {
+  const WORDS = JSON.parse(document.getElementById("words-data").textContent);
+  const byNum = Object.fromEntries(WORDS.map(w => [w.number, w]));
+
+  const EMOJI = {"1": "😋", "2": "🥤", "3": "🚶", "4": "🍽️", "5": "🧼", "6": "😴", "7": "⏰", "8": "❓", "9": "🤷", "10": "🆘", "11": "👏", "12": "🤫", "13": "🚪", "14": "🚪", "15": "❤️", "16": "🥱", "17": "😊", "18": "🎲", "19": "👀", "20": "👂", "21": "✋", "22": "🤲", "23": "🚻", "24": "🤒", "25": "🤕", "26": "🔎", "27": "🙅", "28": "➕", "29": "✅", "30": "🔴", "31": "⚪", "32": "⚫", "33": "🟢", "34": "🔵", "35": "🟡", "36": "🙂", "37": "👁️", "38": "👂", "39": "👃", "40": "👄", "41": "🦷", "42": "✋", "43": "🦶", "44": "🫃", "45": "💇"};
+  const PALETTE = [
+    "#FFE08A","#FFD0D0","#C8F0D8","#D0E4FF","#E8D4FF","#FFD9B3","#CFF4F0","#F5D0E8"
+  ];
+
+  const SECTIONS = {
+    words: { id: "words", label: "Phrases", hint: "Everyday phrases. Listen, then say it with her.", groups: [{ title: "", nums: range(1, 29) }] },
+    colors: { id: "colors", label: "Colors", hint: "Tap a color to hear it in Twi.", groups: [{ title: "", nums: range(30, 35) }] },
+    body: { id: "body", label: "Body", hint: "Parts of the body.", groups: [{ title: "", nums: range(36, 45) }] }
+  };
+
+  function range(a, b) {
+    const out = [];
+    for (let n = a; n <= b; n++) out.push(n);
+    return out;
+  }
+
+  const player = new Audio();
+  player.preload = "auto";
+  player.setAttribute("playsinline", "");
+  let audioCtx = null;
+  let unlocked = false;
+  let playAllToken = 0;
+  let playingAll = false;
+  let currentSec = "words";
+  let currentSource = null;
+
+  function unlock() {
+    if (unlocked) return;
+    unlocked = true;
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+    } catch (e) {}
+    // Do not touch the shared player here: a card tap in the same gesture
+    // needs to call player.play() itself so iOS Safari allows playback.
+  }
+  document.addEventListener("pointerdown", unlock, { once: true, capture: true });
+  document.addEventListener("touchstart", unlock, { once: true, capture: true });
+  document.addEventListener("click", unlock, { once: true, capture: true });
+
+  function stopAudio() {
+    playAllToken++;
+    playingAll = false;
+    try { player.pause(); } catch (e) {}
+    if (currentSource) {
+      try { currentSource.stop(); } catch (e) {}
+      currentSource = null;
+    }
+    document.querySelectorAll(".card.playing").forEach(function (el) { el.classList.remove("playing"); });
+    document.getElementById("btn-playall").hidden = false;
+    document.getElementById("btn-stop").hidden = true;
+  }
+
+  function highlight(num) {
+    document.querySelectorAll(".card.playing").forEach(function (el) { el.classList.remove("playing"); });
+    const el = document.querySelector('.card[data-num="' + num + '"]');
+    if (el) {
+      el.classList.add("playing");
+      el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+    }
+  }
+
+  function playUrl(url) {
+    return new Promise(function (resolve) {
+      let settled = false;
+      const done = function () {
+        if (settled) return;
+        settled = true;
+        player.removeEventListener("ended", done);
+        player.removeEventListener("error", done);
+        resolve();
+      };
+      player.addEventListener("ended", done);
+      player.addEventListener("error", done);
+      player.src = url;
+      const p = player.play();
+      if (p) {
+        p.catch(function () {
+          playViaContext(url).then(done).catch(done);
+        });
+      }
+    });
+  }
+
+  const decoded = {};
+  async function playViaContext(url) {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === "suspended") await audioCtx.resume();
+    if (!decoded[url]) {
+      const res = await fetch(url);
+      const buf = await res.arrayBuffer();
+      decoded[url] = await audioCtx.decodeAudioData(buf.slice(0));
+    }
+    return new Promise(function (resolve) {
+      if (currentSource) {
+        try { currentSource.stop(); } catch (e) {}
+      }
+      const src = audioCtx.createBufferSource();
+      currentSource = src;
+      src.buffer = decoded[url];
+      src.connect(audioCtx.destination);
+      src.onended = function () {
+        if (currentSource === src) currentSource = null;
+        resolve();
+      };
+      src.start();
+    });
+  }
+
+  async function playItem(item, mark) {
+    if (mark !== false) highlight(item.number);
+    await playUrl(item.mp3);
+  }
+
+  function tone(freqs, type, vol) {
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      const now = audioCtx.currentTime;
+      freqs.forEach(function (f, i) {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = type || "sine";
+        o.frequency.value = f;
+        const t = now + i * 0.09;
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(vol || 0.1, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.32);
+        o.connect(g);
+        g.connect(audioCtx.destination);
+        o.start(t);
+        o.stop(t + 0.35);
+      });
+    } catch (e) {}
+  }
+  function yaySound() { tone([523.25, 659.25, 783.99], "sine", 0.09); }
+  function trySound() { tone([330, 277], "triangle", 0.05); }
+
+  function displayTwi(item) {
+    if (item.twi) return item.twi;
+    if (/^Letter [A-Z]$/.test(item.english)) return item.english.slice(-1);
+    if (/^Twi letter /.test(item.english)) return item.english.replace("Twi letter ", "");
+    return "";
+  }
+  function displayEng(item) {
+    if (/^Letter [A-Z]$/.test(item.english) || /^Twi letter /.test(item.english)) {
+      return item.english;
+    }
+    if (!item.english) return "";
+    // Keep original wording; only lift the first character for everyday words that were saved in lowercase.
+    return item.english.charAt(0).toUpperCase() + item.english.slice(1);
+  }
+  function isLetterCard(item) {
+    return (item.number >= 23 && item.number <= 70);
+  }
+
+  function cardEl(item, opts) {
+    opts = opts || {};
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "card" + (item.number === 71 ? " pangram" : "");
+    btn.dataset.num = String(item.number);
+    btn.style.background = PALETTE[(item.number - 1) % PALETTE.length];
+    const twi = displayTwi(item);
+    const eng = displayEng(item);
+    const emo = EMOJI[item.number] || "";
+    let inner = "";
+    if (emo && !isLetterCard(item)) inner += '<div class="emoji" aria-hidden="true">' + emo + "</div>";
+    if (isLetterCard(item)) {
+      inner += '<div class="letter-glyph" lang="tw">' + escapeHtml(twi) + "</div>";
+      inner += '<div class="eng">' + escapeHtml(eng) + "</div>";
+    } else if (item.number === 71) {
+      inner += '<div class="emoji" aria-hidden="true">🦊</div>';
+      inner += '<div class="twi">' + escapeHtml(eng) + "</div>";
+      inner += '<div class="eng">English pangram</div>';
+    } else {
+      inner += '<div class="twi" lang="tw">' + escapeHtml(twi) + "</div>";
+      if (!opts.hideEnglish) inner += '<div class="eng">' + escapeHtml(eng) + "</div>";
+    }
+    btn.innerHTML = inner;
+    const label = [twi, eng].filter(Boolean).join(", ");
+    btn.setAttribute("aria-label", "Play " + label);
+    return btn;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  function renderSections() {
+    Object.keys(SECTIONS).forEach(function (key) {
+      const sec = SECTIONS[key];
+      const root = document.getElementById("sec-" + key);
+      root.innerHTML = "";
+      sec.groups.forEach(function (g) {
+        if (g.title) {
+          const h = document.createElement("h2");
+          h.className = "subhead";
+          h.textContent = g.title;
+          root.appendChild(h);
+        }
+        const grid = document.createElement("div");
+        grid.className = "grid" + (sec.letters ? " letters" : "") + (sec.bonus ? " bonus" : "");
+        g.nums.forEach(function (n) {
+          const item = byNum[n];
+          if (!item) return;
+          const btn = cardEl(item);
+          btn.addEventListener("click", function () {
+            if (playingAll) stopAudio();
+            playItem(item);
+          });
+          grid.appendChild(btn);
+        });
+        root.appendChild(grid);
+      });
+    });
+  }
+
+  function sectionItems(id) {
+    const nums = [];
+    SECTIONS[id].groups.forEach(function (g) { g.nums.forEach(function (n) { nums.push(n); }); });
+    return nums.map(function (n) { return byNum[n]; }).filter(Boolean);
+  }
+
+  function showSection(id) {
+    stopAudio();
+    currentSec = id;
+    document.querySelectorAll(".section").forEach(function (el) { el.classList.remove("active"); });
+    document.getElementById("sec-" + id).classList.add("active");
+    document.querySelectorAll("nav.tabs button").forEach(function (b) {
+      b.setAttribute("aria-selected", b.dataset.sec === id ? "true" : "false");
+    });
+    document.getElementById("hint").textContent = SECTIONS[id].hint;
+    document.getElementById("btn-quiz").hidden = id !== "words";
+    exitQuiz(true);
+  }
+
+  async function playAll() {
+    unlock();
+    const token = ++playAllToken;
+    playingAll = true;
+    document.getElementById("btn-playall").hidden = true;
+    document.getElementById("btn-stop").hidden = false;
+    const items = sectionItems(currentSec);
+    for (let i = 0; i < items.length; i++) {
+      if (token !== playAllToken) return;
+      await playItem(items[i]);
+      if (token !== playAllToken) return;
+      await sleep(650);
+    }
+    if (token === playAllToken) stopAudio();
+  }
+
+  function sleep(ms) {
+    return new Promise(function (r) { setTimeout(r, ms); });
+  }
+
+  // ---- Quiz (Words section only) ----
+  const QUIZ_ROUNDS = 8;
+  let quizOn = false;
+  let quizRound = 0;
+  let quizRight = 0;
+  let quizAnswer = null;
+  let quizLocked = false;
+
+  function wordBank() {
+    return sectionItems("words");
+  }
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function startQuiz() {
+    stopAudio();
+    unlock();
+    quizOn = true;
+    quizRound = 0;
+    quizRight = 0;
+    document.getElementById("main").hidden = true;
+    document.getElementById("toolbar").hidden = true;
+    const wrap = document.getElementById("quiz-wrap");
+    wrap.hidden = false;
+    wrap.classList.add("on");
+    document.getElementById("quiz-play").style.display = "";
+    document.getElementById("quiz-done").classList.remove("on");
+    nextQuizRound();
+  }
+
+  function exitQuiz(silent) {
+    quizOn = false;
+    quizAnswer = null;
+    const wrap = document.getElementById("quiz-wrap");
+    wrap.hidden = true;
+    wrap.classList.remove("on");
+    document.getElementById("main").hidden = false;
+    document.getElementById("toolbar").hidden = false;
+    if (!silent) stopAudio();
+  }
+
+  function nextQuizRound() {
+    if (quizRound >= QUIZ_ROUNDS) {
+      finishQuiz();
+      return;
+    }
+    quizRound++;
+    quizLocked = false;
+    document.getElementById("quiz-feedback").textContent = "";
+    document.getElementById("quiz-feedback").className = "feedback";
+    document.getElementById("quiz-score").textContent = "Round " + quizRound + " of " + QUIZ_ROUNDS + "  ·  " + quizRight + " right";
+    const bank = wordBank();
+    quizAnswer = bank[Math.floor(Math.random() * bank.length)];
+    const others = shuffle(bank.filter(function (w) { return w.number !== quizAnswer.number; })).slice(0, 3);
+    const choices = shuffle(others.concat([quizAnswer]));
+    const grid = document.getElementById("quiz-grid");
+    grid.innerHTML = "";
+    choices.forEach(function (item) {
+      const btn = cardEl(item);
+      btn.addEventListener("click", function () { onQuizPick(btn, item); });
+      grid.appendChild(btn);
+    });
+    playItem(quizAnswer, false);
+  }
+
+  function onQuizPick(btn, item) {
+    if (!quizOn || quizLocked) return;
+    if (item.number === quizAnswer.number) {
+      quizLocked = true;
+      quizRight++;
+      btn.classList.add("correct");
+      document.getElementById("quiz-feedback").textContent = "Yay! That's it!";
+      document.getElementById("quiz-feedback").className = "feedback good";
+      document.getElementById("quiz-score").textContent = "Round " + quizRound + " of " + QUIZ_ROUNDS + "  ·  " + quizRight + " right";
+      yaySound();
+      setTimeout(function () { if (quizOn) nextQuizRound(); }, 1100);
+    } else {
+      btn.classList.remove("wrong");
+      void btn.offsetWidth;
+      btn.classList.add("wrong");
+      document.getElementById("quiz-feedback").textContent = "Try again!";
+      document.getElementById("quiz-feedback").className = "feedback bad";
+      trySound();
+      setTimeout(function () { if (quizOn) playItem(quizAnswer, false); }, 400);
+    }
+  }
+
+  function finishQuiz() {
+    stopAudio();
+    document.getElementById("quiz-play").style.display = "none";
+    document.getElementById("quiz-done").classList.add("on");
+    document.getElementById("quiz-final").textContent = "You got " + quizRight + " of " + QUIZ_ROUNDS + " right.";
+    yaySound();
+  }
+
+  document.querySelector("nav.tabs").addEventListener("click", function (e) {
+    const b = e.target.closest("button[data-sec]");
+    if (b) showSection(b.dataset.sec);
+  });
+  document.getElementById("btn-playall").addEventListener("click", playAll);
+  document.getElementById("btn-stop").addEventListener("click", stopAudio);
+  document.getElementById("btn-quiz").addEventListener("click", startQuiz);
+  document.getElementById("btn-hear").addEventListener("click", function () {
+    if (quizAnswer) playItem(quizAnswer, false);
+  });
+  document.getElementById("btn-quiz-exit").addEventListener("click", function () { exitQuiz(); });
+  document.getElementById("btn-quiz-back").addEventListener("click", function () { exitQuiz(); });
+  document.getElementById("btn-quiz-again").addEventListener("click", startQuiz);
+
+  renderSections();
+})();
+</script>
+</body>
+</html>
