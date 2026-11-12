@@ -1,0 +1,331 @@
+[
+  {
+    "number": 1,
+    "english": "law",
+    "twi": "mmara",
+    "phrase": "medɔ wo mmara",
+    "mp3": "audio/001_mmara_law.mp3"
+  },
+  {
+    "number": 2,
+    "english": "you, your",
+    "twi": "wo",
+    "phrase": "medɔ wo mmara",
+    "mp3": "audio/002_wo_you_your.mp3"
+  },
+  {
+    "number": 3,
+    "english": "me, my",
+    "twi": "me",
+    "phrase": "kyerɛkyerɛ me wo ɔhyɛ nsɛm",
+    "mp3": "audio/003_me_me_my.mp3"
+  },
+  {
+    "number": 4,
+    "english": "Lord",
+    "twi": "Awurade",
+    "phrase": "Ao Awurade",
+    "mp3": "audio/004_awurade_lord.mp3"
+  },
+  {
+    "number": 5,
+    "english": "all",
+    "twi": "nyinaa",
+    "phrase": "Mede mʼakoma nyinaa hwehwɛ wo",
+    "mp3": "audio/005_nyinaa_all.mp3"
+  },
+  {
+    "number": 6,
+    "english": "teachings, precepts",
+    "twi": "nkyerɛkyerɛ",
+    "phrase": "medi wo nkyerɛkyerɛ so",
+    "mp3": "audio/006_nkyerekyere_teachings_precepts.mp3"
+  },
+  {
+    "number": 7,
+    "english": "your word",
+    "twi": "wʼasɛm",
+    "phrase": "Wʼasɛm yɛ me nan ase kanea",
+    "mp3": "audio/007_wasem_your_word.mp3"
+  },
+  {
+    "number": 8,
+    "english": "decrees, statutes",
+    "twi": "ɔhyɛ nsɛm",
+    "phrase": "kyerɛkyerɛ me wo ɔhyɛ nsɛm",
+    "mp3": "audio/008_ohye_nsem_decrees_statutes.mp3"
+  },
+  {
+    "number": 9,
+    "english": "commandments",
+    "twi": "mmaransɛm",
+    "phrase": "medɔ wo mmaransɛm",
+    "mp3": "audio/009_mmaransem_commandments.mp3"
+  },
+  {
+    "number": 10,
+    "english": "life",
+    "twi": "nkwa",
+    "phrase": "kyɛe me nkwa so",
+    "mp3": "audio/010_nkwa_life.mp3"
+  },
+  {
+    "number": 11,
+    "english": "your commands, testimonies",
+    "twi": "wʼahyɛdeɛ",
+    "phrase": "Wʼahyɛdeɛ yɛ nwanwa",
+    "mp3": "audio/011_wahyedee_your_commands_testimonies.mp3"
+  },
+  {
+    "number": 12,
+    "english": "but",
+    "twi": "nanso",
+    "phrase": "nanso me werɛ remfiri wo mmara",
+    "mp3": "audio/012_nanso_but.mp3"
+  },
+  {
+    "number": 13,
+    "english": "I delight",
+    "twi": "mʼani gye",
+    "phrase": "Mʼani gye wo ɔhyɛ nsɛm ho",
+    "mp3": "audio/013_mani_gye_i_delight.mp3"
+  },
+  {
+    "number": 14,
+    "english": "servant",
+    "twi": "ɔsomfoɔ",
+    "phrase": "Meyɛ wo ɔsomfoɔ",
+    "mp3": "audio/014_osomfoo_servant.mp3"
+  },
+  {
+    "number": 15,
+    "english": "my heart",
+    "twi": "mʼakoma",
+    "phrase": "Dane mʼakoma kɔ wʼahyɛdeɛ ho",
+    "mp3": "audio/015_makoma_my_heart.mp3"
+  },
+  {
+    "number": 16,
+    "english": "promise",
+    "twi": "bɔhyɛ",
+    "phrase": "Wo bɔhyɛ kyɛe me nkwa so",
+    "mp3": "audio/016_bohye_promise.mp3"
+  },
+  {
+    "number": 17,
+    "english": "as ... says, according to",
+    "twi": "sɛdeɛ ... teɛ",
+    "phrase": "sɛdeɛ wʼasɛm no teɛ",
+    "mp3": "audio/017_sedee_tee_as_says_according_to.mp3"
+  },
+  {
+    "number": 18,
+    "english": "preserve my life",
+    "twi": "kyɛe me nkwa so",
+    "phrase": "kyɛe me nkwa so, Ao Awurade",
+    "mp3": "audio/018_kyee_me_nkwa_so_preserve_my_life.mp3"
+  },
+  {
+    "number": 19,
+    "english": "will not forget",
+    "twi": "werɛ remfiri",
+    "phrase": "me werɛ remfiri wo mmara",
+    "mp3": "audio/019_were_remfiri_will_not_forget.mp3"
+  },
+  {
+    "number": 20,
+    "english": "I keep, I obey",
+    "twi": "medi ... so",
+    "phrase": "medi wʼahyɛdeɛ so",
+    "mp3": "audio/020_medi_so_i_keep_i_obey.mp3"
+  },
+  {
+    "number": 21,
+    "english": "teach",
+    "twi": "kyerɛkyerɛ",
+    "phrase": "kyerɛkyerɛ me wo mmara",
+    "mp3": "audio/021_kyerekyere_teach.mp3"
+  },
+  {
+    "number": 22,
+    "english": "always, forever",
+    "twi": "daa",
+    "phrase": "wʼasɛm no tim hɔ daa",
+    "mp3": "audio/022_daa_always_forever.mp3"
+  },
+  {
+    "number": 23,
+    "english": "I love",
+    "twi": "medɔ",
+    "phrase": "Ao medɔ wo mmara no!",
+    "mp3": "audio/023_medo_i_love.mp3"
+  },
+  {
+    "number": 24,
+    "english": "every, any",
+    "twi": "biara",
+    "phrase": "ɛkwan bɔne biara",
+    "mp3": "audio/024_biara_every_any.mp3"
+  },
+  {
+    "number": 25,
+    "english": "understanding",
+    "twi": "nteaseɛ",
+    "phrase": "ma me nteaseɛ",
+    "mp3": "audio/025_nteasee_understanding.mp3"
+  },
+  {
+    "number": 27,
+    "english": "is right",
+    "twi": "ɛtene",
+    "phrase": "wo mmara a ɛtene no",
+    "mp3": "audio/027_etene_is_right.mp3"
+  },
+  {
+    "number": 28,
+    "english": "evil, sin",
+    "twi": "bɔne",
+    "phrase": "merenyɛ bɔne ntia wo",
+    "mp3": "audio/028_bone_evil_sin.mp3"
+  },
+  {
+    "number": 29,
+    "english": "the proud",
+    "twi": "ahantanfoɔ",
+    "phrase": "Ahantanfoɔ bu me animtia bebree",
+    "mp3": "audio/029_ahantanfoo_the_proud.mp3"
+  },
+  {
+    "number": 30,
+    "english": "your love",
+    "twi": "wʼadɔeɛ",
+    "phrase": "sɛdeɛ wʼadɔeɛ teɛ",
+    "mp3": "audio/030_wadoee_your_love.mp3"
+  },
+  {
+    "number": 31,
+    "english": "more than",
+    "twi": "sene",
+    "phrase": "ɛyɛ dɛ sene ɛwoɔ",
+    "mp3": "audio/031_sene_more_than.mp3"
+  },
+  {
+    "number": 32,
+    "english": "truth",
+    "twi": "nokorɛ",
+    "phrase": "wo mmara no yɛ nokorɛ",
+    "mp3": "audio/032_nokore_truth.mp3"
+  },
+  {
+    "number": 33,
+    "english": "my ways",
+    "twi": "mʼakwan",
+    "phrase": "wonim mʼakwan nyinaa",
+    "mp3": "audio/033_makwan_my_ways.mp3"
+  },
+  {
+    "number": 34,
+    "english": "the wicked",
+    "twi": "amumuyɛfoɔ",
+    "phrase": "Amumuyɛfoɔ asum me afidie",
+    "mp3": "audio/034_amumuyefoo_the_wicked.mp3"
+  },
+  {
+    "number": 35,
+    "english": "my hope",
+    "twi": "mʼanidasoɔ",
+    "phrase": "mede mʼanidasoɔ ahyɛ wʼasɛm mu",
+    "mp3": "audio/035_manidasoo_my_hope.mp3"
+  },
+  {
+    "number": 36,
+    "english": "way, path",
+    "twi": "ɛkwan",
+    "phrase": "Mafom ɛkwan sɛ odwan a wayera",
+    "mp3": "audio/036_ekwan_way_path.mp3"
+  },
+  {
+    "number": 37,
+    "english": "I meditate",
+    "twi": "medwendwene",
+    "phrase": "Medwendwene ho ɛda mu nyinaa",
+    "mp3": "audio/037_medwendwene_i_meditate.mp3"
+  },
+  {
+    "number": 38,
+    "english": "I hate",
+    "twi": "mekyiri",
+    "phrase": "Mekyiri nkontompo",
+    "mp3": "audio/038_mekyiri_i_hate.mp3"
+  },
+  {
+    "number": 39,
+    "english": "people",
+    "twi": "nnipa",
+    "phrase": "nnipa nni wo mmara so",
+    "mp3": "audio/039_nnipa_people.mp3"
+  },
+  {
+    "number": 40,
+    "english": "earth",
+    "twi": "asase",
+    "phrase": "wʼadɔeɛ ahyɛ asase so ma",
+    "mp3": "audio/040_asase_earth.mp3"
+  },
+  {
+    "number": 41,
+    "english": "righteousness",
+    "twi": "tenenee",
+    "phrase": "Wo tenenee wɔ hɔ daa",
+    "mp3": "audio/041_tenenee_righteousness.mp3"
+  },
+  {
+    "number": 42,
+    "english": "praise",
+    "twi": "nkamfo",
+    "phrase": "Ma nkamfo nhyɛ mʼanom ma",
+    "mp3": "audio/042_nkamfo_praise.mp3"
+  },
+  {
+    "number": 43,
+    "english": "gold",
+    "twi": "sikakɔkɔɔ",
+    "phrase": "medɔ wo mmaransɛm sene sikakɔkɔɔ",
+    "mp3": "audio/043_sikakokoo_gold.mp3"
+  },
+  {
+    "number": 44,
+    "english": "lamp",
+    "twi": "kanea",
+    "phrase": "me nan ase kanea",
+    "mp3": "audio/044_kanea_lamp.mp3"
+  },
+  {
+    "number": 45,
+    "english": "light",
+    "twi": "hann",
+    "phrase": "mʼakwan so hann",
+    "mp3": "audio/045_hann_light.mp3"
+  },
+  {
+    "number": 46,
+    "english": "sheep",
+    "twi": "odwan",
+    "phrase": "sɛ odwan a wayera",
+    "mp3": "audio/046_odwan_sheep.mp3"
+  },
+  {
+    "number": 47,
+    "english": "honey",
+    "twi": "ɛwoɔ",
+    "phrase": "ɛyɛ dɛ sene ɛwoɔ",
+    "mp3": "audio/047_ewoo_honey.mp3"
+  },
+  {
+    "number": 48,
+    "english": "night",
+    "twi": "anadwo",
+    "phrase": "anadwo mekae wo din",
+    "mp3": "audio/048_anadwo_night.mp3"
+  }
+]
