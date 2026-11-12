@@ -1,0 +1,324 @@
+[
+  {
+    "number": 1,
+    "english": "person, human",
+    "twi": "onipa",
+    "phrase": "Awurade Onyankopɔn de asase no so dɔteɛ nwonoo onipa",
+    "mp3": "audio/001_onipa_person_human.mp3"
+  },
+  {
+    "number": 2,
+    "english": "Lord",
+    "twi": "Awurade",
+    "phrase": "Awurade Onyankopɔn kaa sɛ",
+    "mp3": "audio/002_awurade_lord.mp3"
+  },
+  {
+    "number": 3,
+    "english": "God",
+    "twi": "Onyankopɔn",
+    "phrase": "Onyankopɔn hyiraa ɛda a ɛtɔ so nson no",
+    "mp3": "audio/003_onyankopon_god.mp3"
+  },
+  {
+    "number": 4,
+    "english": "earth, land",
+    "twi": "asase",
+    "phrase": "Yei ne ɔsoro ne asase bɔ ho asɛm",
+    "mp3": "audio/004_asase_earth_land.mp3"
+  },
+  {
+    "number": 5,
+    "english": "all",
+    "twi": "nyinaa",
+    "phrase": "wiram mmoa no nyinaa",
+    "mp3": "audio/005_nyinaa_all.mp3"
+  },
+  {
+    "number": 6,
+    "english": "there",
+    "twi": "hɔ",
+    "phrase": "wiram nnua biara nso nni hɔ",
+    "mp3": "audio/006_ho_there.mp3"
+  },
+  {
+    "number": 7,
+    "english": "day",
+    "twi": "ɛda",
+    "phrase": "ɛda a ɛtɔ so nson",
+    "mp3": "audio/007_eda_day.mp3"
+  },
+  {
+    "number": 8,
+    "english": "seven",
+    "twi": "nson",
+    "phrase": "ɛda a ɛtɔ so nson no",
+    "mp3": "audio/008_nson_seven.mp3"
+  },
+  {
+    "number": 9,
+    "english": "garden",
+    "twi": "turo",
+    "phrase": "Eden turo mu",
+    "mp3": "audio/009_turo_garden.mp3"
+  },
+  {
+    "number": 10,
+    "english": "name",
+    "twi": "edin",
+    "phrase": "edin a wɔde frɛɛ no",
+    "mp3": "audio/010_edin_name.mp3"
+  },
+  {
+    "number": 11,
+    "english": "any, every",
+    "twi": "biara",
+    "phrase": "afifideɛ biara nni asase so",
+    "mp3": "audio/011_biara_any_every.mp3"
+  },
+  {
+    "number": 12,
+    "english": "time",
+    "twi": "ɛberɛ",
+    "phrase": "Saa ɛberɛ no",
+    "mp3": "audio/012_ebere_time.mp3"
+  },
+  {
+    "number": 13,
+    "english": "water",
+    "twi": "nsuo",
+    "phrase": "nsuo tene firi Eden",
+    "mp3": "audio/013_nsuo_water.mp3"
+  },
+  {
+    "number": 14,
+    "english": "tree",
+    "twi": "dua",
+    "phrase": "nkwa dua",
+    "mp3": "audio/014_dua_tree.mp3"
+  },
+  {
+    "number": 15,
+    "english": "trees",
+    "twi": "nnua",
+    "phrase": "nnua ahodoɔ nyinaa",
+    "mp3": "audio/015_nnua_trees.mp3"
+  },
+  {
+    "number": 16,
+    "english": "way, permission",
+    "twi": "ɛkwan",
+    "phrase": "Wowɔ ho ɛkwan",
+    "mp3": "audio/016_ekwan_way_permission.mp3"
+  },
+  {
+    "number": 17,
+    "english": "but",
+    "twi": "nanso",
+    "phrase": "nanso wonni ho ɛkwan",
+    "mp3": "audio/017_nanso_but.mp3"
+  },
+  {
+    "number": 18,
+    "english": "then, next",
+    "twi": "afei",
+    "phrase": "Afei, Awurade Onyankopɔn kaa sɛ",
+    "mp3": "audio/018_afei_then_next.mp3"
+  },
+  {
+    "number": 19,
+    "english": "so, therefore",
+    "twi": "enti",
+    "phrase": "Enti, ɛda a ɛtɔ so nson no",
+    "mp3": "audio/019_enti_so_therefore.mp3"
+  },
+  {
+    "number": 20,
+    "english": "heaven",
+    "twi": "ɔsoro",
+    "phrase": "ɔsoro ne asase",
+    "mp3": "audio/020_osoro_heaven.mp3"
+  },
+  {
+    "number": 21,
+    "english": "in the wild, the bush",
+    "twi": "wiram",
+    "phrase": "wiram mmoa",
+    "mp3": "audio/021_wiram_in_the_wild_the_bush.mp3"
+  },
+  {
+    "number": 22,
+    "english": "life",
+    "twi": "nkwa",
+    "phrase": "nkwa dua",
+    "mp3": "audio/022_nkwa_life.mp3"
+  },
+  {
+    "number": 23,
+    "english": "rib",
+    "twi": "mpadeɛ",
+    "phrase": "ɔyii ne mfe mu mpadeɛ baako",
+    "mp3": "audio/023_mpadee_rib.mp3"
+  },
+  {
+    "number": 24,
+    "english": "man",
+    "twi": "ɔbarima",
+    "phrase": "ɔbarima ne ne yere",
+    "mp3": "audio/024_obarima_man.mp3"
+  },
+  {
+    "number": 25,
+    "english": "woman",
+    "twi": "ɔbaa",
+    "phrase": "Wɔbɛfrɛ yei ɔbaa",
+    "mp3": "audio/025_obaa_woman.mp3"
+  },
+  {
+    "number": 26,
+    "english": "wife",
+    "twi": "yere",
+    "phrase": "ɔbarima ne ne yere",
+    "mp3": "audio/026_yere_wife.mp3"
+  },
+  {
+    "number": 27,
+    "english": "works",
+    "twi": "nnwuma",
+    "phrase": "adebɔ nnwuma no nyinaa",
+    "mp3": "audio/027_nnwuma_works.mp3"
+  },
+  {
+    "number": 28,
+    "english": "his rest",
+    "twi": "nʼahome",
+    "phrase": "ɔgyee nʼahome",
+    "mp3": "audio/028_nahome_his_rest.mp3"
+  },
+  {
+    "number": 29,
+    "english": "work",
+    "twi": "adwuma",
+    "phrase": "ɔnyɛ mu adwuma",
+    "mp3": "audio/029_adwuma_work.mp3"
+  },
+  {
+    "number": 30,
+    "english": "plants",
+    "twi": "afifideɛ",
+    "phrase": "afifideɛ biara nni asase so",
+    "mp3": "audio/030_afifidee_plants.mp3"
+  },
+  {
+    "number": 31,
+    "english": "east",
+    "twi": "apueeɛ",
+    "phrase": "Eden apueeɛ fam",
+    "mp3": "audio/031_apueee_east.mp3"
+  },
+  {
+    "number": 32,
+    "english": "good and evil",
+    "twi": "papa ne bɔnehunu",
+    "phrase": "papa ne bɔnehunu dua",
+    "mp3": "audio/032_papa_ne_bonehunu_good_and_evil.mp3"
+  },
+  {
+    "number": 33,
+    "english": "fruit",
+    "twi": "aba",
+    "phrase": "wodi dua biara so aba",
+    "mp3": "audio/033_aba_fruit.mp3"
+  },
+  {
+    "number": 34,
+    "english": "gold",
+    "twi": "sikakɔkɔɔ",
+    "phrase": "asase a sikakɔkɔɔ wɔ so",
+    "mp3": "audio/034_sikakokoo_gold.mp3"
+  },
+  {
+    "number": 35,
+    "english": "river",
+    "twi": "asubɔnten",
+    "phrase": "Asubɔnten a ɛtɔ so mmienu",
+    "mp3": "audio/035_asubonten_river.mp3"
+  },
+  {
+    "number": 36,
+    "english": "helper",
+    "twi": "ɔboafoɔ",
+    "phrase": "mɛbɔ ɔboafoɔ a ɔfata no",
+    "mp3": "audio/036_oboafoo_helper.mp3"
+  },
+  {
+    "number": 37,
+    "english": "animals",
+    "twi": "mmoa",
+    "phrase": "wiram mmoa",
+    "mp3": "audio/037_mmoa_animals.mp3"
+  },
+  {
+    "number": 38,
+    "english": "birds",
+    "twi": "nnomaa",
+    "phrase": "ewiem nnomaa",
+    "mp3": "audio/038_nnomaa_birds.mp3"
+  },
+  {
+    "number": 39,
+    "english": "one",
+    "twi": "baako",
+    "phrase": "mpadeɛ baako",
+    "mp3": "audio/039_baako_one.mp3"
+  },
+  {
+    "number": 40,
+    "english": "flesh",
+    "twi": "honam",
+    "phrase": "me honam bi nie",
+    "mp3": "audio/040_honam_flesh.mp3"
+  },
+  {
+    "number": 41,
+    "english": "soil, clay",
+    "twi": "dɔteɛ",
+    "phrase": "asase no so dɔteɛ",
+    "mp3": "audio/041_dotee_soil_clay.mp3"
+  },
+  {
+    "number": 42,
+    "english": "nose",
+    "twi": "hwene",
+    "phrase": "ne hwene mu",
+    "mp3": "audio/042_hwene_nose.mp3"
+  },
+  {
+    "number": 43,
+    "english": "deep sleep",
+    "twi": "nnahɔɔ",
+    "phrase": "onipa daa nnahɔɔ",
+    "mp3": "audio/043_nnahoo_deep_sleep.mp3"
+  },
+  {
+    "number": 44,
+    "english": "bone",
+    "twi": "dompe",
+    "phrase": "me dompe ne me honam",
+    "mp3": "audio/044_dompe_bone.mp3"
+  },
+  {
+    "number": 45,
+    "english": "his father and his mother",
+    "twi": "nʼagya ne ne na",
+    "phrase": "ɔbarima gya nʼagya ne ne na",
+    "mp3": "audio/045_nagya_ne_ne_na_his_father_and_his_mother.mp3"
+  },
+  {
+    "number": 46,
+    "english": "one people, one flesh",
+    "twi": "nnipa korɔ",
+    "phrase": "wɔn baanu bɛyɛ nnipa korɔ",
+    "mp3": "audio/046_nnipa_koro_one_people_one_flesh.mp3"
+  }
+]
