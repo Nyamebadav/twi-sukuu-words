@@ -1,0 +1,352 @@
+[
+  {
+    "number": 1,
+    "english": "my eyes",
+    "twi": "mʼani",
+    "phrase": "Bue mʼani na menhunu",
+    "mp3": "audio/001_mani_my_eyes.mp3"
+  },
+  {
+    "number": 2,
+    "english": "my mouth",
+    "twi": "mʼanom",
+    "phrase": "ɛyɛ dɛ sene ɛwoɔ wɔ mʼanom",
+    "mp3": "audio/002_manom_my_mouth.mp3"
+  },
+  {
+    "number": 3,
+    "english": "my feet",
+    "twi": "me nan",
+    "phrase": "Memfaa me nan nsii ɛkwan bɔne biara so",
+    "mp3": "audio/003_me_nan_my_feet.mp3"
+  },
+  {
+    "number": 4,
+    "english": "your hands",
+    "twi": "wo nsa",
+    "phrase": "Wo nsa na ɛbɔɔ me na ɛnwonoo me",
+    "mp3": "audio/004_wo_nsa_your_hands.mp3"
+  },
+  {
+    "number": 5,
+    "english": "soul",
+    "twi": "ɔkra",
+    "phrase": "ama me ɔkra atɔ baha",
+    "mp3": "audio/005_okra_soul.mp3"
+  },
+  {
+    "number": 6,
+    "english": "tongue",
+    "twi": "tɛkrɛma",
+    "phrase": "Ma me tɛkrɛma nto wʼasɛm ho dwom",
+    "mp3": "audio/006_tekrema_tongue.mp3"
+  },
+  {
+    "number": 7,
+    "english": "steps",
+    "twi": "anammɔn",
+    "phrase": "Tutu mʼanammɔn sɛdeɛ wʼasɛm no teɛ",
+    "mp3": "audio/007_anammon_steps.mp3"
+  },
+  {
+    "number": 8,
+    "english": "my face",
+    "twi": "mʼanim",
+    "phrase": "mma mʼanim ngu ase",
+    "mp3": "audio/008_manim_my_face.mp3"
+  },
+  {
+    "number": 9,
+    "english": "the heavens",
+    "twi": "ɔsorosoro",
+    "phrase": "ɛgyina hɔ pintinn wɔ ɔsorosoro",
+    "mp3": "audio/009_osorosoro_the_heavens.mp3"
+  },
+  {
+    "number": 10,
+    "english": "dust",
+    "twi": "mfuturo",
+    "phrase": "meda mfuturo mu",
+    "mp3": "audio/010_mfuturo_dust.mp3"
+  },
+  {
+    "number": 11,
+    "english": "silver",
+    "twi": "dwetɛ",
+    "phrase": "sene dwetɛ ne sikakɔkɔɔ mpempem",
+    "mp3": "audio/011_dwete_silver.mp3"
+  },
+  {
+    "number": 12,
+    "english": "streams",
+    "twi": "asutene",
+    "phrase": "Nisuo adware me sɛ asutene",
+    "mp3": "audio/012_asutene_streams.mp3"
+  },
+  {
+    "number": 13,
+    "english": "early morning",
+    "twi": "anɔpahema",
+    "phrase": "Mesɔre anɔpahema",
+    "mp3": "audio/013_anopahema_early_morning.mp3"
+  },
+  {
+    "number": 14,
+    "english": "midnight",
+    "twi": "ɔdasuom",
+    "phrase": "Ɔdasuom, mesɔre de wʼaseda ma wo",
+    "mp3": "audio/014_odasuom_midnight.mp3"
+  },
+  {
+    "number": 15,
+    "english": "time",
+    "twi": "ɛberɛ",
+    "phrase": "ɛberɛ biara",
+    "mp3": "audio/015_ebere_time.mp3"
+  },
+  {
+    "number": 16,
+    "english": "every day",
+    "twi": "da biara",
+    "phrase": "Mekamfo wo mprɛnson da biara",
+    "mp3": "audio/016_da_biara_every_day.mp3"
+  },
+  {
+    "number": 17,
+    "english": "seek",
+    "twi": "hwehwɛ",
+    "phrase": "mahwehwɛ wo nkyerɛkyerɛ",
+    "mp3": "audio/017_hwehwe_seek.mp3"
+  },
+  {
+    "number": 18,
+    "english": "look",
+    "twi": "hwɛ",
+    "phrase": "Hwɛ mʼamanehunu na gye me nkwa",
+    "mp3": "audio/018_hwe_look.mp3"
+  },
+  {
+    "number": 19,
+    "english": "see",
+    "twi": "hunu",
+    "phrase": "Mahunu amane bebree",
+    "mp3": "audio/019_hunu_see.mp3"
+  },
+  {
+    "number": 20,
+    "english": "remember",
+    "twi": "kae",
+    "phrase": "mekae wo tete mmara no",
+    "mp3": "audio/020_kae_remember.mp3"
+  },
+  {
+    "number": 21,
+    "english": "I rise",
+    "twi": "mesɔre",
+    "phrase": "Mesɔre anɔpahema, na mesu pɛ mmoa",
+    "mp3": "audio/021_mesore_i_rise.mp3"
+  },
+  {
+    "number": 22,
+    "english": "I will walk",
+    "twi": "bɛnante",
+    "phrase": "Mede ahofadie bɛnante",
+    "mp3": "audio/022_benante_i_will_walk.mp3"
+  },
+  {
+    "number": 23,
+    "english": "hear, listen",
+    "twi": "tie",
+    "phrase": "Tie me nne sɛdeɛ wʼadɔeɛ no teɛ",
+    "mp3": "audio/023_tie_hear_listen.mp3"
+  },
+  {
+    "number": 24,
+    "english": "I call",
+    "twi": "mefrɛ",
+    "phrase": "Mesu mefrɛ wo, gye me nkwa",
+    "mp3": "audio/024_mefre_i_call.mp3"
+  },
+  {
+    "number": 25,
+    "english": "save my life",
+    "twi": "gye me nkwa",
+    "phrase": "Gye me nkwa, na meyɛ wo dea",
+    "mp3": "audio/025_gye_me_nkwa_save_my_life.mp3"
+  },
+  {
+    "number": 26,
+    "english": "help me",
+    "twi": "boa me",
+    "phrase": "boa me ɛfiri sɛ nnipa teetee me kwa",
+    "mp3": "audio/026_boa_me_help_me.mp3"
+  },
+  {
+    "number": 27,
+    "english": "open",
+    "twi": "bue",
+    "phrase": "Bue mʼani na menhunu",
+    "mp3": "audio/027_bue_open.mp3"
+  },
+  {
+    "number": 28,
+    "english": "learn",
+    "twi": "sua",
+    "phrase": "meresua wo mmara a ɛtene no",
+    "mp3": "audio/028_sua_learn.mp3"
+  },
+  {
+    "number": 29,
+    "english": "I wait",
+    "twi": "metwɛn",
+    "phrase": "metwɛn wo nkwagyeɛ",
+    "mp3": "audio/029_metwen_i_wait.mp3"
+  },
+  {
+    "number": 30,
+    "english": "live",
+    "twi": "ntena nkwa mu",
+    "phrase": "Ma me ntena nkwa mu",
+    "mp3": "audio/030_ntena_nkwa_mu_live.mp3"
+  },
+  {
+    "number": 31,
+    "english": "I praise",
+    "twi": "mekamfo",
+    "phrase": "Mekamfo wo mprɛnson da biara",
+    "mp3": "audio/031_mekamfo_i_praise.mp3"
+  },
+  {
+    "number": 32,
+    "english": "I know",
+    "twi": "menim",
+    "phrase": "menim sɛ wo mmara tene",
+    "mp3": "audio/032_menim_i_know.mp3"
+  },
+  {
+    "number": 33,
+    "english": "fear",
+    "twi": "suro",
+    "phrase": "wɔn a wɔsuro wo no",
+    "mp3": "audio/033_suro_fear.mp3"
+  },
+  {
+    "number": 34,
+    "english": "strengthen me",
+    "twi": "hyɛ me den",
+    "phrase": "hyɛ me den sɛdeɛ wʼasɛm no kyerɛ",
+    "mp3": "audio/034_hye_me_den_strengthen_me.mp3"
+  },
+  {
+    "number": 35,
+    "english": "joy",
+    "twi": "anigyeɛ",
+    "phrase": "na ɛhɔ na menya anigyeɛ",
+    "mp3": "audio/035_anigyee_joy.mp3"
+  },
+  {
+    "number": 36,
+    "english": "comfort",
+    "twi": "awerɛkyekyerɛ",
+    "phrase": "menya awerɛkyekyerɛ wɔ mu",
+    "mp3": "audio/036_awerekyekyere_comfort.mp3"
+  },
+  {
+    "number": 37,
+    "english": "compassion, mercy",
+    "twi": "ayamhyehyeɛ",
+    "phrase": "wʼayamhyehyeɛ yɛ kɛseɛ",
+    "mp3": "audio/037_ayamhyehyee_compassion_mercy.mp3"
+  },
+  {
+    "number": 38,
+    "english": "mercy, pity",
+    "twi": "mmɔbɔ",
+    "phrase": "hunu me mmɔbɔ",
+    "mp3": "audio/038_mmobo_mercy_pity.mp3"
+  },
+  {
+    "number": 39,
+    "english": "peace",
+    "twi": "asomdwoeɛ",
+    "phrase": "wɔ asomdwoeɛ mmoroso",
+    "mp3": "audio/039_asomdwoee_peace.mp3"
+  },
+  {
+    "number": 40,
+    "english": "suffering, affliction",
+    "twi": "amanehunu",
+    "phrase": "Hwɛ mʼamanehunu na gye me nkwa",
+    "mp3": "audio/040_amanehunu_suffering_affliction.mp3"
+  },
+  {
+    "number": 41,
+    "english": "trust",
+    "twi": "ahotosoɔ",
+    "phrase": "mewɔ wʼasɛm mu ahotosoɔ",
+    "mp3": "audio/041_ahotosoo_trust.mp3"
+  },
+  {
+    "number": 42,
+    "english": "I long for",
+    "twi": "mʼani agyina",
+    "phrase": "Mʼani agyina wo nkyerɛkyerɛ no",
+    "mp3": "audio/042_mani_agyina_i_long_for.mp3"
+  },
+  {
+    "number": 43,
+    "english": "God",
+    "twi": "Onyankopɔn",
+    "phrase": "menni me Onyankopɔn mmaransɛm so",
+    "mp3": "audio/043_onyankopon_god.mp3"
+  },
+  {
+    "number": 44,
+    "english": "blessed are",
+    "twi": "nhyira nka",
+    "phrase": "Nhyira nka wɔn a wɔn akwan yɛ pɛ",
+    "mp3": "audio/044_nhyira_nka_blessed_are.mp3"
+  },
+  {
+    "number": 45,
+    "english": "your words",
+    "twi": "wo nsɛm",
+    "phrase": "Wo nsɛm yɛ me dɛ",
+    "mp3": "audio/045_wo_nsem_your_words.mp3"
+  },
+  {
+    "number": 46,
+    "english": "name",
+    "twi": "din",
+    "phrase": "wɔn a wɔdɔ wo din no",
+    "mp3": "audio/046_din_name.mp3"
+  },
+  {
+    "number": 47,
+    "english": "friend",
+    "twi": "adamfo",
+    "phrase": "Meyɛ wɔn a wɔsuro woɔ nyinaa adamfo",
+    "mp3": "audio/047_adamfo_friend.mp3"
+  },
+  {
+    "number": 48,
+    "english": "good",
+    "twi": "papa",
+    "phrase": "wo mmara yɛ papa",
+    "mp3": "audio/048_papa_good.mp3"
+  },
+  {
+    "number": 49,
+    "english": "young man",
+    "twi": "Aberanteɛ",
+    "phrase": "Aberanteɛ bɛyɛ dɛn na nʼakwan ho ate",
+    "mp3": "audio/049_aberantee_young_man.mp3"
+  },
+  {
+    "number": 50,
+    "english": "song",
+    "twi": "dwom",
+    "phrase": "Ma me tɛkrɛma nto wʼasɛm ho dwom",
+    "mp3": "audio/050_dwom_song.mp3"
+  }
+]
