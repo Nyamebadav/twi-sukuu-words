@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The crooked tree - Twi listen</title><link rel="icon" href="favicon.svg">
+<style>
+:root{--g:#0a7d3b;--y:#f2b705;--r:#c0392b;--bg:#fffaf0;--card:#fff;--ink:#222}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(90deg,var(--r),var(--y),var(--g));color:#fff;padding:16px;text-align:center}
+header h1{margin:0;font-size:1.6rem}header p{margin:6px 0 0}
+main{max-width:640px;margin:0 auto;padding:12px}
+.card{background:var(--card);border-radius:16px;padding:14px;margin:12px 0;box-shadow:0 1px 4px #0002;border-left:6px solid var(--g)}
+.num{font-size:.8rem;color:var(--g);font-weight:700}
+.twi{font-size:1.3rem;line-height:1.5;margin:6px 0 10px}
+button{font-size:1rem;padding:10px 16px;border:0;border-radius:12px;cursor:pointer;background:var(--g);color:#fff}
+button.playing{background:var(--y);color:#222}
+.top{text-align:center;margin:10px 0}.top button{background:var(--r)}
+footer{text-align:center;color:#666;font-size:.9rem;padding:20px}
+</style></head><body>
+<header><h1>🌳 The crooked tree</h1><p>Listen to each Twi line, then say it with her.</p></header>
+<main>
+<div class="top"><button id="all">▶ Play all</button></div>
+<div id="list"></div>
+</main>
+<footer>Voice: Sikayere</footer>
+<script>
+const lines=[
+["Wɔbɛgyae dua a akyea no ama agyina hɔ.","audio/ct01.mp3"],
+["Wɔbɛtwa dua a ateɛ no de ayɛ nnua a wɔde si adan.","audio/ct02.mp3"],
+["Sɛ wubetumi apaw a, dua bɛn na wobɛpɛ sɛ woyɛ?","audio/ct03.mp3"],
+["Sɛ wohwɛ w’abrabɔ a, wuhu ɔkwan a ɛteɛ anaa ɔkwan a akyea?","audio/ct04.mp3"]];
+const audio=new Audio();let btns=[],queue=null;
+function play(i){btns.forEach(b=>{b.classList.remove('playing');b.textContent='▶ Listen'});
+ audio.src=lines[i][1];audio.play();btns[i].classList.add('playing');btns[i].textContent='🔊 Playing';
+ audio.onended=()=>{btns[i].classList.remove('playing');btns[i].textContent='▶ Listen';
+  if(queue!==null&&i+1<lines.length){setTimeout(()=>play(i+1),900)}else queue=null}}
+const list=document.getElementById('list');
+lines.forEach((l,i)=>{const c=document.createElement('div');c.className='card';
+ c.innerHTML=`<div class="num">Line ${i+1}</div><div class="twi"></div>`;c.querySelector('.twi').textContent=l[0];
+ const b=document.createElement('button');b.textContent='▶ Listen';b.onclick=()=>{queue=null;play(i)};
+ c.appendChild(b);btns.push(b);list.appendChild(c)});
+document.getElementById('all').onclick=()=>{queue=0;play(0)};
+</script></body></html>
