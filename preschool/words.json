@@ -14,13 +14,13 @@
   {
     "number": 3,
     "english": "please",
-    "twi": "Mepakyew",
+    "twi": "mepa wo kyɛw",
     "mp3": "audio/003_mepakyew_please.mp3"
   },
   {
     "number": 4,
     "english": "thank you",
-    "twi": "medaase",
+    "twi": "meda wo ase",
     "mp3": "audio/004_medaase_thank_you.mp3"
   },
   {
@@ -62,7 +62,7 @@
   {
     "number": 11,
     "english": "friend",
-    "twi": "adamfo",
+    "twi": "adamfoɔ",
     "mp3": "audio/011_adamfo_friend.mp3"
   },
   {
@@ -92,7 +92,7 @@
   {
     "number": 16,
     "english": "sun",
-    "twi": "awia",
+    "twi": "owia",
     "mp3": "audio/016_awia_sun.mp3"
   },
   {
@@ -104,7 +104,7 @@
   {
     "number": 18,
     "english": "star",
-    "twi": "nsoromma",
+    "twi": "nsoroma",
     "mp3": "audio/018_nsoromma_star.mp3"
   },
   {
@@ -116,7 +116,7 @@
   {
     "number": 20,
     "english": "fish",
-    "twi": "Mpataa",
+    "twi": "apataa",
     "mp3": "audio/020_mpataa_fish.mp3"
   },
   {
@@ -128,7 +128,7 @@
   {
     "number": 22,
     "english": "dog",
-    "twi": "kraman",
+    "twi": "ɔkraman",
     "mp3": "audio/022_kraman_dog.mp3"
   },
   {
@@ -470,7 +470,7 @@
   {
     "number": 79,
     "english": "My Voice",
-    "twi": "Me nɛ",
+    "twi": "me nne",
     "mp3": "audio/079_me_ne_my_voice.mp3"
   },
   {
@@ -482,7 +482,7 @@
   {
     "number": 81,
     "english": "Students",
-    "twi": "Ɔsukuuni",
+    "twi": "Asukuufoɔ",
     "mp3": "audio/081_osukuuni_students.mp3"
   }
 ]
