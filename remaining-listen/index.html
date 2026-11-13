@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0F6B4C">
+<title>Remaining words — Twi</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --cream: #FFF6E8;
+    --ink: #1C2418;
+    --green: #0F6B4C;
+    --green-dark: #0A4D37;
+    --gold: #F0C14B;
+    --red: #C83A2A;
+    --card-radius: 22px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bot: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: rgba(15,107,76,.18); }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink);
+    font-family: ui-rounded, "SF Pro Rounded", "Avenir Next Rounded", "Nunito", "Segoe UI", system-ui, sans-serif;
+    min-height: 100%; }
+  body { padding-top: var(--safe-top); padding-bottom: calc(16px + var(--safe-bot)); }
+  button { font: inherit; cursor: pointer; }
+  h1, h2, p { margin: 0; }
+
+  header.top {
+    background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+    color: #fff;
+    padding: 18px 18px 14px;
+    text-align: center;
+    position: relative;
+  }
+  header.top h1 { font-size: 1.7rem; letter-spacing: .02em; font-weight: 800; }
+  header.top p { margin-top: 4px; font-size: .95rem; opacity: .92; }
+  .flag { height: 6px; display: flex; }
+  .flag span { flex: 1; }
+  .flag .r { background: #CE1126; }
+  .flag .g { background: #FCD116; }
+  .flag .n { background: #006B3F; }
+
+  nav.tabs {
+    display: flex;
+    gap: 8px;
+    padding: 12px 12px 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(255,246,232,.94);
+    backdrop-filter: blur(8px);
+    scrollbar-width: none;
+  }
+  nav.tabs::-webkit-scrollbar { display: none; }
+  nav.tabs button {
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 999px;
+    padding: 10px 16px;
+    background: #fff;
+    color: var(--green-dark);
+    font-weight: 700;
+    font-size: .95rem;
+    box-shadow: 0 2px 0 #e6d3b0;
+  }
+  nav.tabs button[aria-selected="true"] {
+    background: var(--green);
+    color: #fff;
+    box-shadow: 0 3px 0 var(--green-dark);
+  }
+
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .toolbar .hint { flex: 1; font-size: .92rem; color: #4d5a45; min-width: 120px; }
+  .toolbar button {
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 16px;
+    font-weight: 800;
+    color: var(--green-dark);
+    background: var(--gold);
+    box-shadow: 0 3px 0 #c9991a;
+  }
+  .toolbar button.stop { background: #ffd0c8; color: #8a2418; box-shadow: 0 3px 0 #d58a7e; }
+  .toolbar button.quiz { background: #c8ecff; color: #0a4a6b; box-shadow: 0 3px 0 #8ec5e0; }
+  .toolbar button:active { transform: translateY(2px); box-shadow: none; }
+
+  main { padding: 4px 12px 24px; }
+  .section { display: none; }
+  .section.active { display: block; }
+  .subhead {
+    margin: 10px 6px 8px;
+    font-size: .85rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #6a7a5c;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .grid.letters { grid-template-columns: repeat(3, 1fr); }
+  .grid.bonus { grid-template-columns: 1fr; }
+
+  .card {
+    appearance: none;
+    border: 0;
+    border-radius: var(--card-radius);
+    padding: 16px 10px 14px;
+    text-align: center;
+    color: var(--ink);
+    min-height: 148px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    box-shadow: 0 6px 0 rgba(0,0,0,.08);
+    transition: transform .15s ease, box-shadow .15s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    position: relative;
+  }
+  .card:active { transform: translateY(3px) scale(.98); box-shadow: 0 2px 0 rgba(0,0,0,.08); }
+  .card.playing {
+    outline: 4px solid var(--green);
+    outline-offset: 1px;
+    transform: scale(1.03);
+    z-index: 1;
+  }
+  .card.correct { outline: 4px solid #1f9d5a; }
+  .card.wrong { animation: shake .4s ease; outline: 4px solid #d35a4a; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-7px); }
+    40% { transform: translateX(7px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  .emoji { font-size: 2.3rem; line-height: 1; filter: drop-shadow(0 2px 0 rgba(0,0,0,.06)); }
+  .twi { font-size: 1.45rem; font-weight: 800; line-height: 1.2; margin-top: 6px; word-break: break-word; }
+  .eng { font-size: .92rem; opacity: .75; margin-top: 2px; font-weight: 600; }
+  .letter-glyph { font-size: 3.1rem; font-weight: 800; line-height: 1; }
+  .card.pangram { padding: 22px 18px; min-height: 180px; }
+  .card.pangram .twi { font-size: 1.2rem; }
+  .card.pangram .eng { font-size: 1.05rem; }
+
+  .quiz-wrap { display: none; padding: 8px 4px 24px; }
+  .quiz-wrap.on { display: block; }
+  .quiz-head { text-align: center; margin-bottom: 12px; }
+  .quiz-head h2 { font-size: 1.35rem; }
+  .quiz-score { margin-top: 4px; color: #4d5a45; font-weight: 700; }
+  .quiz-actions { display: flex; gap: 10px; justify-content: center; margin: 12px 0 16px; flex-wrap: wrap; }
+  .quiz-actions button, .quiz-done button {
+    border: 0; border-radius: 999px; padding: 12px 18px; font-weight: 800;
+    background: var(--gold); color: var(--green-dark); box-shadow: 0 3px 0 #c9991a;
+  }
+  .quiz-actions button.ghost, .quiz-done button.ghost {
+    background: #fff; box-shadow: 0 3px 0 #e6d3b0;
+  }
+  .feedback {
+    text-align: center; font-weight: 800; font-size: 1.2rem; min-height: 1.4em; margin: 8px 0 4px;
+  }
+  .feedback.good { color: #1f9d5a; }
+  .feedback.bad { color: #b5473a; }
+  .quiz-done { display: none; text-align: center; padding: 28px 12px; }
+  .quiz-done.on { display: block; }
+  .quiz-done .stars { font-size: 2.4rem; margin: 8px 0 12px; }
+  .quiz-done h2 { font-size: 1.6rem; margin-bottom: 8px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(24px + var(--safe-bot));
+    transform: translateX(-50%) translateY(20px);
+    background: var(--green-dark); color: #fff; padding: 10px 16px;
+    border-radius: 999px; font-weight: 700; opacity: 0; pointer-events: none;
+    transition: opacity .2s, transform .2s; z-index: 20;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (min-width: 720px) {
+    .grid { grid-template-columns: repeat(4, 1fr); }
+    .grid.letters { grid-template-columns: repeat(6, 1fr); }
+    .wrap { max-width: 980px; margin: 0 auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card, .toast { transition: none; }
+    .card.wrong { animation: none; }
+  }
+
+  .phrase { font-size: .82rem; opacity: .72; margin-top: 6px; font-weight: 600; font-style: italic; line-height: 1.35; }
+  footer.credit {
+    text-align: center;
+    padding: 18px 16px 8px;
+    font-size: .75rem;
+    color: #6a7a5c;
+    line-height: 1.45;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+  .card { min-height: 132px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .grid.bonus { grid-template-columns: minmax(0, 1fr); } .grid.letters { grid-template-columns: repeat(3, minmax(0, 1fr)); } .card { min-width: 0; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+  <header class="top">
+    <h1>Remaining words — Twi</h1>
+    <p>Tap a card to hear the word</p>
+  </header>
+  <div class="flag" aria-hidden="true"><span class="r"></span><span class="g"></span><span class="n"></span></div>
+
+  <div class="wrap">
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button type="button" role="tab" id="tab-batch2" aria-selected="true" data-sec="batch2">Batch 2</button>
+      <button type="button" role="tab" id="tab-spelling" aria-selected="false" data-sec="spelling">Spelling</button>
+      <button type="button" role="tab" id="tab-psalm" aria-selected="false" data-sec="psalm">Psalm 119 retake</button>
+    </nav>
+
+    <div class="toolbar" id="toolbar">
+      <p class="hint" id="hint">Listen, then say it with her.</p>
+      <button type="button" id="btn-playall">Play all</button>
+      <button type="button" id="btn-stop" class="stop" hidden>Stop</button>
+      <button type="button" id="btn-quiz" class="quiz">Which one?</button>
+    </div>
+
+    <main id="main">
+      <section class="section active" id="sec-batch2" role="tabpanel"></section>
+      <section class="section" id="sec-spelling" role="tabpanel"></section>
+      <section class="section" id="sec-psalm" role="tabpanel"></section>
+    </main>
+
+    <div class="quiz-wrap" id="quiz-wrap" hidden>
+      <div id="quiz-play">
+        <div class="quiz-head">
+          <h2>Which one did you hear?</h2>
+          <p class="quiz-score" id="quiz-score"></p>
+        </div>
+        <div class="quiz-actions">
+          <button type="button" id="btn-hear">Hear it again</button>
+          <button type="button" class="ghost" id="btn-quiz-exit">Back to cards</button>
+        </div>
+        <p class="feedback" id="quiz-feedback" aria-live="polite"></p>
+        <div class="grid" id="quiz-grid"></div>
+      </div>
+      <div class="quiz-done" id="quiz-done">
+        <div class="stars" aria-hidden="true">⭐⭐⭐</div>
+        <h2>Great job!</h2>
+        <p class="quiz-score" id="quiz-final"></p>
+        <div class="quiz-actions">
+          <button type="button" id="btn-quiz-again">Play again</button>
+          <button type="button" class="ghost" id="btn-quiz-back">Back to cards</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="credit">Voice: Sikayere<br>Twi text from Asante Twi Nkwa Asɛm © Biblica, CC BY-SA 4.0</footer>
+  <div class="toast" id="toast" role="status"></div>
+
+<script id="words-data" type="application/json">[{"number": 1, "english": "welcome", "twi": "akwaaba", "phrase": "", "mp3": "audio/001_akwaaba_welcome.mp3"}, {"number": 2, "english": "how are you?", "twi": "ɛte sɛn?", "phrase": "", "mp3": "audio/002_ete_sen_how_are_you.mp3"}, {"number": 3, "english": "I am fine", "twi": "me ho yɛ", "phrase": "", "mp3": "audio/003_me_ho_ye_i_am_fine.mp3"}, {"number": 4, "english": "good morning", "twi": "maakye", "phrase": "", "mp3": "audio/004_maakye_good_morning.mp3"}, {"number": 5, "english": "good afternoon", "twi": "maaha", "phrase": "", "mp3": "audio/005_maaha_good_afternoon.mp3"}, {"number": 6, "english": "good evening", "twi": "maadwo", "phrase": "", "mp3": "audio/006_maadwo_good_evening.mp3"}, {"number": 7, "english": "my name is …", "twi": "me din de …", "phrase": "", "mp3": "audio/007_me_din_de_my_name_is.mp3"}, {"number": 8, "english": "what is your name?", "twi": "wo din de sɛn?", "phrase": "", "mp3": "audio/008_wo_din_de_sen_what_is_your_name.mp3"}, {"number": 9, "english": "where are you from?", "twi": "wofiri he?", "phrase": "", "mp3": "audio/009_wofiri_he_where_are_you_from.mp3"}, {"number": 10, "english": "I'm from Ghana", "twi": "mefiri Ghana", "phrase": "", "mp3": "audio/010_mefiri_ghana_im_from_ghana.mp3"}, {"number": 11, "english": "nice to meet you", "twi": "ɛyɛ me anigye sɛ mahyia wo", "phrase": "", "mp3": "audio/011_eye_me_anigye_se_mahyia_wo_nice_to_meet_you.mp3"}, {"number": 12, "english": "sit down", "twi": "tena ase", "phrase": "", "mp3": "audio/012_tena_ase_sit_down.mp3"}, {"number": 13, "english": "come here", "twi": "bra ha", "phrase": "", "mp3": "audio/013_bra_ha_come_here.mp3"}, {"number": 14, "english": "see you tomorrow", "twi": "yɛbɛhyia ɔkyena", "phrase": "", "mp3": "audio/014_yebehyia_okyena_see_you_tomorrow.mp3"}, {"number": 15, "english": "sorry", "twi": "kose", "phrase": "", "mp3": "audio/015_kose_sorry.mp3"}, {"number": 16, "english": "grandmother", "twi": "nanabea", "phrase": "", "mp3": "audio/016_nanabea_grandmother.mp3"}, {"number": 17, "english": "grandfather", "twi": "nana barima", "phrase": "", "mp3": "audio/017_nana_barima_grandfather.mp3"}, {"number": 19, "english": "sister", "twi": "onua baa", "phrase": "", "mp3": "audio/019_onua_baa_sister.mp3"}, {"number": 20, "english": "baby", "twi": "akwadaa", "phrase": "", "mp3": "audio/020_akwadaa_baby.mp3"}, {"number": 21, "english": "child", "twi": "abofra", "phrase": "", "mp3": "audio/021_abofra_child.mp3"}, {"number": 22, "english": "aunt", "twi": "sewaa", "phrase": "", "mp3": "audio/022_sewaa_aunt.mp3"}, {"number": 23, "english": "uncle", "twi": "wɔfa", "phrase": "", "mp3": "audio/023_wofa_uncle.mp3"}, {"number": 24, "english": "family", "twi": "abusua", "phrase": "", "mp3": "audio/024_abusua_family.mp3"}, {"number": 25, "english": "house", "twi": "fie", "phrase": "", "mp3": "audio/025_fie_house.mp3"}, {"number": 26, "english": "one", "twi": "baako", "phrase": "", "mp3": "audio/026_baako_one.mp3"}, {"number": 27, "english": "two", "twi": "mmienu", "phrase": "", "mp3": "audio/027_mmienu_two.mp3"}, {"number": 28, "english": "three", "twi": "mmiɛnsa", "phrase": "", "mp3": "audio/028_mmiensa_three.mp3"}, {"number": 29, "english": "four", "twi": "ɛnan", "phrase": "", "mp3": "audio/029_enan_four.mp3"}, {"number": 30, "english": "five", "twi": "enum", "phrase": "", "mp3": "audio/030_enum_five.mp3"}, {"number": 31, "english": "six", "twi": "nsia", "phrase": "", "mp3": "audio/031_nsia_six.mp3"}, {"number": 32, "english": "seven", "twi": "nson", "phrase": "", "mp3": "audio/032_nson_seven.mp3"}, {"number": 33, "english": "eight", "twi": "nwɔtwe", "phrase": "", "mp3": "audio/033_nwotwe_eight.mp3"}, {"number": 34, "english": "nine", "twi": "nkron", "phrase": "", "mp3": "audio/034_nkron_nine.mp3"}, {"number": 35, "english": "ten", "twi": "du", "phrase": "", "mp3": "audio/035_du_ten.mp3"}, {"number": 36, "english": "eleven", "twi": "dubaako", "phrase": "", "mp3": "audio/036_dubaako_eleven.mp3"}, {"number": 37, "english": "twelve", "twi": "dumienu", "phrase": "", "mp3": "audio/037_dumienu_twelve.mp3"}, {"number": 38, "english": "thirteen", "twi": "dumiɛnsa", "phrase": "", "mp3": "audio/038_dumiensa_thirteen.mp3"}, {"number": 39, "english": "fourteen", "twi": "dunan", "phrase": "", "mp3": "audio/039_dunan_fourteen.mp3"}, {"number": 40, "english": "fifteen", "twi": "dunum", "phrase": "", "mp3": "audio/040_dunum_fifteen.mp3"}, {"number": 41, "english": "sixteen", "twi": "dunsia", "phrase": "", "mp3": "audio/041_dunsia_sixteen.mp3"}, {"number": 42, "english": "seventeen", "twi": "dunson", "phrase": "", "mp3": "audio/042_dunson_seventeen.mp3"}, {"number": 43, "english": "eighteen", "twi": "dunwɔtwe", "phrase": "", "mp3": "audio/043_dunwotwe_eighteen.mp3"}, {"number": 44, "english": "nineteen", "twi": "dunkron", "phrase": "", "mp3": "audio/044_dunkron_nineteen.mp3"}, {"number": 45, "english": "twenty", "twi": "aduonu", "phrase": "", "mp3": "audio/045_aduonu_twenty.mp3"}, {"number": 46, "english": "one hundred", "twi": "ɔha", "phrase": "", "mp3": "audio/046_oha_one_hundred.mp3"}, {"number": 47, "english": "sun", "twi": "owia", "phrase": "", "mp3": "audio/047_owia_sun.mp3"}, {"number": 48, "english": "water", "twi": "nsuo", "phrase": "", "mp3": "audio/048_nsuo_water.mp3"}, {"number": 49, "english": "thank you", "twi": "meda wo ase", "phrase": "", "mp3": "audio/049_meda_wo_ase_thank_you.mp3"}, {"number": 65, "english": "salvation", "twi": "nkwagyeɛ", "phrase": "metwɛn wo nkwagyeɛ", "mp3": "audio/065_nkwagyee_salvation.mp3"}]</script>
+<script>
+(function () {
+  const WORDS = JSON.parse(document.getElementById("words-data").textContent);
+  const byNum = Object.fromEntries(WORDS.map(w => [w.number, w]));
+
+  const EMOJI = {"1":"👋","2":"😊","3":"👍","4":"🌅","5":"☀️","6":"🌙","7":"📛","8":"❓","9":"📍","10":"🇬🇭","11":"🤝","12":"🪑","13":"👉","14":"👋","15":"🙏","16":"👵","17":"👴","19":"👧","20":"👶","21":"🧒","22":"👩","23":"👨","24":"👨‍👩‍👧‍👦","25":"🏠","26":"1️⃣","27":"2️⃣","28":"3️⃣","29":"4️⃣","30":"5️⃣","31":"6️⃣","32":"7️⃣","33":"8️⃣","34":"9️⃣","35":"🔟","36":"🔢","37":"🔢","38":"🔢","39":"🔢","40":"🔢","41":"🔢","42":"🔢","43":"🔢","44":"🔢","45":"🔢","46":"💯","47":"☀️","48":"💧","49":"🙏","65":"✨"};
+  const PALETTE = [
+    "#FFE08A","#FFD0D0","#C8F0D8","#D0E4FF","#E8D4FF","#FFD9B3","#CFF4F0","#F5D0E8"
+  ];
+
+  const SECTIONS = {
+    batch2: { id: "batch2", label: "Batch 2", hint: "Greetings, family, and numbers. Listen, then say it with her.", bonus: true, groups: [{ title: "Greetings & introductions", nums: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] }, { title: "Family", nums: [16, 17, 19, 20, 21, 22, 23, 24, 25] }, { title: "Numbers", nums: [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46] }] },
+    spelling: { id: "spelling", label: "Spelling", hint: "The spelling she chose, in her own voice.", bonus: true, groups: [{ title: "", nums: [47, 48, 49] }] },
+    psalm: { id: "psalm", label: "Psalm 119 retake", hint: "The word she skipped last time. Listen, then say it with her.", bonus: true, groups: [{ title: "", nums: [65] }] }
+  };
+
+  function range(a, b) {
+    const out = [];
+    for (let n = a; n <= b; n++) out.push(n);
+    return out;
+  }
+
+  const player = new Audio();
+  player.preload = "auto";
+  player.setAttribute("playsinline", "");
+  let audioCtx = null;
+  let unlocked = false;
+  let playAllToken = 0;
+  let playingAll = false;
+  let currentSec = "batch2";
+  let currentSource = null;
+
+  function unlock() {
+    if (unlocked) return;
+    unlocked = true;
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+    } catch (e) {}
+    // Do not touch the shared player here: a card tap in the same gesture
+    // needs to call player.play() itself so iOS Safari allows playback.
+  }
+  document.addEventListener("pointerdown", unlock, { once: true, capture: true });
+  document.addEventListener("touchstart", unlock, { once: true, capture: true });
+  document.addEventListener("click", unlock, { once: true, capture: true });
+
+  function stopAudio() {
+    playAllToken++;
+    playingAll = false;
+    try { player.pause(); } catch (e) {}
+    if (currentSource) {
+      try { currentSource.stop(); } catch (e) {}
+      currentSource = null;
+    }
+    document.querySelectorAll(".card.playing").forEach(function (el) { el.classList.remove("playing"); });
+    document.getElementById("btn-playall").hidden = false;
+    document.getElementById("btn-stop").hidden = true;
+  }
+
+  function highlight(num) {
+    document.querySelectorAll(".card.playing").forEach(function (el) { el.classList.remove("playing"); });
+    const el = document.querySelector('.card[data-num="' + num + '"]');
+    if (el) {
+      el.classList.add("playing");
+      el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+    }
+  }
+
+  function playUrl(url) {
+    return new Promise(function (resolve) {
+      let settled = false;
+      const done = function () {
+        if (settled) return;
+        settled = true;
+        player.removeEventListener("ended", done);
+        player.removeEventListener("error", done);
+        resolve();
+      };
+      player.addEventListener("ended", done);
+      player.addEventListener("error", done);
+      player.src = url;
+      const p = player.play();
+      if (p) {
+        p.catch(function () {
+          playViaContext(url).then(done).catch(done);
+        });
+      }
+    });
+  }
+
+  const decoded = {};
+  async function playViaContext(url) {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === "suspended") await audioCtx.resume();
+    if (!decoded[url]) {
+      const res = await fetch(url);
+      const buf = await res.arrayBuffer();
+      decoded[url] = await audioCtx.decodeAudioData(buf.slice(0));
+    }
+    return new Promise(function (resolve) {
+      if (currentSource) {
+        try { currentSource.stop(); } catch (e) {}
+      }
+      const src = audioCtx.createBufferSource();
+      currentSource = src;
+      src.buffer = decoded[url];
+      src.connect(audioCtx.destination);
+      src.onended = function () {
+        if (currentSource === src) currentSource = null;
+        resolve();
+      };
+      src.start();
+    });
+  }
+
+  async function playItem(item, mark) {
+    if (mark !== false) highlight(item.number);
+    await playUrl(item.mp3);
+  }
+
+  function tone(freqs, type, vol) {
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      const now = audioCtx.currentTime;
+      freqs.forEach(function (f, i) {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = type || "sine";
+        o.frequency.value = f;
+        const t = now + i * 0.09;
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(vol || 0.1, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.32);
+        o.connect(g);
+        g.connect(audioCtx.destination);
+        o.start(t);
+        o.stop(t + 0.35);
+      });
+    } catch (e) {}
+  }
+  function yaySound() { tone([523.25, 659.25, 783.99], "sine", 0.09); }
+  function trySound() { tone([330, 277], "triangle", 0.05); }
+
+  function displayTwi(item) {
+    if (item.twi) return item.twi;
+    if (/^Letter [A-Z]$/.test(item.english)) return item.english.slice(-1);
+    if (/^Twi letter /.test(item.english)) return item.english.replace("Twi letter ", "");
+    return "";
+  }
+  function displayEng(item) {
+    if (/^Letter [A-Z]$/.test(item.english) || /^Twi letter /.test(item.english)) {
+      return item.english;
+    }
+    if (!item.english) return "";
+    // Keep original wording; only lift the first character for everyday words that were saved in lowercase.
+    return item.english.charAt(0).toUpperCase() + item.english.slice(1);
+  }
+  function isLetterCard(item) {
+    return false;
+  }
+
+  function cardEl(item, opts) {
+    opts = opts || {};
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "card" + (item.number === 71 ? " pangram" : "");
+    btn.dataset.num = String(item.number);
+    btn.style.background = PALETTE[(item.number - 1) % PALETTE.length];
+    const twi = displayTwi(item);
+    const eng = displayEng(item);
+    const emo = EMOJI[item.number] || "";
+    let inner = "";
+    if (emo && !isLetterCard(item)) inner += '<div class="emoji" aria-hidden="true">' + emo + "</div>";
+    if (isLetterCard(item)) {
+      inner += '<div class="letter-glyph" lang="tw">' + escapeHtml(twi) + "</div>";
+      inner += '<div class="eng">' + escapeHtml(eng) + "</div>";
+    } else if (item.number === 71) {
+      inner += '<div class="emoji" aria-hidden="true">🦊</div>';
+      inner += '<div class="twi">' + escapeHtml(eng) + "</div>";
+      inner += '<div class="eng">English pangram</div>';
+    } else {
+      inner += '<div class="twi" lang="tw">' + escapeHtml(twi) + "</div>";
+      if (!opts.hideEnglish) inner += '<div class="eng">' + escapeHtml(eng) + "</div>";
+      if (item.phrase && !opts.hidePhrase) inner += '<div class="phrase" lang="tw">' + escapeHtml(item.phrase) + "</div>";
+    }
+    btn.innerHTML = inner;
+    const label = [twi, eng].filter(Boolean).join(", ");
+    btn.setAttribute("aria-label", "Play " + label);
+    return btn;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  function renderSections() {
+    Object.keys(SECTIONS).forEach(function (key) {
+      const sec = SECTIONS[key];
+      const root = document.getElementById("sec-" + key);
+      root.innerHTML = "";
+      sec.groups.forEach(function (g) {
+        if (g.title) {
+          const h = document.createElement("h2");
+          h.className = "subhead";
+          h.textContent = g.title;
+          root.appendChild(h);
+        }
+        const grid = document.createElement("div");
+        grid.className = "grid" + (sec.letters ? " letters" : "") + (sec.bonus ? " bonus" : "");
+        g.nums.forEach(function (n) {
+          const item = byNum[n];
+          if (!item) return;
+          const btn = cardEl(item);
+          btn.addEventListener("click", function () {
+            if (playingAll) stopAudio();
+            playItem(item);
+          });
+          grid.appendChild(btn);
+        });
+        root.appendChild(grid);
+      });
+    });
+  }
+
+  function sectionItems(id) {
+    const nums = [];
+    SECTIONS[id].groups.forEach(function (g) { g.nums.forEach(function (n) { nums.push(n); }); });
+    return nums.map(function (n) { return byNum[n]; }).filter(Boolean);
+  }
+
+  function showSection(id) {
+    stopAudio();
+    currentSec = id;
+    document.querySelectorAll(".section").forEach(function (el) { el.classList.remove("active"); });
+    document.getElementById("sec-" + id).classList.add("active");
+    document.querySelectorAll("nav.tabs button").forEach(function (b) {
+      b.setAttribute("aria-selected", b.dataset.sec === id ? "true" : "false");
+    });
+    document.getElementById("hint").textContent = SECTIONS[id].hint;
+    exitQuiz(true);
+  }
+
+  async function playAll() {
+    unlock();
+    const token = ++playAllToken;
+    playingAll = true;
+    document.getElementById("btn-playall").hidden = true;
+    document.getElementById("btn-stop").hidden = false;
+    const items = sectionItems(currentSec);
+    for (let i = 0; i < items.length; i++) {
+      if (token !== playAllToken) return;
+      await playItem(items[i]);
+      if (token !== playAllToken) return;
+      await sleep(650);
+    }
+    if (token === playAllToken) stopAudio();
+  }
+
+  function sleep(ms) {
+    return new Promise(function (r) { setTimeout(r, ms); });
+  }
+
+  // ---- Quiz (Words section only) ----
+  const QUIZ_ROUNDS = 8;
+  let quizOn = false;
+  let quizRound = 0;
+  let quizRight = 0;
+  let quizAnswer = null;
+  let quizLocked = false;
+
+  function wordBank() {
+    return sectionItems(currentSec);
+  }
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function startQuiz() {
+    stopAudio();
+    unlock();
+    quizOn = true;
+    quizRound = 0;
+    quizRight = 0;
+    document.getElementById("main").hidden = true;
+    document.getElementById("toolbar").hidden = true;
+    const wrap = document.getElementById("quiz-wrap");
+    wrap.hidden = false;
+    wrap.classList.add("on");
+    document.getElementById("quiz-play").style.display = "";
+    document.getElementById("quiz-done").classList.remove("on");
+    nextQuizRound();
+  }
+
+  function exitQuiz(silent) {
+    quizOn = false;
+    quizAnswer = null;
+    const wrap = document.getElementById("quiz-wrap");
+    wrap.hidden = true;
+    wrap.classList.remove("on");
+    document.getElementById("main").hidden = false;
+    document.getElementById("toolbar").hidden = false;
+    if (!silent) stopAudio();
+  }
+
+  function nextQuizRound() {
+    if (quizRound >= QUIZ_ROUNDS) {
+      finishQuiz();
+      return;
+    }
+    quizRound++;
+    quizLocked = false;
+    document.getElementById("quiz-feedback").textContent = "";
+    document.getElementById("quiz-feedback").className = "feedback";
+    document.getElementById("quiz-score").textContent = "Round " + quizRound + " of " + QUIZ_ROUNDS + "  ·  " + quizRight + " right";
+    const bank = wordBank();
+    quizAnswer = bank[Math.floor(Math.random() * bank.length)];
+    const others = shuffle(bank.filter(function (w) { return w.number !== quizAnswer.number; })).slice(0, 3);
+    const choices = shuffle(others.concat([quizAnswer]));
+    const grid = document.getElementById("quiz-grid");
+    grid.innerHTML = "";
+    choices.forEach(function (item) {
+      const btn = cardEl(item, { hidePhrase: true });
+      btn.addEventListener("click", function () { onQuizPick(btn, item); });
+      grid.appendChild(btn);
+    });
+    playItem(quizAnswer, false);
+  }
+
+  function onQuizPick(btn, item) {
+    if (!quizOn || quizLocked) return;
+    if (item.number === quizAnswer.number) {
+      quizLocked = true;
+      quizRight++;
+      btn.classList.add("correct");
+      document.getElementById("quiz-feedback").textContent = "Yay! That's it!";
+      document.getElementById("quiz-feedback").className = "feedback good";
+      document.getElementById("quiz-score").textContent = "Round " + quizRound + " of " + QUIZ_ROUNDS + "  ·  " + quizRight + " right";
+      yaySound();
+      setTimeout(function () { if (quizOn) nextQuizRound(); }, 1100);
+    } else {
+      btn.classList.remove("wrong");
+      void btn.offsetWidth;
+      btn.classList.add("wrong");
+      document.getElementById("quiz-feedback").textContent = "Try again!";
+      document.getElementById("quiz-feedback").className = "feedback bad";
+      trySound();
+      setTimeout(function () { if (quizOn) playItem(quizAnswer, false); }, 400);
+    }
+  }
+
+  function finishQuiz() {
+    stopAudio();
+    document.getElementById("quiz-play").style.display = "none";
+    document.getElementById("quiz-done").classList.add("on");
+    document.getElementById("quiz-final").textContent = "You got " + quizRight + " of " + QUIZ_ROUNDS + " right.";
+    yaySound();
+  }
+
+  document.querySelector("nav.tabs").addEventListener("click", function (e) {
+    const b = e.target.closest("button[data-sec]");
+    if (b) showSection(b.dataset.sec);
+  });
+  document.getElementById("btn-playall").addEventListener("click", playAll);
+  document.getElementById("btn-stop").addEventListener("click", stopAudio);
+  document.getElementById("btn-quiz").addEventListener("click", startQuiz);
+  document.getElementById("btn-hear").addEventListener("click", function () {
+    if (quizAnswer) playItem(quizAnswer, false);
+  });
+  document.getElementById("btn-quiz-exit").addEventListener("click", function () { exitQuiz(); });
+  document.getElementById("btn-quiz-back").addEventListener("click", function () { exitQuiz(); });
+  document.getElementById("btn-quiz-again").addEventListener("click", startQuiz);
+
+  renderSections();
+})();
+</script>
+</body>
+</html>

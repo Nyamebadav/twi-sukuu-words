@@ -1,0 +1,345 @@
+[
+  {
+    "number": 1,
+    "english": "welcome",
+    "twi": "akwaaba",
+    "phrase": "",
+    "mp3": "audio/001_akwaaba_welcome.mp3"
+  },
+  {
+    "number": 2,
+    "english": "how are you?",
+    "twi": "ɛte sɛn?",
+    "phrase": "",
+    "mp3": "audio/002_ete_sen_how_are_you.mp3"
+  },
+  {
+    "number": 3,
+    "english": "I am fine",
+    "twi": "me ho yɛ",
+    "phrase": "",
+    "mp3": "audio/003_me_ho_ye_i_am_fine.mp3"
+  },
+  {
+    "number": 4,
+    "english": "good morning",
+    "twi": "maakye",
+    "phrase": "",
+    "mp3": "audio/004_maakye_good_morning.mp3"
+  },
+  {
+    "number": 5,
+    "english": "good afternoon",
+    "twi": "maaha",
+    "phrase": "",
+    "mp3": "audio/005_maaha_good_afternoon.mp3"
+  },
+  {
+    "number": 6,
+    "english": "good evening",
+    "twi": "maadwo",
+    "phrase": "",
+    "mp3": "audio/006_maadwo_good_evening.mp3"
+  },
+  {
+    "number": 7,
+    "english": "my name is …",
+    "twi": "me din de …",
+    "phrase": "",
+    "mp3": "audio/007_me_din_de_my_name_is.mp3"
+  },
+  {
+    "number": 8,
+    "english": "what is your name?",
+    "twi": "wo din de sɛn?",
+    "phrase": "",
+    "mp3": "audio/008_wo_din_de_sen_what_is_your_name.mp3"
+  },
+  {
+    "number": 9,
+    "english": "where are you from?",
+    "twi": "wofiri he?",
+    "phrase": "",
+    "mp3": "audio/009_wofiri_he_where_are_you_from.mp3"
+  },
+  {
+    "number": 10,
+    "english": "I'm from Ghana",
+    "twi": "mefiri Ghana",
+    "phrase": "",
+    "mp3": "audio/010_mefiri_ghana_im_from_ghana.mp3"
+  },
+  {
+    "number": 11,
+    "english": "nice to meet you",
+    "twi": "ɛyɛ me anigye sɛ mahyia wo",
+    "phrase": "",
+    "mp3": "audio/011_eye_me_anigye_se_mahyia_wo_nice_to_meet_you.mp3"
+  },
+  {
+    "number": 12,
+    "english": "sit down",
+    "twi": "tena ase",
+    "phrase": "",
+    "mp3": "audio/012_tena_ase_sit_down.mp3"
+  },
+  {
+    "number": 13,
+    "english": "come here",
+    "twi": "bra ha",
+    "phrase": "",
+    "mp3": "audio/013_bra_ha_come_here.mp3"
+  },
+  {
+    "number": 14,
+    "english": "see you tomorrow",
+    "twi": "yɛbɛhyia ɔkyena",
+    "phrase": "",
+    "mp3": "audio/014_yebehyia_okyena_see_you_tomorrow.mp3"
+  },
+  {
+    "number": 15,
+    "english": "sorry",
+    "twi": "kose",
+    "phrase": "",
+    "mp3": "audio/015_kose_sorry.mp3"
+  },
+  {
+    "number": 16,
+    "english": "grandmother",
+    "twi": "nanabea",
+    "phrase": "",
+    "mp3": "audio/016_nanabea_grandmother.mp3"
+  },
+  {
+    "number": 17,
+    "english": "grandfather",
+    "twi": "nana barima",
+    "phrase": "",
+    "mp3": "audio/017_nana_barima_grandfather.mp3"
+  },
+  {
+    "number": 19,
+    "english": "sister",
+    "twi": "onua baa",
+    "phrase": "",
+    "mp3": "audio/019_onua_baa_sister.mp3"
+  },
+  {
+    "number": 20,
+    "english": "baby",
+    "twi": "akwadaa",
+    "phrase": "",
+    "mp3": "audio/020_akwadaa_baby.mp3"
+  },
+  {
+    "number": 21,
+    "english": "child",
+    "twi": "abofra",
+    "phrase": "",
+    "mp3": "audio/021_abofra_child.mp3"
+  },
+  {
+    "number": 22,
+    "english": "aunt",
+    "twi": "sewaa",
+    "phrase": "",
+    "mp3": "audio/022_sewaa_aunt.mp3"
+  },
+  {
+    "number": 23,
+    "english": "uncle",
+    "twi": "wɔfa",
+    "phrase": "",
+    "mp3": "audio/023_wofa_uncle.mp3"
+  },
+  {
+    "number": 24,
+    "english": "family",
+    "twi": "abusua",
+    "phrase": "",
+    "mp3": "audio/024_abusua_family.mp3"
+  },
+  {
+    "number": 25,
+    "english": "house",
+    "twi": "fie",
+    "phrase": "",
+    "mp3": "audio/025_fie_house.mp3"
+  },
+  {
+    "number": 26,
+    "english": "one",
+    "twi": "baako",
+    "phrase": "",
+    "mp3": "audio/026_baako_one.mp3"
+  },
+  {
+    "number": 27,
+    "english": "two",
+    "twi": "mmienu",
+    "phrase": "",
+    "mp3": "audio/027_mmienu_two.mp3"
+  },
+  {
+    "number": 28,
+    "english": "three",
+    "twi": "mmiɛnsa",
+    "phrase": "",
+    "mp3": "audio/028_mmiensa_three.mp3"
+  },
+  {
+    "number": 29,
+    "english": "four",
+    "twi": "ɛnan",
+    "phrase": "",
+    "mp3": "audio/029_enan_four.mp3"
+  },
+  {
+    "number": 30,
+    "english": "five",
+    "twi": "enum",
+    "phrase": "",
+    "mp3": "audio/030_enum_five.mp3"
+  },
+  {
+    "number": 31,
+    "english": "six",
+    "twi": "nsia",
+    "phrase": "",
+    "mp3": "audio/031_nsia_six.mp3"
+  },
+  {
+    "number": 32,
+    "english": "seven",
+    "twi": "nson",
+    "phrase": "",
+    "mp3": "audio/032_nson_seven.mp3"
+  },
+  {
+    "number": 33,
+    "english": "eight",
+    "twi": "nwɔtwe",
+    "phrase": "",
+    "mp3": "audio/033_nwotwe_eight.mp3"
+  },
+  {
+    "number": 34,
+    "english": "nine",
+    "twi": "nkron",
+    "phrase": "",
+    "mp3": "audio/034_nkron_nine.mp3"
+  },
+  {
+    "number": 35,
+    "english": "ten",
+    "twi": "du",
+    "phrase": "",
+    "mp3": "audio/035_du_ten.mp3"
+  },
+  {
+    "number": 36,
+    "english": "eleven",
+    "twi": "dubaako",
+    "phrase": "",
+    "mp3": "audio/036_dubaako_eleven.mp3"
+  },
+  {
+    "number": 37,
+    "english": "twelve",
+    "twi": "dumienu",
+    "phrase": "",
+    "mp3": "audio/037_dumienu_twelve.mp3"
+  },
+  {
+    "number": 38,
+    "english": "thirteen",
+    "twi": "dumiɛnsa",
+    "phrase": "",
+    "mp3": "audio/038_dumiensa_thirteen.mp3"
+  },
+  {
+    "number": 39,
+    "english": "fourteen",
+    "twi": "dunan",
+    "phrase": "",
+    "mp3": "audio/039_dunan_fourteen.mp3"
+  },
+  {
+    "number": 40,
+    "english": "fifteen",
+    "twi": "dunum",
+    "phrase": "",
+    "mp3": "audio/040_dunum_fifteen.mp3"
+  },
+  {
+    "number": 41,
+    "english": "sixteen",
+    "twi": "dunsia",
+    "phrase": "",
+    "mp3": "audio/041_dunsia_sixteen.mp3"
+  },
+  {
+    "number": 42,
+    "english": "seventeen",
+    "twi": "dunson",
+    "phrase": "",
+    "mp3": "audio/042_dunson_seventeen.mp3"
+  },
+  {
+    "number": 43,
+    "english": "eighteen",
+    "twi": "dunwɔtwe",
+    "phrase": "",
+    "mp3": "audio/043_dunwotwe_eighteen.mp3"
+  },
+  {
+    "number": 44,
+    "english": "nineteen",
+    "twi": "dunkron",
+    "phrase": "",
+    "mp3": "audio/044_dunkron_nineteen.mp3"
+  },
+  {
+    "number": 45,
+    "english": "twenty",
+    "twi": "aduonu",
+    "phrase": "",
+    "mp3": "audio/045_aduonu_twenty.mp3"
+  },
+  {
+    "number": 46,
+    "english": "one hundred",
+    "twi": "ɔha",
+    "phrase": "",
+    "mp3": "audio/046_oha_one_hundred.mp3"
+  },
+  {
+    "number": 47,
+    "english": "sun",
+    "twi": "owia",
+    "phrase": "",
+    "mp3": "audio/047_owia_sun.mp3"
+  },
+  {
+    "number": 48,
+    "english": "water",
+    "twi": "nsuo",
+    "phrase": "",
+    "mp3": "audio/048_nsuo_water.mp3"
+  },
+  {
+    "number": 49,
+    "english": "thank you",
+    "twi": "meda wo ase",
+    "phrase": "",
+    "mp3": "audio/049_meda_wo_ase_thank_you.mp3"
+  },
+  {
+    "number": 65,
+    "english": "salvation",
+    "twi": "nkwagyeɛ",
+    "phrase": "metwɛn wo nkwagyeɛ",
+    "mp3": "audio/065_nkwagyee_salvation.mp3"
+  }
+]
