@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Twi Sukuu — Body-word list</title>
+<style>
+:root{--g:#0a7d3b;--y:#f2b705;--r:#c0392b;--bg:#fffaf0;--card:#fff;--ink:#222}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(90deg,var(--r),var(--y),var(--g));color:#fff;padding:12px 14px;text-align:center;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:1.25rem;text-shadow:0 1px 2px #0006}header p{margin:4px 0 0;font-size:.85rem;text-shadow:0 1px 2px #0006}
+main{max-width:640px;margin:auto;padding:12px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.prog{flex:1;height:10px;background:#ddd;border-radius:6px;overflow:hidden}.prog i{display:block;height:100%;background:var(--g);width:0}
+input{font-size:1rem;padding:10px;border:1px solid #ccc;border-radius:10px;width:100%}
+button{font-size:1rem;padding:10px 14px;border:0;border-radius:12px;cursor:pointer;background:#eee}
+button.rec{background:var(--r);color:#fff}button.rec.on{animation:p 1s infinite}button.go{background:var(--g);color:#fff}
+button:disabled{opacity:.45}@keyframes p{50%{opacity:.5}}
+.card{background:var(--card);border-radius:16px;padding:12px;margin:10px 0;box-shadow:0 1px 4px #0002}
+.word{font-size:1.25rem;font-weight:700}
+.pdf{font-size:1.15rem;font-weight:800;color:#163}
+.ph{font-size:.85rem;color:#666;margin:2px 0 8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.done{border-left:6px solid var(--g)}.partial{border-left:6px solid var(--y)}
+.tag{font-size:.8rem;color:var(--g);font-weight:700}
+.note{font-size:.85rem;color:#666}
+.banner{background:#fff6d6;border:2px solid var(--y);border-radius:14px;padding:10px 12px;margin:8px 0;font-size:.92rem;line-height:1.4}
+#msg{color:var(--r);font-weight:600}
+.who{background:#fff6d6;border:3px solid var(--y);border-radius:16px;padding:10px 12px;margin:8px 0;box-shadow:0 0 0 4px #f2b70533}
+.who label{font-weight:800;display:block;margin-bottom:4px;font-size:1.05rem}
+.who input{border:2px solid var(--y);background:#fff;font-size:1.15rem;padding:12px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.tabs button{padding:8px 12px;font-size:.9rem;border-radius:10px;background:#fff;border:1px solid #ddd;font-weight:700}
+.tabs button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.part{scroll-margin-top:84px}
+.numbadge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;font-size:.9rem;flex:0 0 auto}
+.lbl{font-weight:700;font-size:.85rem;margin:0 0 6px}
+.credit{font-weight:800}
+button.choice{border:2px solid #ccc;background:#fff;font-weight:800}
+button.choice.on.ok{background:var(--g);color:#fff;border-color:var(--g)}
+button.choice.on.fix{background:var(--y);color:#222;border-color:var(--y)}
+.fixbox{margin-top:8px}
+</style>
+</head>
+<body>
+<header>
+ <h1>📖 Body-word list</h1>
+ <p>Check each Twi name, then record it. <span class="credit">Voice: Sikayere</span></p>
+</header>
+<main>
+<div class="banner" id="banner">These Twi spellings come from a reference list whose author is unknown. Treat them as a draft. Sikayere's choice is final — tap <b>Correct</b> if you agree, or <b>Fix</b> to type the spelling you use.</div>
+<div class="who">
+ <label for="speaker">What's your name?</label>
+ <input id="speaker" placeholder="Type your name here, e.g. Sikayere">
+ <p class="note" style="margin:8px 0 0">Please add it so the files have your name on them.</p>
+</div>
+<div class="card" style="padding:10px 12px">
+ <div class="bar" style="margin:0"><div class="prog"><i id="pi"></i></div><span id="pt">0 / 0</span></div>
+ <p id="msg"></p>
+ <div class="tabs" id="tabs" role="tablist" aria-label="Sections"></div>
+ <div class="row" style="margin-top:8px">
+  <button class="go" id="dl" disabled>⬇️ Download All (zip)</button>
+  <button id="dlEach" disabled>Download one by one</button>
+  <button id="dlPart1" disabled>Download part 1 (1–34)</button>
+  <button id="dlPart2" disabled>Download part 2 (35–67)</button>
+ </div>
+</div>
+<div id="list"></div>
+<p class="note">The list also notes that Akan often uses polite words (kasakoa) for private anatomy. Recordings stay on this phone (saved in the browser) until you download them. Nothing is uploaded anywhere. This page has its own saved recordings, separate from your other Twi Sukuu pages. Voice: Sikayere · <a href="anatomy.html">Anatomy sketches</a></p>
+</main>
+<script>
+const WORDS=[{"id": "bw01", "n": 1, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Body / Human Body", "tw": "Nipadua", "ph": "nee-pah-doo-ah"}, {"id": "bw02", "n": 2, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Head", "tw": "Etire / Ti", "ph": "eh-tee-reh / tee"}, {"id": "bw03", "n": 3, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Skull", "tw": "Tikwankora", "ph": "tee-kwahn-koh-rah"}, {"id": "bw04", "n": 4, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Face", "tw": "Anim", "ph": "ah-neem"}, {"id": "bw05", "n": 5, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Forehead", "tw": "Moma", "ph": "moh-mah"}, {"id": "bw06", "n": 6, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Eye", "tw": "Ani", "ph": "ah-nee"}, {"id": "bw07", "n": 7, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Eyebrow", "tw": "Ani ntɔn nwi", "ph": "ah-nee n-tawn n-wee"}, {"id": "bw08", "n": 8, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Eyelash", "tw": "Anisoatɛtɛ", "ph": "ah-nee-soh-ah-teh-teh"}, {"id": "bw09", "n": 9, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Ear", "tw": "Aso", "ph": "ah-soh"}, {"id": "bw10", "n": 10, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Nose", "tw": "Ɛhwene", "ph": "eh-hweh-neh"}, {"id": "bw11", "n": 11, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Cheek", "tw": "Afono", "ph": "ah-foh-noh"}, {"id": "bw12", "n": 12, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Mouth", "tw": "Ano", "ph": "ah-noh"}, {"id": "bw13", "n": 13, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Lip", "tw": "Anofafa", "ph": "ah-noh-fah-fah"}, {"id": "bw14", "n": 14, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Tooth", "tw": "Ɛse", "ph": "eh-seh"}, {"id": "bw15", "n": 15, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Gum", "tw": "Ɛse akyi nam", "ph": "eh-seh ah-chee nahm"}, {"id": "bw16", "n": 16, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Tongue", "tw": "Tɛkyerɛma", "ph": "teh-cheh-reh-mah"}, {"id": "bw17", "n": 17, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Throat", "tw": "Menemu", "ph": "meh-neh-moo"}, {"id": "bw18", "n": 18, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Chin", "tw": "Abɔdweɛ", "ph": "ah-baw-jweh-eh"}, {"id": "bw19", "n": 19, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Beard", "tw": "Abɔdwesɛ", "ph": "ah-baw-jweh-seh"}, {"id": "bw20", "n": 20, "section": "Head, Face & Sensory Organs", "tab": "Head & face", "en": "Neck", "tw": "Ɛkɔn", "ph": "eh-kawn"}, {"id": "bw21", "n": 21, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Shoulder", "tw": "Abatire", "ph": "ah-bah-tee-reh"}, {"id": "bw22", "n": 22, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Back", "tw": "Akyire", "ph": "ah-chee-reh"}, {"id": "bw23", "n": 23, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Spine", "tw": "Berɛmo", "ph": "beh-reh-moh"}, {"id": "bw24", "n": 24, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Chest", "tw": "Kokoɔ", "ph": "koh-koh-aw"}, {"id": "bw25", "n": 25, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Breast", "tw": "Nufoɔ (pokua)", "ph": "noo-foh-aw (poh-koo-ah)"}, {"id": "bw26", "n": 26, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Ribs", "tw": "Mfe mpadeɛ", "ph": "m-feh m-pah-deh-eh"}, {"id": "bw27", "n": 27, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Arm", "tw": "Abasa", "ph": "ah-bah-sah"}, {"id": "bw28", "n": 28, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Armpit", "tw": "Amɔtoam(u)", "ph": "ah-maw-toh-ahm"}, {"id": "bw29", "n": 29, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Elbow", "tw": "Abatwɛ", "ph": "ah-bah-chweh"}, {"id": "bw30", "n": 30, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Wrist", "tw": "Abakɔn", "ph": "ah-bah-kawn"}, {"id": "bw31", "n": 31, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Hand", "tw": "Nsa", "ph": "n-sah"}, {"id": "bw32", "n": 32, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Palm", "tw": "Nsayam", "ph": "n-sah-yahm"}, {"id": "bw33", "n": 33, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Finger", "tw": "Nsateaa", "ph": "n-sah-tee-ah"}, {"id": "bw34", "n": 34, "section": "Upper Torso, Arms & Hands", "tab": "Arms & hands", "en": "Nail / Fingernail", "tw": "Bɔwerɛ", "ph": "baw-weh-reh"}, {"id": "bw35", "n": 35, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Belly", "tw": "Yafunu", "ph": "yah-foo-noo"}, {"id": "bw36", "n": 36, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Navel", "tw": "Afunuma", "ph": "ah-foo-noo-mah"}, {"id": "bw37", "n": 37, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Waist", "tw": "Sisie", "ph": "see-see-eh"}, {"id": "bw38", "n": 38, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Pelvis", "tw": "Ayaaseɛ", "ph": "ah-yah-seh-eh"}, {"id": "bw39", "n": 39, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Hip", "tw": "Pa", "ph": "pah"}, {"id": "bw40", "n": 40, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Buttock", "tw": "Ɛtoɔ", "ph": "eh-toh-aw"}, {"id": "bw41", "n": 41, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Thigh", "tw": "Ɛserɛ", "ph": "eh-seh-reh"}, {"id": "bw42", "n": 42, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Leg", "tw": "Ɛnan", "ph": "eh-nahn"}, {"id": "bw43", "n": 43, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Knee", "tw": "Kotodwe", "ph": "koh-toh-jweh"}, {"id": "bw44", "n": 44, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Shin", "tw": "Nanhini", "ph": "nahn-hee-nee"}, {"id": "bw45", "n": 45, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Calf", "tw": "Anantuo", "ph": "ah-nahn-too-oh"}, {"id": "bw46", "n": 46, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Ankle", "tw": "Nanpɔso", "ph": "nahn-paw-soh"}, {"id": "bw47", "n": 47, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Foot", "tw": "Nantabono", "ph": "nahn-tah-boh-noh"}, {"id": "bw48", "n": 48, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Heel", "tw": "Nantini", "ph": "nahn-tee-nee"}, {"id": "bw49", "n": 49, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Sole", "tw": "Nan mmuromu", "ph": "nahn m-moo-roh-moo"}, {"id": "bw50", "n": 50, "section": "Lower Torso, Pelvis & Legs", "tab": "Pelvis & legs", "en": "Toe", "tw": "Nansoaa", "ph": "nahn-soh-ah"}, {"id": "bw51", "n": 51, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Brain", "tw": "Amene", "ph": "ah-meh-neh"}, {"id": "bw52", "n": 52, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Heart", "tw": "Akoma", "ph": "ah-koh-mah"}, {"id": "bw53", "n": 53, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Lung", "tw": "Ahrawa", "ph": "ah-hrah-wah"}, {"id": "bw54", "n": 54, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Liver", "tw": "Brɛboɔ", "ph": "breh-boh-aw"}, {"id": "bw55", "n": 55, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Kidney", "tw": "Saa", "ph": "sah-ah"}, {"id": "bw56", "n": 56, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Stomach", "tw": "Yam", "ph": "yahm"}, {"id": "bw57", "n": 57, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Gallbladder", "tw": "Bɔnwono", "ph": "bawn-woh-noh"}, {"id": "bw58", "n": 58, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Intestine", "tw": "Nsono", "ph": "n-soh-noh"}, {"id": "bw59", "n": 59, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Bladder", "tw": "Dwonsɔtwaa", "ph": "jwohn-saw-chwah"}, {"id": "bw60", "n": 60, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Womb", "tw": "Awodeɛ", "ph": "ah-woh-deh-eh"}, {"id": "bw61", "n": 61, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Skin", "tw": "Honam", "ph": "hoh-nahm"}, {"id": "bw62", "n": 62, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Flesh", "tw": "Nam", "ph": "nahm"}, {"id": "bw63", "n": 63, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Bone", "tw": "Dompe", "ph": "dohm-peh"}, {"id": "bw64", "n": 64, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Marrow", "tw": "Akyim", "ph": "ah-cheem"}, {"id": "bw65", "n": 65, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Joint", "tw": "Apɔ so", "ph": "ah-paw soh"}, {"id": "bw66", "n": 66, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Vein / Sinew", "tw": "Ntini", "ph": "n-tee-nee"}, {"id": "bw67", "n": 67, "section": "Internal Organs, Tissues & Fluids", "tab": "Inside", "en": "Blood", "tw": "Mogya", "ph": "moh-jah"}];
+const TABS=["Head & face","Arms & hands","Pelvis & legs","Inside"];
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const typed=(()=>{try{return JSON.parse(LS.get('bw_typed')||'{}')||{}}catch(e){return {}}})();
+const status=(()=>{try{return JSON.parse(LS.get('bw_status')||'{}')||{}}catch(e){return {}}})();
+const clips={};let db,rec=null,stream=null,chunks=[],recKey=null,curTab=TABS[0];
+const $=id=>document.getElementById(id);
+$('speaker').value=LS.get('bw_speaker')||'Sikayere';$('speaker').oninput=e=>LS.set('bw_speaker',e.target.value);
+function saveTyped(){LS.set('bw_typed',JSON.stringify(typed));LS.set('bw_status',JSON.stringify(status))}
+function chosen(w){if(status[w.id]==='correct')return w.tw;if(status[w.id]==='fix')return (typed[w.id]||'').trim();return ''}
+function openDB(){return new Promise((res,rej)=>{if(!window.indexedDB)return rej('no idb');const r=indexedDB.open('twi-sukuu-body-words',1);r.onupgradeneeded=()=>r.result.createObjectStore('clips');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+async function put(k,v){if(!db)return;let rec=v;if(v!==null){rec=Object.assign({},v);delete rec.blob;delete rec.bytes;rec.buf=v.bytes.buffer.slice(0);rec.type=v.type||'audio/wav'}
+ return new Promise(r=>{const t=db.transaction('clips','readwrite');rec===null?t.objectStore('clips').delete(k):t.objectStore('clips').put(rec,k);t.oncomplete=r;t.onerror=r})}
+async function revive(o){const out={};for(const k in o){const v=o[k];try{let buf=v.buf;if(!buf&&v.blob)buf=await v.blob.arrayBuffer();if(!buf||buf.byteLength<=44)continue;const o2=Object.assign({},v,{bytes:new Uint8Array(buf.slice(0)),type:v.type||'audio/wav'});delete o2.blob;delete o2.buf;out[k]=o2}catch(e){}}return out}
+function all(){return new Promise(r=>{const out={},t=db.transaction('clips').objectStore('clips').openCursor();t.onsuccess=e=>{const c=e.target.result;if(c){out[c.key]=c.value;c.continue()}else r(out)}})}
+function statusOf(w){const has=!!clips[w.id],tx=!!chosen(w);return {has,tx,done:has&&tx,partial:has||tx}}
+function recLabel(isRec,has){return isRec?'⏹ Stop':(has?'🔁 Re-record':'🎙 Record')}
+function countIn(a,b){let n=0;for(let i=a;i<b;i++){if(clips[WORDS[i].id]||chosen(WORDS[i]))n++}return n}
+function updateBar(){
+ let n=0,rev=0;
+ WORDS.forEach(w=>{const s=statusOf(w);if(s.has)n++;if(s.tx)rev++});
+ $('pt').textContent=`${n} recorded · ${rev} reviewed / ${WORDS.length}`;
+ $('pi').style.width=(WORDS.length?100*n/WORDS.length:0)+'%';
+ const any=n>0||rev>0;
+ $('dl').disabled=$('dlEach').disabled=!any;
+ $('dlPart1').disabled=!countIn(0,34);
+ $('dlPart2').disabled=!countIn(34,67);
+ renderTabs();
+}
+function renderTabs(){
+ const T=$('tabs');T.innerHTML='';
+ TABS.forEach(tab=>{
+  const words=WORDS.filter(w=>w.tab===tab);
+  const done=words.filter(w=>statusOf(w).has).length;
+  const b=document.createElement('button');
+  b.type='button';b.dataset.tab=tab;if(tab===curTab)b.className='on';
+  b.textContent=`${tab} ${done}/${words.length}`;
+  b.onclick=()=>{curTab=tab;render()};
+  T.appendChild(b);
+ });
+}
+function render(){
+ const L=$('list');L.innerHTML='';
+ WORDS.filter(w=>w.tab===curTab).forEach(w=>{
+  const c=clips[w.id],s=statusOf(w),st=status[w.id]||'';
+  const d=document.createElement('div');
+  d.className='card part'+(s.done?' done':s.partial?' partial':'');
+  d.id='row-'+w.id;
+  const tag=c?'<span class="tag">✓ recorded</span>':(st==='correct'?'<span class="tag">✓ correct</span>':(st==='fix'?'<span class="tag">✎ fixed</span>':''));
+  const fixOpen=st==='fix';
+  d.innerHTML=`<div class="row" style="justify-content:space-between;align-items:flex-start;gap:10px">
+    <div class="row" style="align-items:center;flex:1"><span class="numbadge">${w.n}</span><div class="word">${esc(w.en)}</div></div>
+    ${tag}
+   </div>
+   <div class="pdf">${esc(w.tw)}</div>
+   <div class="ph">${esc(w.ph)}</div>
+   <div class="row">
+    <button type="button" class="choice ok${st==='correct'?' on':''}" data-ok="${w.id}">Correct</button>
+    <button type="button" class="choice fix${st==='fix'?' on':''}" data-fix="${w.id}">Fix</button>
+   </div>
+   ${fixOpen?`<div class="fixbox"><label class="lbl" for="tw-${w.id}">Your spelling</label>
+    <input id="tw-${w.id}" data-tw="${w.id}" placeholder="Type the Twi name you use" value="${esc(typed[w.id]||'')}" autocomplete="off" autocapitalize="off" spellcheck="false"></div>`:''}
+   <div class="row" style="margin-top:8px">
+    <button class="rec" data-rec="${w.id}">${recLabel(recKey===w.id,!!c)}</button>
+    ${c?`<button data-play="${w.id}">▶️ Play</button><button data-del="${w.id}">Delete</button>`:''}
+   </div>`;
+  if(recKey===w.id)d.querySelector('.rec').classList.add('on');
+  L.appendChild(d);
+ });
+ updateBar();
+ L.querySelectorAll('[data-rec]').forEach(b=>b.onclick=()=>toggle(b.dataset.rec));
+ L.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>play(clips[b.dataset.play],b));
+ L.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{const k=b.dataset.del;delete clips[k];await put(k,null);render()});
+ L.querySelectorAll('[data-ok]').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.ok;status[k]='correct';saveTyped();render();
+ });
+ L.querySelectorAll('[data-fix]').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.fix;
+  if(!typed[k]){const w=WORDS.find(x=>x.id===k);typed[k]=w?w.tw:''}
+  status[k]='fix';saveTyped();render();
+  const inp=$('tw-'+k);if(inp){inp.focus();const v=inp.value;inp.setSelectionRange(v.length,v.length)}
+ });
+ L.querySelectorAll('[data-tw]').forEach(x=>{
+  x.oninput=()=>{
+   typed[x.dataset.tw]=x.value;status[x.dataset.tw]='fix';saveTyped();
+   const w=WORDS.find(p=>p.id===x.dataset.tw),s=statusOf(w);
+   const card=x.closest('.card');if(card)card.className='card part'+(s.done?' done':s.partial?' partial':'');
+   updateBar();
+  };
+ });
+}
+let AC=null,src=null;
+async function play(c,b){if(!c)return;$('msg').textContent='';try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')await AC.resume();if(src){try{src.stop()}catch(e){}}
+ const ab=c.bytes.buffer.slice(c.bytes.byteOffset,c.bytes.byteOffset+c.bytes.byteLength);const buf=await new Promise((res,rej)=>{const p=AC.decodeAudioData(ab.slice(0),res,rej);if(p&&p.then)p.then(res,rej)});
+ src=AC.createBufferSource();src.buffer=buf;src.connect(AC.destination);b.textContent='🔊 Playing';src.onended=()=>{b.textContent='▶️ Play'};src.start(0)}
+ catch(e){try{const a=new Audio(URL.createObjectURL(new Blob([c.bytes],{type:c.type})));await a.play()}catch(e2){$('msg').textContent='Could not play this one. Please re-record it.'}}}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+async function toggle(k){$('msg').textContent='';
+ if(rec&&recKey===k){rec.stop();return}
+ if(rec){rec.stop()}
+ try{stream=stream||await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true}})}
+ catch(e){$('msg').textContent='Microphone blocked. Allow the microphone for this page in your browser settings, then try again.';return}
+ chunks=[];rec=new MediaRecorder(stream);recKey=k;
+ rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);
+ rec.onstop=async()=>{const raw=new Blob(chunks,{type:rec.mimeType||'audio/webm'});const stopped=recKey;rec=null;recKey=null;
+  let blob=raw,ext=(raw.type.includes('mp4')?'m4a':'webm');
+  try{blob=await toWav(raw);ext='wav'}catch(e){}
+  let bytes=null;try{bytes=new Uint8Array(await blob.arrayBuffer())}catch(e){}
+  if(!bytes||bytes.length<=44){$('msg').textContent='That recording came out empty. Please tap Record and try again.';render();return}
+  const line=WORDS.find(w=>w.id===stopped);
+  clips[stopped]={bytes,type:blob.type||'audio/wav',ext,id:line?line.id:'',en:line?line.en:'',tw:chosen(line)|| (line?line.tw:''),at:new Date().toISOString()};await put(stopped,clips[stopped]);render()};
+ rec.start();render()}
+async function toWav(b){const ac=new (window.AudioContext||window.webkitAudioContext)();const buf=await ac.decodeAudioData(await b.arrayBuffer());ac.close&&ac.close();
+ const ch=buf.getChannelData(0),sr=buf.sampleRate,n=ch.length,v=new DataView(new ArrayBuffer(44+n*2));
+ const s=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i))};
+ s(0,'RIFF');v.setUint32(4,36+n*2,true);s(8,'WAVE');s(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);s(36,'data');v.setUint32(40,n*2,true);
+ for(let i=0;i<n;i++){const x=Math.max(-1,Math.min(1,ch[i]));v.setInt16(44+i*2,x<0?x*0x8000:x*0x7fff,true)}return new Blob([v],{type:'audio/wav'})}
+const slug=s=>s.trim().toLowerCase().replace(/[^a-z0-9ɛɔ]+/g,'_').replace(/^_|_$/g,'')||'speaker';
+function today(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function files(from,to){const out=[];let csv='\ufeffid,section,english,twi_pdf,phonetic,status,twi_sikayere,file\n';let nAudio=0;
+ const a=from==null?0:from, b=to==null?WORDS.length:to;
+ WORDS.forEach((w,idx)=>{if(idx<a||idx>=b)return;const c=clips[w.id];const fn=c?`${w.id}.${c.ext}`:'';
+  if(c){out.push([fn,c.bytes]);nAudio++}
+  csv+=[w.id,w.section,w.en,w.tw,w.ph,status[w.id]||'',chosen(w),fn].map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')+'\n'});
+ out.push(['transcript.csv',new TextEncoder().encode(csv)]);
+ const range=from==null?'all words':`words ${from+1}–${to}`;
+ out.push(['metadata.txt',new TextEncoder().encode(`Twi Sukuu Translator Village - Body-word list (reference draft, Sikayere's choice is final)\nVoice: Sikayere\nSpeaker: ${$('speaker').value||''}\nExported: ${new Date().toString()}\nRange: ${range}\nClips: ${nAudio}\nWords: ${b-a}\n`)]);return out}
+const CRC=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+function crc(u){let c=0xFFFFFFFF;for(let i=0;i<u.length;i++)c=CRC[(c^u[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0}
+async function zip(list){const enc=new TextEncoder(),parts=[],cd=[];let off=0;
+ const now=new Date(),dt=((now.getHours()<<11)|(now.getMinutes()<<5)|(now.getSeconds()>>1)),dd=(((now.getFullYear()-1980)<<9)|((now.getMonth()+1)<<5)|now.getDate());
+ for(const [name,data] of list){const d=data instanceof Uint8Array?data:new Uint8Array(await data.arrayBuffer()),nm=enc.encode(name),c=crc(d);
+  const h=new DataView(new ArrayBuffer(30));h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(10,dt,true);h.setUint16(12,dd,true);h.setUint32(14,c,true);h.setUint32(18,d.length,true);h.setUint32(22,d.length,true);h.setUint16(26,nm.length,true);
+  parts.push(h,nm,d);const e=new DataView(new ArrayBuffer(46));e.setUint32(0,0x02014b50,true);e.setUint16(4,20,true);e.setUint16(6,20,true);e.setUint16(8,0x0800,true);e.setUint16(12,dt,true);e.setUint16(14,dd,true);e.setUint32(16,c,true);e.setUint32(20,d.length,true);e.setUint32(24,d.length,true);e.setUint16(28,nm.length,true);e.setUint32(42,off,true);cd.push(e,nm);off+=30+nm.length+d.length}
+ const cdSize=cd.reduce((a,x)=>a+(x.byteLength),0),end=new DataView(new ArrayBuffer(22));end.setUint32(0,0x06054b50,true);end.setUint16(8,list.length,true);end.setUint16(10,list.length,true);end.setUint32(12,cdSize,true);end.setUint32(16,off,true);
+ return new Blob([...parts,...cd,end],{type:'application/zip'})}
+function save(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000)}
+function zipName(part){const sp=slug($('speaker').value||'speaker');return `twi-sukuu-body-words-${sp}-${today()}${part?('-'+part):''}.zip`}
+async function downloadRange(from,to,part){const z=await zip(files(from,to));save(z,zipName(part))}
+$('dl').onclick=()=>downloadRange(null,null,'');
+$('dlEach').onclick=async()=>{for(const [n,b] of files()){save(new Blob([b]),n);await new Promise(r=>setTimeout(r,600))}};
+$('dlPart1').onclick=()=>downloadRange(0,34,'part1');
+$('dlPart2').onclick=()=>downloadRange(34,67,'part2');
+
+render();
+(async()=>{try{db=await openDB();Object.assign(clips,await revive(await all()));render()}catch(e){db=null;$('msg').textContent='Note: this browser will not keep recordings after closing the page. Download before you leave.'}})();
+window.onerror=(m)=>{$('msg').textContent='Error: '+m};
+</script>
+</body>
+</html>

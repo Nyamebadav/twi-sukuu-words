@@ -41,6 +41,8 @@ button:disabled{opacity:.45}@keyframes p{50%{opacity:.5}}
 .numbadge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;font-size:.9rem;flex:0 0 auto}
 .lbl{font-weight:700;font-size:.85rem;margin:0 0 6px}
 .credit{font-weight:800}
+.hint{font-size:.8rem;color:#888;margin:6px 0 0;line-height:1.35}
+.hint button{font-size:.8rem;padding:5px 10px;margin:4px 6px 0 0;border-radius:8px;background:#f3f3f3;border:1px solid #ddd;font-weight:700;color:#444}
 </style>
 </head>
 <body>
@@ -59,7 +61,7 @@ button:disabled{opacity:.45}@keyframes p{50%{opacity:.5}}
  <p id="msg"></p>
 </div>
 <div class="card" id="sketchcard">
- <p class="note" style="margin:0 0 8px">Tap a number or a part on the sketch to jump to its row. English labels only — you type the Twi names below.</p>
+ <p class="note" style="margin:0 0 8px">Tap a number or a part on the sketch to jump to its row. English labels only — you type the Twi names below. Suggested Twi words from a reference list appear under some boxes as unverified hints; your spelling is the one that counts. You can also <a href="body-words.html">review the full list</a>.</p>
  <div class="tabs" id="sktabs">
   <button type="button" class="on" data-view="face">Face</button>
   <button type="button" data-view="front">Front</button>
@@ -156,56 +158,56 @@ button:disabled{opacity:.45}@keyframes p{50%{opacity:.5}}
  </div>
 </div>
 <div id="list"></div>
-<p class="note">Type the Twi name you use, then record it. Recordings stay on this phone (saved in the browser) until you download them. Nothing is uploaded anywhere. This page has its own saved recordings, separate from your other Twi Sukuu pages. Voice: Sikayere</p>
+<p class="note">Type the Twi name you use, then record it. Suggested words are unverified — only use one if you agree with it. Recordings stay on this phone (saved in the browser) until you download them. Nothing is uploaded anywhere. This page has its own saved recordings, separate from your other Twi Sukuu pages. Voice: Sikayere · <a href="body-words.html">Full body-word list</a></p>
 </main>
 <script>
 const PARTS=[
-  {id:"an01",n:1,en:'head',group:'Head & face'},
+  {id:"an01",n:1,en:'head',group:'Head & face',sugg:[{"tw": "Etire / Ti", "as": "Head"}]},
   {id:"an02",n:2,en:'hair',group:'Head & face'},
-  {id:"an03",n:3,en:'forehead',group:'Head & face'},
-  {id:"an04",n:4,en:'eyebrow',group:'Head & face'},
-  {id:"an05",n:5,en:'eye',group:'Head & face'},
-  {id:"an06",n:6,en:'eyelash',group:'Head & face'},
-  {id:"an07",n:7,en:'ear',group:'Head & face'},
-  {id:"an08",n:8,en:'nose',group:'Head & face'},
-  {id:"an09",n:9,en:'cheek',group:'Head & face'},
-  {id:"an10",n:10,en:'mouth',group:'Head & face'},
-  {id:"an11",n:11,en:'lips',group:'Head & face'},
-  {id:"an12",n:12,en:'teeth',group:'Head & face'},
-  {id:"an13",n:13,en:'tongue',group:'Head & face'},
-  {id:"an14",n:14,en:'chin',group:'Head & face'},
-  {id:"an15",n:15,en:'neck',group:'Body'},
-  {id:"an16",n:16,en:'shoulder',group:'Body'},
-  {id:"an17",n:17,en:'chest',group:'Body'},
-  {id:"an18",n:18,en:'back',group:'Body'},
-  {id:"an19",n:19,en:'stomach / belly',group:'Body'},
-  {id:"an20",n:20,en:'navel',group:'Body'},
-  {id:"an21",n:21,en:'waist',group:'Body'},
-  {id:"an22",n:22,en:'arm',group:'Body'},
-  {id:"an23",n:23,en:'elbow',group:'Body'},
-  {id:"an24",n:24,en:'wrist',group:'Body'},
-  {id:"an25",n:25,en:'hand',group:'Body'},
-  {id:"an26",n:26,en:'palm',group:'Body'},
-  {id:"an27",n:27,en:'finger',group:'Body'},
+  {id:"an03",n:3,en:'forehead',group:'Head & face',sugg:[{"tw": "Moma", "as": "Forehead"}]},
+  {id:"an04",n:4,en:'eyebrow',group:'Head & face',sugg:[{"tw": "Ani ntɔn nwi", "as": "Eyebrow"}]},
+  {id:"an05",n:5,en:'eye',group:'Head & face',sugg:[{"tw": "Ani", "as": "Eye"}]},
+  {id:"an06",n:6,en:'eyelash',group:'Head & face',sugg:[{"tw": "Anisoatɛtɛ", "as": "Eyelash"}]},
+  {id:"an07",n:7,en:'ear',group:'Head & face',sugg:[{"tw": "Aso", "as": "Ear"}]},
+  {id:"an08",n:8,en:'nose',group:'Head & face',sugg:[{"tw": "Ɛhwene", "as": "Nose"}]},
+  {id:"an09",n:9,en:'cheek',group:'Head & face',sugg:[{"tw": "Afono", "as": "Cheek"}]},
+  {id:"an10",n:10,en:'mouth',group:'Head & face',sugg:[{"tw": "Ano", "as": "Mouth"}]},
+  {id:"an11",n:11,en:'lips',group:'Head & face',sugg:[{"tw": "Anofafa", "as": "Lip"}]},
+  {id:"an12",n:12,en:'teeth',group:'Head & face',sugg:[{"tw": "Ɛse", "as": "Tooth"}]},
+  {id:"an13",n:13,en:'tongue',group:'Head & face',sugg:[{"tw": "Tɛkyerɛma", "as": "Tongue"}]},
+  {id:"an14",n:14,en:'chin',group:'Head & face',sugg:[{"tw": "Abɔdweɛ", "as": "Chin"}]},
+  {id:"an15",n:15,en:'neck',group:'Body',sugg:[{"tw": "Ɛkɔn", "as": "Neck"}]},
+  {id:"an16",n:16,en:'shoulder',group:'Body',sugg:[{"tw": "Abatire", "as": "Shoulder"}]},
+  {id:"an17",n:17,en:'chest',group:'Body',sugg:[{"tw": "Kokoɔ", "as": "Chest"}]},
+  {id:"an18",n:18,en:'back',group:'Body',sugg:[{"tw": "Akyire", "as": "Back"}]},
+  {id:"an19",n:19,en:'stomach / belly',group:'Body',sugg:[{"tw": "Yafunu", "as": "Belly"}, {"tw": "Yam", "as": "Stomach"}]},
+  {id:"an20",n:20,en:'navel',group:'Body',sugg:[{"tw": "Afunuma", "as": "Navel"}]},
+  {id:"an21",n:21,en:'waist',group:'Body',sugg:[{"tw": "Sisie", "as": "Waist"}]},
+  {id:"an22",n:22,en:'arm',group:'Body',sugg:[{"tw": "Abasa", "as": "Arm"}]},
+  {id:"an23",n:23,en:'elbow',group:'Body',sugg:[{"tw": "Abatwɛ", "as": "Elbow"}]},
+  {id:"an24",n:24,en:'wrist',group:'Body',sugg:[{"tw": "Abakɔn", "as": "Wrist"}]},
+  {id:"an25",n:25,en:'hand',group:'Body',sugg:[{"tw": "Nsa", "as": "Hand"}]},
+  {id:"an26",n:26,en:'palm',group:'Body',sugg:[{"tw": "Nsayam", "as": "Palm"}]},
+  {id:"an27",n:27,en:'finger',group:'Body',sugg:[{"tw": "Nsateaa", "as": "Finger"}]},
   {id:"an28",n:28,en:'thumb',group:'Body'},
-  {id:"an29",n:29,en:'fingernail',group:'Body'},
-  {id:"an30",n:30,en:'hip',group:'Body'},
-  {id:"an31",n:31,en:'buttocks',group:'Body'},
-  {id:"an32",n:32,en:'thigh',group:'Body'},
-  {id:"an33",n:33,en:'knee',group:'Body'},
-  {id:"an34",n:34,en:'leg',group:'Body'},
-  {id:"an35",n:35,en:'calf',group:'Body'},
-  {id:"an36",n:36,en:'ankle',group:'Body'},
-  {id:"an37",n:37,en:'heel',group:'Body'},
-  {id:"an38",n:38,en:'foot',group:'Body'},
-  {id:"an39",n:39,en:'toe',group:'Body'},
-  {id:"an40",n:40,en:'skin',group:'Skin & inside'},
-  {id:"an41",n:41,en:'heart',group:'Skin & inside'},
-  {id:"an42",n:42,en:'lungs',group:'Skin & inside'},
-  {id:"an43",n:43,en:'liver',group:'Skin & inside'},
-  {id:"an44",n:44,en:'kidneys',group:'Skin & inside'},
-  {id:"an45",n:45,en:'brain',group:'Skin & inside'},
-  {id:"an46",n:46,en:'bones',group:'Skin & inside'}
+  {id:"an29",n:29,en:'fingernail',group:'Body',sugg:[{"tw": "Bɔwerɛ", "as": "Nail / Fingernail"}]},
+  {id:"an30",n:30,en:'hip',group:'Body',sugg:[{"tw": "Pa", "as": "Hip"}]},
+  {id:"an31",n:31,en:'buttocks',group:'Body',sugg:[{"tw": "Ɛtoɔ", "as": "Buttock"}]},
+  {id:"an32",n:32,en:'thigh',group:'Body',sugg:[{"tw": "Ɛserɛ", "as": "Thigh"}]},
+  {id:"an33",n:33,en:'knee',group:'Body',sugg:[{"tw": "Kotodwe", "as": "Knee"}]},
+  {id:"an34",n:34,en:'leg',group:'Body',sugg:[{"tw": "Ɛnan", "as": "Leg"}]},
+  {id:"an35",n:35,en:'calf',group:'Body',sugg:[{"tw": "Anantuo", "as": "Calf"}]},
+  {id:"an36",n:36,en:'ankle',group:'Body',sugg:[{"tw": "Nanpɔso", "as": "Ankle"}]},
+  {id:"an37",n:37,en:'heel',group:'Body',sugg:[{"tw": "Nantini", "as": "Heel"}]},
+  {id:"an38",n:38,en:'foot',group:'Body',sugg:[{"tw": "Nantabono", "as": "Foot"}]},
+  {id:"an39",n:39,en:'toe',group:'Body',sugg:[{"tw": "Nansoaa", "as": "Toe"}]},
+  {id:"an40",n:40,en:'skin',group:'Skin & inside',sugg:[{"tw": "Honam", "as": "Skin"}]},
+  {id:"an41",n:41,en:'heart',group:'Skin & inside',sugg:[{"tw": "Akoma", "as": "Heart"}]},
+  {id:"an42",n:42,en:'lungs',group:'Skin & inside',sugg:[{"tw": "Ahrawa", "as": "Lung"}]},
+  {id:"an43",n:43,en:'liver',group:'Skin & inside',sugg:[{"tw": "Brɛboɔ", "as": "Liver"}]},
+  {id:"an44",n:44,en:'kidneys',group:'Skin & inside',sugg:[{"tw": "Saa", "as": "Kidney"}]},
+  {id:"an45",n:45,en:'brain',group:'Skin & inside',sugg:[{"tw": "Amene", "as": "Brain"}]},
+  {id:"an46",n:46,en:'bones',group:'Skin & inside',sugg:[{"tw": "Dompe", "as": "Bone"}]}
 ];
 const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 const typed=(()=>{try{return JSON.parse(LS.get('an_typed')||'{}')||{}}catch(e){return {}}})();
@@ -247,6 +249,7 @@ function render(){
    <div style="margin-top:8px">
     <label class="lbl" for="tw-${w.id}">Twi name</label>
     <input id="tw-${w.id}" data-tw="${w.id}" placeholder="Type the Twi name" value="${esc(typed[w.id]||'')}" autocomplete="off" autocapitalize="off" spellcheck="false">
+    ${hintHtml(w)}
    </div>
    <div class="row" style="margin-top:8px">
     <button class="rec" data-rec="${w.id}">${recLabel(recKey===w.id,!!c)}</button>
@@ -267,6 +270,25 @@ function render(){
    updateBar();
   };
  });
+ L.querySelectorAll('[data-use]').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.use, tw=b.dataset.sugg||'';
+  typed[k]=tw;saveTyped();
+  const inp=$('tw-'+k);if(inp)inp.value=tw;
+  const w=PARTS.find(p=>p.id===k),s=statusOf(w);
+  const card=b.closest('.card');if(card)card.className='card part'+(s.done?' done':s.partial?' partial':'');
+  updateBar();
+  if(inp)inp.focus();
+ });
+}
+function hintHtml(w){
+ if(!w.sugg||!w.sugg.length)return '';
+ const bits=w.sugg.map(h=>h.as&&w.sugg.length>1?(esc(h.tw)+' ('+esc(h.as)+')'):esc(h.tw));
+ const label='Suggested: '+bits.join('; ')+' (unverified)';
+ const btns=w.sugg.map(h=>{
+  const lab=w.sugg.length>1?('Use '+h.tw):'Use suggestion';
+  return '<button type="button" data-use="'+w.id+'" data-sugg="'+esc(h.tw)+'">'+esc(lab)+'</button>';
+ }).join(' ');
+ return '<div class="hint">'+label+' '+btns+'</div>';
 }
 let AC=null,src=null;
 async function play(c,b){if(!c)return;$('msg').textContent='';try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')await AC.resume();if(src){try{src.stop()}catch(e){}}
@@ -296,11 +318,12 @@ async function toWav(b){const ac=new (window.AudioContext||window.webkitAudioCon
  for(let i=0;i<n;i++){const x=Math.max(-1,Math.min(1,ch[i]));v.setInt16(44+i*2,x<0?x*0x8000:x*0x7fff,true)}return new Blob([v],{type:'audio/wav'})}
 const slug=s=>s.trim().toLowerCase().replace(/[^a-z0-9ɛɔ]+/g,'_').replace(/^_|_$/g,'')||'speaker';
 function today(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-function files(from,to){const out=[];let csv='\ufeffid,english,twi_typed,file\n';let nAudio=0;
+function files(from,to){const out=[];let csv='\ufeffid,english,twi_typed,twi_suggested,file\n';let nAudio=0;
  const a=from==null?0:from, b=to==null?PARTS.length:to;
  PARTS.forEach((w,idx)=>{if(idx<a||idx>=b)return;const c=clips[w.id];const fn=c?`${w.id}.${c.ext}`:'';
   if(c){out.push([fn,c.bytes]);nAudio++}
-  csv+=[w.id,w.en,typed[w.id]||'',fn].map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')+'\n'});
+  const sug=(w.sugg||[]).map(h=>h.tw).join(' / ');
+  csv+=[w.id,w.en,typed[w.id]||'',sug,fn].map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')+'\n'});
  out.push(['transcript.csv',new TextEncoder().encode(csv)]);
  const range=from==null?'all parts':`parts ${from+1}–${to}`;
  out.push(['metadata.txt',new TextEncoder().encode(`Twi Sukuu Translator Village - Human anatomy names\nVoice: Sikayere\nSpeaker: ${$('speaker').value||''}\nExported: ${new Date().toString()}\nRange: ${range}\nClips: ${nAudio}\nParts: ${b-a}\n`)]);return out}
