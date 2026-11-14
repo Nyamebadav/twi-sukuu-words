@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Twi Sukuu — Voice clone TEST</title>
+<style>
+:root{--g:#0a7d3b;--y:#f2b705;--r:#c0392b;--bg:#fffaf0;--card:#fff;--ink:#222}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(90deg,var(--r),var(--y),var(--g));color:#fff;padding:12px 14px;text-align:center}
+header h1{margin:0;font-size:1.25rem;text-shadow:0 1px 2px #0006}header p{margin:4px 0 0;font-size:.85rem;text-shadow:0 1px 2px #0006}
+main{max-width:640px;margin:auto;padding:12px}
+.banner{background:#fff6d6;border:2px solid var(--y);border-radius:14px;padding:10px 12px;margin:8px 0;font-size:.92rem;line-height:1.4}
+.test{display:inline-block;background:var(--r);color:#fff;font-weight:800;border-radius:8px;padding:2px 8px;font-size:.8rem;letter-spacing:.05em;text-shadow:none}
+.card{background:var(--card);border-radius:16px;padding:12px;margin:12px 0;box-shadow:0 1px 4px #0002;border-left:6px solid #ddd}
+.card.rated{border-left-color:var(--g)}
+.twi{font-size:1.2rem;font-weight:700;line-height:1.35;margin:4px 0}
+.src{font-size:.8rem;color:#666;margin-bottom:8px}
+.lbl{font-weight:700;font-size:.85rem;margin:8px 0 2px}
+audio{width:100%;height:40px}
+.rate{display:flex;gap:6px;margin:10px 0 6px}
+.rate button{flex:1;font-size:1rem;padding:12px 4px;border:2px solid #ccc;background:#fff;border-radius:12px;font-weight:800;cursor:pointer}
+.rate button.on.good{background:var(--g);color:#fff;border-color:var(--g)}
+.rate button.on.close{background:var(--y);color:#222;border-color:var(--y)}
+.rate button.on.wrong{background:var(--r);color:#fff;border-color:var(--r)}
+textarea{width:100%;font-size:1rem;padding:10px;border:1px solid #ccc;border-radius:10px;min-height:60px;font-family:inherit}
+input[type=text]{font-size:1rem;padding:10px;border:1px solid #ccc;border-radius:10px;width:100%}
+button.go{font-size:1rem;padding:12px 14px;border:0;border-radius:12px;cursor:pointer;background:var(--g);color:#fff;font-weight:800;width:100%}
+.tag{font-size:.8rem;font-weight:700;color:#555;background:#eee;border-radius:8px;padding:2px 8px;display:inline-block}
+</style>
+</head>
+<body>
+<header>
+ <h1>🧪 Voice clone <span class="test">TEST</span></h1>
+ <p>Can the computer sound like Sikayere? <b>Voice: Sikayere</b></p>
+</header>
+<main>
+<div class="banner"><span class="test">TEST</span> This is a first try, not final. For each line, listen to Sikayere's real recording (A), then the computer clone (B). The last two lines were <b>never recorded</b> by Sikayere, so there is only the clone. Tap <b>Good</b>, <b>Close</b> or <b>Wrong tone</b>, add a note if you like, and at the bottom tap <b>Download my ratings</b>.</div>
+<div class="banner" style="background:#eef7ee;border-color:var(--g)">Please judge two things: <b>1)</b> does it say the Twi correctly, with the right tones and sounds? <b>2)</b> does it sound like you? The clone only speaks text from the Asante Twi Nkwa Asɛm or lines you recorded.</div>
+<label style="font-weight:800">Your name <input type="text" id="who" placeholder="Sikayere"></label>
+<div id="lines"></div>
+<button class="go" id="dl">⬇ Download my ratings (CSV)</button>
+<p id="msg" style="font-weight:600;color:var(--g)"></p>
+</main>
+<script>
+const LINES=[{"id": "v001", "twi": "Ahyɛaseɛ no Onyankopɔn bɔɔ ɔsoro ne asase.", "src": "Genesis 1:1 (Asante Twi Nkwa Asɛm)", "real": true}, {"id": "v003", "twi": "Onyankopɔn hyɛɛ sɛ, ɛnyɛ hann! Na ɛyɛɛ hann.", "src": "Genesis 1:3 (Asante Twi Nkwa Asɛm)", "real": true}, {"id": "v136", "twi": "Yɛrekɔ fie seesei.", "src": "Twi Sukuu everyday sentence", "real": true}, {"id": "new1", "twi": "Nhyira nka wɔn a wɔkora nʼahyɛdeɛ, na wɔfiri wɔn akoma nyinaa mu hwehwɛ no.", "src": "Psalm 119:2 (Asante Twi Nkwa Asɛm)", "real": false}, {"id": "new2", "twi": "Mɛdi wo ɔhyɛ nsɛm so; na nnya me korakora.", "src": "Psalm 119:8 (Asante Twi Nkwa Asɛm)", "real": false}];
+const P='vct_',D=document;
+const sv=(k,v)=>{try{localStorage.setItem(P+k,v)}catch(e){}},ld=k=>{try{return localStorage.getItem(P+k)||''}catch(e){return ''}};
+const box=D.getElementById('lines');
+LINES.forEach(l=>{
+ const c=D.createElement('div');c.className='card';c.id='c_'+l.id;
+ let h='<span class="tag">'+(l.real?'Sikayere recorded this line':'NOT recorded by Sikayere — clone only')+'</span><div class="twi">'+l.twi+'</div><div class="src">'+l.src+'</div>';
+ if(l.real)h+='<div class="lbl">A · Sikayere (real recording)</div><audio controls preload="none" src="voice-clone-test/'+l.id+'_real.mp3"></audio>';
+ h+='<div class="lbl">'+(l.real?'B · Computer clone':'Computer clone')+'</div><audio controls preload="none" src="voice-clone-test/'+l.id+'_clone.mp3"></audio>';
+ h+='<div class="rate"><button class="good" data-v="Good">👍 Good</button><button class="close" data-v="Close">🤏 Close</button><button class="wrong" data-v="Wrong tone">❌ Wrong tone</button></div>';
+ h+='<textarea placeholder="Notes (what sounds wrong or right?)"></textarea>';
+ c.innerHTML=h;box.appendChild(c);
+ const bs=c.querySelectorAll('.rate button'),ta=c.querySelector('textarea');
+ const paint=()=>{const v=ld('r_'+l.id);bs.forEach(b=>b.classList.toggle('on',b.dataset.v===v));c.classList.toggle('rated',!!v)};
+ bs.forEach(b=>b.onclick=()=>{sv('r_'+l.id,b.dataset.v);paint()});
+ ta.value=ld('n_'+l.id);ta.oninput=()=>sv('n_'+l.id,ta.value);paint();
+});
+const who=D.getElementById('who');who.value=ld('who');who.oninput=()=>sv('who',who.value);
+D.getElementById('dl').onclick=()=>{
+ const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
+ const rows=[['speaker','line_id','twi','source','recorded_by_sikayere','rating','notes']];
+ LINES.forEach(l=>rows.push([who.value||'Sikayere',l.id,l.twi,l.src,l.real?'yes':'no',ld('r_'+l.id),ld('n_'+l.id)]));
+ const csv='\ufeff'+rows.map(r=>r.map(q).join(',')).join('\r\n');
+ const a=D.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+ a.download='voice-clone-test-ratings.csv';D.body.appendChild(a);a.click();a.remove();
+ const n=LINES.filter(l=>ld('r_'+l.id)).length;D.getElementById('msg').textContent='Saved '+n+' of '+LINES.length+' ratings. Please send the CSV file.';
+};
+</script>
+</body>
+</html>
