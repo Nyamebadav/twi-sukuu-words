@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Twi Sukuu — Listen: Dwen Ansa Na Woayɛ Biribi</title>
+<style>
+:root{--g:#0a7d3b;--y:#f2b705;--r:#c0392b;--bg:#fffaf0;--card:#fff;--ink:#222}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(90deg,var(--r),var(--y),var(--g));color:#fff;padding:16px;text-align:center;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:1.25rem;text-shadow:0 1px 2px #0006}header p{margin:4px 0 0;font-size:.85rem;text-shadow:0 1px 2px #0006}
+main{max-width:640px;margin:auto;padding:12px}
+button{font-size:1rem;padding:10px 14px;border:0;border-radius:12px;cursor:pointer;background:#eee;font-weight:700}
+.card{background:var(--card);border-radius:16px;padding:12px;margin:10px 0;box-shadow:0 1px 4px #0002}
+.card.playing{box-shadow:0 0 0 3px #f2b705,0 1px 4px #0002;border-left:6px solid var(--g)}
+.word{font-size:1.15rem;font-weight:700;line-height:1.45;white-space:pre-wrap}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.note{font-size:.85rem;color:#666}
+.credit{font-weight:800}
+.sub{font-size:.8rem;font-weight:700;color:#6a7a5c;letter-spacing:.04em;text-transform:uppercase;margin:0 0 8px}
+button.play{background:var(--g);color:#fff}
+button.play.on{background:var(--r)}
+button.clone{background:#3b5b9a;color:#fff}
+button.clone.on{background:var(--r)}
+.players{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.player{background:#faf6ea;border-radius:12px;padding:10px}
+.player label{display:block;font-weight:800;margin:0 0 6px;font-size:.9rem}
+#msg{color:var(--r);font-weight:600;min-height:1.2em}
+.part{scroll-margin-top:84px}
+</style>
+</head>
+<body>
+<header>
+ <h1>📖 Dwen Ansa Na Woayɛ Biribi — listen</h1>
+ <p>Hear Sikayere read each line, then the whole passage. The last row also has a clone test. <span class="credit">Voice: Sikayere</span></p>
+</header>
+<main>
+<p id="msg"></p>
+<div id="list"></div>
+<p class="note">Voice: Sikayere · <a href="dwen-ansa.html">Record this passage</a> · <a href="index.html">Home</a></p>
+</main>
+<script>
+const LINES=[{"id": "da01", "tw": "Dwen Ansa Na Woayɛ Biribi", "en": "", "label": "Title", "mp3": "audio/dwen-ansa/da01.mp3"}, {"id": "da02", "tw": "Ansa na wobɛkasa anaa wobɛyɛ biribi no, twɛn kakra na bisa wo ho sɛ, “Dɛn na ebetumi afi mu aba?”", "en": "", "label": "Sentence 1", "mp3": "audio/dwen-ansa/da02.mp3"}, {"id": "da03", "tw": "Dwen wo daakye ne sɛnea wopɛ sɛ wobɔ wo bra ho.", "en": "", "label": "Sentence 2", "mp3": "audio/dwen-ansa/da03.mp3"}, {"id": "da04", "tw": "Sɛ wo bo afuw a, ma wo bo nnwo ansa na woakasa.", "en": "", "label": "Sentence 3", "mp3": "audio/dwen-ansa/da04.mp3"}, {"id": "da05", "tw": "Sɛ woka nsɛm a wunnwen ho anaa woyaw afoforo a, ebetumi ahaw wɔn na asɛe mo ntam, bere a asɛm no atwam mpo.", "en": "", "label": "Sentence 4", "mp3": "audio/dwen-ansa/da05.mp3"}, {"id": "da06", "tw": "Biribiara a wobɛyɛ no, dwen ho yiye na paw nea akyiri yi wubetumi aka sɛ, “Meyɛɛ nea ɛteɛ.”", "en": "", "label": "Sentence 5", "mp3": "audio/dwen-ansa/da06.mp3"}, {"id": "da07", "tw": "Dwen Ansa Na Woayɛ Biribi\n\nAnsa na wobɛkasa anaa wobɛyɛ biribi no, twɛn kakra na bisa wo ho sɛ, “Dɛn na ebetumi afi mu aba?”\nDwen wo daakye ne sɛnea wopɛ sɛ wobɔ wo bra ho.\nSɛ wo bo afuw a, ma wo bo nnwo ansa na woakasa.\nSɛ woka nsɛm a wunnwen ho anaa woyaw afoforo a, ebetumi ahaw wɔn na asɛe mo ntam, bere a asɛm no atwam mpo.\nBiribiara a wobɛyɛ no, dwen ho yiye na paw nea akyiri yi wubetumi aka sɛ, “Meyɛɛ nea ɛteɛ.”", "en": "", "label": "Whole passage", "mp3": "audio/dwen-ansa/da07.mp3", "clone": "audio/dwen-ansa/da07_clone.mp3"}];
+const $=id=>document.getElementById(id);
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+let audio=null, playingKey=null;
+function stopAudio(){
+ if(audio){try{audio.pause();audio.removeAttribute('src');audio.load()}catch(e){}}
+ audio=null;playingKey=null;
+ document.querySelectorAll('.card').forEach(c=>c.classList.remove('playing'));
+ document.querySelectorAll('button.play,button.clone').forEach(b=>{
+  b.classList.remove('on');
+  if(b.classList.contains('clone')) b.textContent='▶️ Play clone';
+  else b.textContent='▶️ Play';
+ });
+}
+function play(id, kind){
+ const w=LINES.find(x=>x.id===id);if(!w)return;
+ const src=kind==='clone'?w.clone:w.mp3;
+ if(!src)return;
+ $('msg').textContent='';
+ const key=id+':'+kind;
+ const same=playingKey===key && audio && !audio.paused;
+ stopAudio();
+ if(same)return;
+ const card=$('row-'+id);if(card)card.classList.add('playing');
+ audio=new Audio(src);
+ playingKey=key;
+ const btn=document.querySelector(kind==='clone'?'#row-'+id+' .clone':'#row-'+id+' button.play[data-play="'+id+'"]');
+ const labelOn=kind==='clone'?'🔊 Playing clone':'🔊 Playing';
+ const labelOff=kind==='clone'?'▶️ Play clone':'▶️ Play';
+ const mark=on=>{if(btn){btn.textContent=on?labelOn:labelOff;btn.classList.toggle('on',on)}};
+ mark(true);
+ audio.addEventListener('ended',()=>{mark(false);playingKey=null;if(card)card.classList.remove('playing')});
+ audio.addEventListener('error',()=>{
+  $('msg').textContent='Could not load the recording for '+w.label+' ('+id+').';
+  mark(false);
+ });
+ const p=audio.play();
+ if(p&&p.catch)p.catch(()=>{$('msg').textContent='Could not play this one.';mark(false)});
+}
+(function render(){
+ const L=$('list');L.innerHTML='';
+ LINES.forEach(w=>{
+  const d=document.createElement('div');
+  d.className='card part';
+  d.id='row-'+w.id;
+  let players=`<div class="player"><label>Voice: Sikayere</label><button type="button" class="play" data-play="${w.id}">▶️ Play</button></div>`;
+  if(w.clone){
+   players += `<div class="player"><label>Clone (test)</label><button type="button" class="clone" data-clone="${w.id}">▶️ Play clone</button></div>`;
+  }
+  d.innerHTML=`<div class="sub">${esc(w.label)} · ${esc(w.id)}</div>
+   <div class="word" lang="tw">${esc(w.tw)}</div>
+   <div class="players">${players}</div>`;
+  L.appendChild(d);
+ });
+ L.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>play(b.dataset.play,'sikayere'));
+ L.querySelectorAll('[data-clone]').forEach(b=>b.onclick=()=>play(b.dataset.clone,'clone'));
+})();
+</script>
+</body>
+</html>
