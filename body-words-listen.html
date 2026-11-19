@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Twi Sukuu — Listen: Body-word list</title>
+<style>
+:root{--g:#0a7d3b;--y:#f2b705;--r:#c0392b;--bg:#fffaf0;--card:#fff;--ink:#222}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(90deg,var(--r),var(--y),var(--g));color:#fff;padding:12px 14px;text-align:center;position:sticky;top:0;z-index:6}
+header h1{margin:0;font-size:1.25rem;text-shadow:0 1px 2px #0006}header p{margin:4px 0 0;font-size:.85rem;text-shadow:0 1px 2px #0006}
+main{max-width:640px;margin:auto;padding:12px}
+button{font-size:1rem;padding:10px 14px;border:0;border-radius:12px;cursor:pointer;background:#eee}
+button:disabled{opacity:.45}
+.card{background:var(--card);border-radius:16px;padding:12px;margin:10px 0;box-shadow:0 1px 4px #0002}
+.word{font-size:1.25rem;font-weight:700}
+.twi{font-size:1.35rem;font-weight:800;line-height:1.3;margin:2px 0 0}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.note{font-size:.85rem;color:#666}
+.credit{font-weight:800}
+.sec{font-size:1.05rem;margin:18px 0 6px;padding:8px 12px;background:linear-gradient(90deg,var(--g),var(--y));color:#fff;border-radius:10px;font-weight:700;text-shadow:0 1px 1px #0004}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.tabs button{padding:8px 12px;font-size:.9rem;border-radius:10px;background:#fff;border:1px solid #ddd;font-weight:700}
+.tabs button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.diag{position:relative;line-height:0;margin:8px 0}
+.diag img{width:100%;height:auto;display:block;border-radius:8px}
+.hot{position:absolute;width:44px;height:44px;transform:translate(-50%,-50%);border:0;padding:0;margin:0;border-radius:50%;background:transparent;cursor:pointer}
+.hot.lab{border-radius:8px;height:auto}
+.hot:hover,.hot.on,.hot:focus{outline:none;box-shadow:0 0 0 3px #f2b705}
+.chartnote{font-size:.82rem;color:#555;line-height:1.4;margin:6px 0 0}
+.charttitle{font-size:.9rem;font-weight:800;margin:12px 0 4px;color:#163}
+.jumplink{font-size:.85rem;padding:6px 10px;border-radius:8px;background:#f3f3f3;border:1px solid #ddd;font-weight:700;color:#333}
+.part{scroll-margin-top:150px}
+.part.playing{box-shadow:0 0 0 3px #f2b705,0 1px 4px #0002;border-left:6px solid var(--g)}
+.numbadge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:50%;background:var(--g);color:#fff;font-weight:800;font-size:.9rem;flex:0 0 auto}
+.now{position:sticky;top:64px;z-index:5;background:#fff6d6;border:3px solid var(--y);border-radius:16px;padding:10px 12px;margin:8px 0;box-shadow:0 0 0 4px #f2b70533}
+.now .twi{font-size:1.5rem}
+.now .eng{font-size:1rem;color:#444;font-weight:700}
+button.play{background:var(--g);color:#fff;font-weight:700}
+button.play.on{background:var(--r)}
+.missing{font-size:.85rem;color:#666;font-weight:700}
+#msg{color:var(--r);font-weight:600;min-height:1.2em}
+</style>
+</head>
+<body>
+<header>
+ <h1>📖 Body-word list — listen</h1>
+ <p>Tap a number on the chart, or a word in the list, to hear Sikayere say it. <span class="credit">Voice: Sikayere</span></p>
+</header>
+<main>
+<div class="now" id="now" aria-live="polite">
+ <div class="row" style="justify-content:space-between;align-items:flex-start">
+  <div>
+   <div class="eng" id="now-eng">Tap a part to hear its name</div>
+   <div class="twi" id="now-twi" lang="tw"></div>
+  </div>
+  <button type="button" class="play" id="now-play" hidden>▶️ Play</button>
+ </div>
+</div>
+<p id="msg"></p>
+<div class="card">
+ <p class="note" style="margin:0 0 8px">Tap a numbered part on the chart to hear Sikayere’s Twi name. Her spelling is the one shown. 67 of 83 words have recordings; the reproductive section is not recorded yet. You can also <a href="body-words.html">open the recorder page</a> or <a href="anatomy-listen.html">listen to the anatomy sketches</a>.</p>
+ <div class="tabs" id="tabs" role="tablist" aria-label="Sections"></div>
+</div>
+<div id="chartwrap"></div>
+<div id="list"></div>
+<p class="note">Voice: Sikayere · <a href="body-words.html">Body-word recorder</a> · <a href="anatomy-listen.html">Anatomy listen page</a> · <a href="index.html">Home</a></p>
+</main>
+<script>
+const PARTS=[{"id": "bw01", "n": 1, "cn": 1, "en": "Body / Human Body", "tw": "Nipadua", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw01.mp3", "has": true}, {"id": "bw02", "n": 2, "cn": 2, "en": "Head", "tw": "Etire / Ti", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw02.mp3", "has": true}, {"id": "bw03", "n": 3, "cn": 3, "en": "Skull", "tw": "Tikwankora", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw03.mp3", "has": true}, {"id": "bw04", "n": 4, "cn": 4, "en": "Face", "tw": "Anim", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw04.mp3", "has": true}, {"id": "bw05", "n": 5, "cn": 5, "en": "Forehead", "tw": "Moma", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw05.mp3", "has": true}, {"id": "bw06", "n": 6, "cn": 6, "en": "Eye", "tw": "Ani", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw06.mp3", "has": true}, {"id": "bw07", "n": 7, "cn": 7, "en": "Eyebrow", "tw": "Ani ntɔn nwi", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw07.mp3", "has": true}, {"id": "bw08", "n": 8, "cn": 8, "en": "Eyelash", "tw": "Anitɛtɛ", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw08.mp3", "has": true}, {"id": "bw09", "n": 9, "cn": 9, "en": "Ear", "tw": "Aso", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw09.mp3", "has": true}, {"id": "bw10", "n": 10, "cn": 10, "en": "Nose", "tw": "Ɛhwene", "tab": "Head & face", "section": "Head & face", "kind": "review", "mp3": "audio/body-words/bw10.mp3", "has": true}, {"id": "bw11", "n": 11, "cn": 1, "en": "Cheek", "tw": "Afono", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw11.mp3", "has": true}, {"id": "bw12", "n": 12, "cn": 2, "en": "Mouth", "tw": "Ano", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw12.mp3", "has": true}, {"id": "bw13", "n": 13, "cn": 3, "en": "Lip", "tw": "Anofafa", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw13.mp3", "has": true}, {"id": "bw14", "n": 14, "cn": 4, "en": "Tooth", "tw": "Ɛse", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw14.mp3", "has": true}, {"id": "bw15", "n": 15, "cn": 5, "en": "Gum", "tw": "Ɛse akyi nam", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw15.mp3", "has": true}, {"id": "bw16", "n": 16, "cn": 6, "en": "Tongue", "tw": "Tɛkyerɛma", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw16.mp3", "has": true}, {"id": "bw17", "n": 17, "cn": 7, "en": "Throat", "tw": "Menemu", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw17.mp3", "has": true}, {"id": "bw18", "n": 18, "cn": 8, "en": "Chin", "tw": "Abɔdweɛ", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw18.mp3", "has": true}, {"id": "bw19", "n": 19, "cn": 9, "en": "Beard", "tw": "Abɔdwesɛ", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw19.mp3", "has": true}, {"id": "bw20", "n": 20, "cn": 10, "en": "Neck", "tw": "Ɛkɔn", "tab": "Mouth & neck", "section": "Mouth & neck", "kind": "review", "mp3": "audio/body-words/bw20.mp3", "has": true}, {"id": "bw21", "n": 21, "cn": 1, "en": "Shoulder", "tw": "Abatire", "tab": "Upper body", "section": "Upper body", "kind": "review", "mp3": "audio/body-words/bw21.mp3", "has": true}, {"id": "bw22", "n": 22, "cn": 2, "en": "Back", "tw": "Akyire", "tab": "Upper body", "section": "Upper body", "kind": "review", "mp3": "audio/body-words/bw22.mp3", "has": true}, {"id": "bw23", "n": 23, "cn": 3, "en": "Spine", "tw": "Berɛmo", "tab": "Upper body", "section": "Upper body", "kind": "review", "mp3": "audio/body-words/bw23.mp3", "has": true}, {"id": "bw24", "n": 24, "cn": 4, "en": "Chest", "tw": "Kokoɔ", "tab": "Upper body", "section": "Upper body", "kind": "review", "mp3": "audio/body-words/bw24.mp3", "has": true}, {"id": "bw25", "n": 25, "cn": 5, "en": "Breast", "tw": "Nufoɔ (pokua)", "tab": "Upper body", "section": "Upper body", "kind": "review", "mp3": "audio/body-words/bw25.mp3", "has": true}, {"id": "bw26", "n": 26, "cn": 6, "en": "Ribs", "tw": "Mfe mpadeɛ", "tab": "Upper body", "section": "Upper body", "kind": "review", "mp3": "audio/body-words/bw26.mp3", "has": true}, {"id": "bw27", "n": 27, "cn": 7, "en": "Arm", "tw": "Abasa", "tab": "Upper body", "section": "Upper body", "kind": "review", "mp3": "audio/body-words/bw27.mp3", "has": true}, {"id": "bw28", "n": 28, "cn": 8, "en": "Armpit", "tw": "Amɔtoam(u)", "tab": "Upper body", "section": "Upper body", "kind": "review", "mp3": "audio/body-words/bw28.mp3", "has": true}, {"id": "bw29", "n": 29, "cn": 9, "en": "Elbow", "tw": "Abatwɛ", "tab": "Upper body", "section": "Upper body", "kind": "review", "mp3": "audio/body-words/bw29.mp3", "has": true}, {"id": "bw30", "n": 30, "cn": 1, "en": "Wrist", "tw": "Abakɔn", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw30.mp3", "has": true}, {"id": "bw31", "n": 31, "cn": 2, "en": "Hand", "tw": "Nsa", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw31.mp3", "has": true}, {"id": "bw32", "n": 32, "cn": 3, "en": "Palm", "tw": "Nsayam", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw32.mp3", "has": true}, {"id": "bw33", "n": 33, "cn": 4, "en": "Finger", "tw": "Nsateaa", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw33.mp3", "has": true}, {"id": "bw34", "n": 34, "cn": 5, "en": "Nail / Fingernail", "tw": "Bɔwerɛ", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw34.mp3", "has": true}, {"id": "bw35", "n": 35, "cn": 6, "en": "Belly", "tw": "Yafunu", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw35.mp3", "has": true}, {"id": "bw36", "n": 36, "cn": 7, "en": "Navel", "tw": "Afunuma", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw36.mp3", "has": true}, {"id": "bw37", "n": 37, "cn": 8, "en": "Waist", "tw": "Sisie", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw37.mp3", "has": true}, {"id": "bw38", "n": 38, "cn": 9, "en": "Pelvis", "tw": "Ayaaseɛ", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw38.mp3", "has": true}, {"id": "bw39", "n": 39, "cn": 10, "en": "Hip", "tw": "Pa", "tab": "Hands & midsection", "section": "Hands & midsection", "kind": "review", "mp3": "audio/body-words/bw39.mp3", "has": true}, {"id": "bw40", "n": 40, "cn": 1, "en": "Buttock", "tw": "Ɛtoɔ", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw40.mp3", "has": true}, {"id": "bw41", "n": 41, "cn": 2, "en": "Thigh", "tw": "Ɛserɛ", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw41.mp3", "has": true}, {"id": "bw42", "n": 42, "cn": 3, "en": "Leg", "tw": "Ɛnan", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw42.mp3", "has": true}, {"id": "bw43", "n": 43, "cn": 4, "en": "Knee", "tw": "Kotodwe", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw43.mp3", "has": true}, {"id": "bw44", "n": 44, "cn": 5, "en": "Shin", "tw": "Nanhini", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw44.mp3", "has": true}, {"id": "bw45", "n": 45, "cn": 6, "en": "Calf", "tw": "Anantuo", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw45.mp3", "has": true}, {"id": "bw46", "n": 46, "cn": 7, "en": "Ankle", "tw": "Nanpɔso", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw46.mp3", "has": true}, {"id": "bw47", "n": 47, "cn": 8, "en": "Foot", "tw": "Nantabono", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw47.mp3", "has": true}, {"id": "bw48", "n": 48, "cn": 9, "en": "Heel", "tw": "Nantini", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw48.mp3", "has": true}, {"id": "bw49", "n": 49, "cn": 10, "en": "Sole", "tw": "Nan mmuromu", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw49.mp3", "has": true}, {"id": "bw50", "n": 50, "cn": 11, "en": "Toe", "tw": "Nansoaa", "tab": "Legs & feet", "section": "Legs & feet", "kind": "review", "mp3": "audio/body-words/bw50.mp3", "has": true}, {"id": "bw51", "n": 51, "cn": 1, "en": "Brain", "tw": "Amene", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw51.mp3", "has": true}, {"id": "bw52", "n": 52, "cn": 2, "en": "Heart", "tw": "Akoma", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw52.mp3", "has": true}, {"id": "bw53", "n": 53, "cn": 3, "en": "Lung", "tw": "Ahrawa", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw53.mp3", "has": true}, {"id": "bw54", "n": 54, "cn": 4, "en": "Liver", "tw": "Brɛboɔ", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw54.mp3", "has": true}, {"id": "bw55", "n": 55, "cn": 5, "en": "Kidney", "tw": "Saa", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw55.mp3", "has": true}, {"id": "bw56", "n": 56, "cn": 6, "en": "Stomach", "tw": "Yam", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw56.mp3", "has": true}, {"id": "bw57", "n": 57, "cn": 7, "en": "Gallbladder", "tw": "Bɔnwono", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw57.mp3", "has": true}, {"id": "bw58", "n": 58, "cn": 8, "en": "Intestine", "tw": "Nsono", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw58.mp3", "has": true}, {"id": "bw59", "n": 59, "cn": 9, "en": "Bladder", "tw": "Dwonsɔtwaa", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw59.mp3", "has": true}, {"id": "bw60", "n": 60, "cn": 10, "en": "Womb", "tw": "Awodeɛ", "tab": "Internal organs", "section": "Internal organs", "kind": "review", "mp3": "audio/body-words/bw60.mp3", "has": true}, {"id": "bw61", "n": 61, "cn": 1, "en": "Skin", "tw": "Honam", "tab": "Tissues & blood", "section": "Tissues & blood", "kind": "review", "mp3": "audio/body-words/bw61.mp3", "has": true}, {"id": "bw62", "n": 62, "cn": 2, "en": "Flesh", "tw": "Nam", "tab": "Tissues & blood", "section": "Tissues & blood", "kind": "review", "mp3": "audio/body-words/bw62.mp3", "has": true}, {"id": "bw63", "n": 63, "cn": 3, "en": "Bone", "tw": "Dompe", "tab": "Tissues & blood", "section": "Tissues & blood", "kind": "review", "mp3": "audio/body-words/bw63.mp3", "has": true}, {"id": "bw64", "n": 64, "cn": 4, "en": "Marrow", "tw": "Akyim", "tab": "Tissues & blood", "section": "Tissues & blood", "kind": "review", "mp3": "audio/body-words/bw64.mp3", "has": true}, {"id": "bw65", "n": 65, "cn": 5, "en": "Joint", "tw": "Apɔ so", "tab": "Tissues & blood", "section": "Tissues & blood", "kind": "review", "mp3": "audio/body-words/bw65.mp3", "has": true}, {"id": "bw66", "n": 66, "cn": 6, "en": "Vein / Sinew", "tw": "Ntini", "tab": "Tissues & blood", "section": "Tissues & blood", "kind": "review", "mp3": "audio/body-words/bw66.mp3", "has": true}, {"id": "bw67", "n": 67, "cn": 7, "en": "Blood", "tw": "Mogya", "tab": "Tissues & blood", "section": "Tissues & blood", "kind": "review", "mp3": "audio/body-words/bw67.mp3", "has": true}, {"id": "bw68", "n": 68, "cn": 1, "en": "Uterine fundus", "tw": "yafunu no atifi", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw69", "n": 69, "cn": 2, "en": "Uterine tube", "tw": "yafunu kwan", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw70", "n": 70, "cn": 3, "en": "Ovary", "tw": "nkosua yɛbea", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw71", "n": 71, "cn": 4, "en": "Fimbriae", "tw": "", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw72", "n": 72, "cn": 5, "en": "Endometrium", "tw": "awotwaa no mu ntoma", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw73", "n": 73, "cn": 6, "en": "Myometrium", "tw": "awotwaa no mu ntini", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw74", "n": 74, "cn": 7, "en": "Cervix", "tw": "awotwaa ano", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw75", "n": 75, "cn": 8, "en": "Vagina", "tw": "ɛtwɛ", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw76", "n": 76, "cn": 9, "en": "Uterus", "tw": "awodeɛ", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw77", "n": 77, "cn": 10, "en": "Rectum", "tw": "", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw78", "n": 78, "cn": 11, "en": "Seminal vesicle", "tw": "ɔbaarima nkosua nsuo nkorae", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw79", "n": 79, "cn": 12, "en": "Prostate", "tw": "ɔbaarima nsu yɛbea", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw80", "n": 80, "cn": 13, "en": "Vas deferens", "tw": "ɛkwan a ɔbaarima ho nsu fa so", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw81", "n": 81, "cn": 14, "en": "Urethra", "tw": "nsu ne dwonsɔ kwan", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw82", "n": 82, "cn": 15, "en": "Epididymis", "tw": "beaɛ a spermɛ kɔhyɛ ɛnyin wɔ ɔbaarima mu", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}, {"id": "bw83", "n": 83, "cn": 16, "en": "Testis", "tw": "ɔbaarima no nkosua", "tab": "Reproductive", "section": "Reproductive anatomy", "kind": "type", "mp3": "", "has": false}];
+const TABS=["Head & face", "Mouth & neck", "Upper body", "Hands & midsection", "Legs & feet", "Internal organs", "Tissues & blood", "Reproductive"];
+const CHARTS={"Head & face": {"src": "images/body-words/01-head-face.webp", "w": 900, "h": 1282, "alt": "Head and face chart with numbered parts and Twi names from a reference list", "note": "Twi names printed on this chart come from a reference list. The spelling shown in the list below is Sikayere’s.", "hots": [{"id": "bw03", "n": 3, "left": 75.76, "top": 14.56}, {"id": "bw02", "n": 2, "left": 4.71, "top": 15.87}, {"id": "bw05", "n": 5, "left": 56.79, "top": 20.66}, {"id": "bw07", "n": 7, "left": 3.69, "top": 24.7}, {"id": "bw06", "n": 6, "left": 3.78, "top": 30.46}, {"id": "bw09", "n": 9, "left": 67.38, "top": 33.7}, {"id": "bw08", "n": 8, "left": 3.9, "top": 35.15}, {"id": "bw01", "n": 1, "left": 76.24, "top": 37.58}, {"id": "bw10", "n": 10, "left": 5.33, "top": 40.88}, {"id": "bw04", "n": 4, "left": 4.44, "top": 47.7}, {"id": "bw07", "n": 7, "left": 5.34, "top": 61.76}, {"id": "bw06", "n": 6, "left": 5.77, "top": 67.28}, {"id": "bw09", "n": 9, "left": 45.66, "top": 66.9}, {"id": "bw10", "n": 10, "left": 67.93, "top": 66.76}, {"id": "bw08", "n": 8, "left": 6.57, "top": 72.58}]}, "Mouth & neck": {"src": "images/body-words/02-mouth-neck.webp", "w": 900, "h": 1350, "alt": "Mouth and neck chart with numbered parts and Twi names from a reference list", "note": "Twi names printed on this chart come from a reference list. The spelling shown in the list below is Sikayere’s.", "hots": [{"id": "bw14", "n": 4, "left": 60.49, "top": 17.69}, {"id": "bw15", "n": 5, "left": 81.97, "top": 17.97}, {"id": "bw11", "n": 1, "left": 4.86, "top": 31.83}, {"id": "bw12", "n": 2, "left": 49.87, "top": 36.52}, {"id": "bw16", "n": 6, "left": 81.59, "top": 38.37}, {"id": "bw13", "n": 3, "left": 4.88, "top": 39.97}, {"id": "bw18", "n": 8, "left": 5.86, "top": 47.98}, {"id": "bw19", "n": 9, "left": 5.94, "top": 55.01}, {"id": "bw20", "n": 10, "left": 8.91, "top": 63.33}, {"id": "bw17", "n": 7, "left": 62.73, "top": 64.5}]}, "Upper body": {"src": "images/body-words/03-upper-body.webp", "w": 900, "h": 1281, "alt": "Upper body chart with numbered parts and Twi names from a reference list", "note": "Twi names printed on this chart come from a reference list. The spelling shown in the list below is Sikayere’s.", "hots": [{"id": "bw26", "n": 6, "left": 83.09, "top": 14.39}, {"id": "bw21", "n": 1, "left": 3.45, "top": 20.96}, {"id": "bw22", "n": 2, "left": 63.0, "top": 23.47}, {"id": "bw24", "n": 4, "left": 2.65, "top": 30.21}, {"id": "bw25", "n": 5, "left": 2.55, "top": 36.88}, {"id": "bw28", "n": 8, "left": 60.89, "top": 42.61}, {"id": "bw27", "n": 7, "left": 2.33, "top": 44.69}, {"id": "bw23", "n": 3, "left": 77.72, "top": 46.36}, {"id": "bw29", "n": 9, "left": 2.51, "top": 52.84}, {"id": "bw28", "n": 8, "left": 9.48, "top": 73.09}, {"id": "bw29", "n": 9, "left": 46.96, "top": 73.18}]}, "Hands & midsection": {"src": "images/body-words/04-hands-midsection.webp", "w": 900, "h": 1599, "alt": "Hands and midsection chart with numbered parts and Twi names from a reference list", "note": "Twi names printed on this chart come from a reference list. The spelling shown in the list below is Sikayere’s.", "hots": [{"id": "bw34", "n": 5, "left": 93.06, "top": 12.74}, {"id": "bw33", "n": 4, "left": 27.97, "top": 17.31}, {"id": "bw31", "n": 2, "left": 94.19, "top": 26.32}, {"id": "bw32", "n": 3, "left": 29.14, "top": 27.33}, {"id": "bw30", "n": 1, "left": 93.02, "top": 30.95}, {"id": "bw35", "n": 6, "left": 32.17, "top": 46.66}, {"id": "bw37", "n": 8, "left": 76.34, "top": 49.82}, {"id": "bw36", "n": 7, "left": 33.06, "top": 52.99}, {"id": "bw38", "n": 9, "left": 9.03, "top": 59.13}, {"id": "bw39", "n": 10, "left": 77.7, "top": 59.34}]}, "Legs & feet": {"src": "images/body-words/05-legs-feet.webp", "w": 900, "h": 1277, "alt": "Legs and feet chart with numbered parts and Twi names from a reference list", "note": "Twi names printed on this chart come from a reference list. The spelling shown in the list below is Sikayere’s.", "hots": [{"id": "bw40", "n": 1, "left": 83.02, "top": 15.49}, {"id": "bw41", "n": 2, "left": 2.91, "top": 21.87}, {"id": "bw43", "n": 4, "left": 4.69, "top": 30.63}, {"id": "bw45", "n": 6, "left": 83.48, "top": 37.92}, {"id": "bw44", "n": 5, "left": 4.65, "top": 39.39}, {"id": "bw42", "n": 3, "left": 44.32, "top": 40.69}, {"id": "bw46", "n": 7, "left": 3.86, "top": 48.59}, {"id": "bw48", "n": 9, "left": 82.34, "top": 49.63}, {"id": "bw47", "n": 8, "left": 43.15, "top": 51.37}, {"id": "bw49", "n": 10, "left": 76.69, "top": 66.57}, {"id": "bw50", "n": 11, "left": 23.64, "top": 72.13}]}, "Internal organs": {"src": "images/body-words/06-internal-organs.webp", "w": 900, "h": 1350, "alt": "Internal organs chart with numbered parts and Twi names from a reference list", "note": "Twi names printed on this chart come from a reference list. The spelling shown in the list below is Sikayere’s.", "hots": [{"id": "bw51", "n": 1, "left": 4.53, "top": 15.82}, {"id": "bw53", "n": 3, "left": 67.94, "top": 16.29}, {"id": "bw52", "n": 2, "left": 36.63, "top": 16.37}, {"id": "bw55", "n": 5, "left": 36.52, "top": 32.75}, {"id": "bw54", "n": 4, "left": 4.66, "top": 34.89}, {"id": "bw56", "n": 6, "left": 72.95, "top": 35.87}, {"id": "bw57", "n": 7, "left": 6.06, "top": 50.48}, {"id": "bw58", "n": 8, "left": 36.81, "top": 50.57}, {"id": "bw59", "n": 9, "left": 6.4, "top": 64.62}, {"id": "bw60", "n": 10, "left": 80.94, "top": 62.59}]}, "Tissues & blood": {"src": "images/body-words/07-tissues-blood.webp", "w": 900, "h": 1281, "alt": "Tissues and blood chart with numbered parts and Twi names from a reference list", "note": "Twi names printed on this chart come from a reference list. The spelling shown in the list below is Sikayere’s.", "hots": [{"id": "bw61", "n": 1, "left": 5.15, "top": 15.06}, {"id": "bw62", "n": 2, "left": 70.88, "top": 16.01}, {"id": "bw63", "n": 3, "left": 51.35, "top": 36.66}, {"id": "bw64", "n": 4, "left": 53.56, "top": 50.41}, {"id": "bw65", "n": 5, "left": 4.8, "top": 55.28}, {"id": "bw67", "n": 7, "left": 73.88, "top": 56.12}, {"id": "bw66", "n": 6, "left": 38.0, "top": 57.62}]}};
+const REPRO_CHARTS=[{"src": "images/body-words/08-female-reproductive.webp", "w": 900, "h": 1599, "alt": "Female reproductive anatomy, English labels", "title": "Female reproductive anatomy", "hots": [{"id": "bw68", "label": "Uterine fundus", "left": 50.0, "top": 19.5, "pw": 28, "ph": 3.2}, {"id": "bw69", "label": "Uterine tube", "left": 85.0, "top": 19.8, "pw": 24, "ph": 3.2}, {"id": "bw70", "label": "Ovary", "left": 9.0, "top": 41.0, "pw": 16, "ph": 3.0}, {"id": "bw71", "label": "Fimbriae", "left": 90.0, "top": 41.5, "pw": 18, "ph": 3.0}, {"id": "bw72", "label": "Endometrium", "left": 16.0, "top": 45.0, "pw": 26, "ph": 3.0}, {"id": "bw73", "label": "Myometrium", "left": 16.0, "top": 50.5, "pw": 24, "ph": 3.0}, {"id": "bw74", "label": "Cervix", "left": 72.0, "top": 54.5, "pw": 16, "ph": 3.0}, {"id": "bw75", "label": "Vagina", "left": 74.0, "top": 64.5, "pw": 16, "ph": 3.0}, {"id": "bw76", "label": "Uterus", "left": 16.0, "top": 77.0, "pw": 16, "ph": 3.2}, {"id": "bw59", "label": "Bladder", "left": 16.0, "top": 86.5, "pw": 18, "ph": 3.2}, {"id": "bw77", "label": "Rectum", "left": 87.0, "top": 87.5, "pw": 16, "ph": 3.2}]}, {"src": "images/body-words/09-male-reproductive.webp", "w": 900, "h": 1599, "alt": "Male reproductive system, English labels", "title": "Male reproductive system", "hots": [{"id": "bw59", "label": "Bladder", "left": 9.5, "top": 19.2, "pw": 18, "ph": 3.2}, {"id": "bw78", "label": "Seminal vesicle", "left": 87.0, "top": 22.5, "pw": 24, "ph": 5.5}, {"id": "bw79", "label": "Prostate", "left": 10.5, "top": 40.0, "pw": 20, "ph": 3.2}, {"id": "bw80", "label": "Vas deferens", "left": 87.0, "top": 45.0, "pw": 24, "ph": 5.5}, {"id": "bw81", "label": "Urethra", "left": 14.0, "top": 51.8, "pw": 20, "ph": 3.2}, {"id": "bw82", "label": "Epididymis", "left": 84.0, "top": 64.0, "pw": 24, "ph": 3.2}, {"id": "bw83", "label": "Testis", "left": 10.5, "top": 80.0, "pw": 16, "ph": 3.2}]}];
+const byId=Object.fromEntries(PARTS.map(w=>[w.id,w]));
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let curTab=TABS[0];
+let audio=null, playingId=null;
+
+function stopAudio(){
+ if(audio){try{audio.pause();audio.removeAttribute('src');audio.load()}catch(e){}}
+ audio=null;playingId=null;
+ document.querySelectorAll('.hot').forEach(g=>g.classList.remove('on'));
+ document.querySelectorAll('.part').forEach(r=>r.classList.remove('playing'));
+ const pb=$('now-play');if(pb){pb.textContent='▶️ Play';pb.classList.remove('on');}
+ document.querySelectorAll('button.play[data-play]').forEach(b=>{b.textContent='▶️ Play';b.classList.remove('on')});
+}
+function highlight(id){
+ document.querySelectorAll('.hot').forEach(g=>g.classList.toggle('on',g.dataset.id===id));
+ document.querySelectorAll('.part').forEach(r=>r.classList.toggle('playing',r.id==='row-'+id));
+}
+function showNow(w){
+ $('now-eng').textContent=w.n+'. '+w.en;
+ $('now-twi').textContent=w.tw||'';
+ const pb=$('now-play');
+ if(w.has){pb.hidden=false}else{pb.hidden=true}
+}
+function showTab(tab, id){
+ if(tab&&tab!==curTab){curTab=tab;render(false)}
+ if(id)highlight(id);
+}
+function play(id, fromList){
+ const w=byId[id];if(!w)return;
+ $('msg').textContent='';
+ showTab(w.tab, id);
+ showNow(w);
+ if(fromList){
+  const row=$('row-'+id);
+  if(row)row.scrollIntoView({behavior:'smooth',block:'nearest'});
+ }
+ if(!w.has){
+  stopAudio();
+  highlight(id);
+  $('msg').textContent='No recording yet for '+w.en+'.';
+  return;
+ }
+ const same=playingId===id && audio && !audio.paused;
+ stopAudio();
+ if(same)return;
+ showNow(w);
+ highlight(id);
+ audio=new Audio(w.mp3);
+ playingId=id;
+ const mark=on=>{
+  $('now-play').textContent=on?'🔊 Playing':'▶️ Play';
+  $('now-play').classList.toggle('on',on);
+  document.querySelectorAll('button.play[data-play="'+id+'"]').forEach(b=>{
+   b.textContent=on?'🔊 Playing':'▶️ Play';b.classList.toggle('on',on);
+  });
+ };
+ mark(true);
+ audio.addEventListener('ended',()=>{mark(false);playingId=null;});
+ audio.addEventListener('error',()=>{
+  $('msg').textContent='Could not load the recording for '+w.en+' ('+w.id+').';
+  mark(false);
+ });
+ const p=audio.play();
+ if(p&&p.catch)p.catch(()=>{$('msg').textContent='Could not play this one.';mark(false)});
+}
+$('now-play').onclick=()=>{if(playingId)play(playingId);};
+
+function bindHots(root){
+ (root||document).querySelectorAll('.hot').forEach(g=>{
+  g.addEventListener('click',e=>{e.preventDefault();play(g.dataset.id,true)});
+  g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();play(g.dataset.id,true)}});
+ });
+}
+function chartHtml(){
+ if(curTab==='Reproductive'){
+  let html=`<div class="card" id="chartcard"><p class="chartnote" style="margin:0 0 8px">These diagrams are in English only. Tap a label to see Sikayere’s Twi name, when she has given one. Bladder and Womb are on the Internal organs list and have recordings.</p>`;
+  REPRO_CHARTS.forEach(ch=>{
+   html+=`<div class="charttitle">${esc(ch.title)}</div><div class="diag">`;
+   html+=`<img src="${ch.src}" alt="${esc(ch.alt)}" width="${ch.w}" height="${ch.h}">`;
+   ch.hots.forEach(h=>{
+    const lab=h.label||h.id;
+    html+=`<button type="button" class="hot lab" data-id="${h.id}" style="left:${h.left}%;top:${h.top}%;width:${h.pw}%;height:${h.ph}%" aria-label="${esc(lab)}"></button>`;
+   });
+   html+=`</div>`;
+  });
+  html+=`<div class="row" style="margin-top:8px"><button type="button" class="jumplink" data-jump="bw59">Bladder (Internal organs)</button><button type="button" class="jumplink" data-jump="bw60">Womb (Internal organs)</button></div></div>`;
+  return html;
+ }
+ const ch=CHARTS[curTab];
+ if(!ch)return '';
+ let html=`<div class="card" id="chartcard"><div class="diag">`;
+ html+=`<img src="${ch.src}" alt="${esc(ch.alt)}" width="${ch.w}" height="${ch.h}">`;
+ ch.hots.forEach(h=>{
+  const w=byId[h.id];const lab=`${h.n} ${w?w.en:''}`;
+  html+=`<button type="button" class="hot" data-id="${h.id}" style="left:${h.left}%;top:${h.top}%" aria-label="${esc(lab)}"></button>`;
+ });
+ html+=`</div><p class="chartnote">${esc(ch.note)}</p></div>`;
+ return html;
+}
+function renderTabs(){
+ const T=$('tabs');T.innerHTML='';
+ TABS.forEach(tab=>{
+  const words=PARTS.filter(w=>w.tab===tab);
+  const done=words.filter(w=>w.has).length;
+  const b=document.createElement('button');
+  b.type='button';b.dataset.tab=tab;if(tab===curTab)b.className='on';
+  b.textContent=`${tab} ${done}/${words.length}`;
+  b.onclick=()=>{curTab=tab;render(true)};
+  T.appendChild(b);
+ });
+}
+function render(scrollTop){
+ renderTabs();
+ $('chartwrap').innerHTML=chartHtml();
+ bindHots($('chartwrap'));
+ $('chartwrap').querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>play(b.dataset.jump,true));
+ const L=$('list');L.innerHTML='';
+ let last='';
+ PARTS.filter(w=>w.tab===curTab).forEach(w=>{
+  if(w.section!==last){last=w.section;const h=document.createElement('div');h.className='sec';h.textContent=w.section;L.appendChild(h)}
+  const d=document.createElement('div');
+  d.className='card part';
+  d.id='row-'+w.id;
+  const badge=w.kind==='type'?'':`<span class="numbadge">${w.cn||w.n}</span>`;
+  const twi=w.tw?`<div class="twi" lang="tw">${esc(w.tw)}</div>`:`<div class="note">No Twi spelling recorded yet</div>`;
+  const extra=(w.id==='bw76')?`<p class="note">The list already has Womb (Awodeɛ) under Internal organs. <button type="button" class="jumplink" data-jump="bw60">Jump to Womb</button></p>`:'';
+  const action=w.has?`<button type="button" class="play" data-play="${w.id}">▶️ Play</button>`:`<span class="missing">Not recorded yet</span>`;
+  d.innerHTML=`<div class="row" style="justify-content:space-between;align-items:flex-start;gap:10px">
+    <div class="row" style="align-items:flex-start;flex:1">
+      ${badge}
+      <div>
+        <div class="word">${esc(w.en)}</div>
+        ${twi}
+      </div>
+    </div>
+    ${action}
+   </div>${extra}`;
+  L.appendChild(d);
+ });
+ L.querySelectorAll('[data-play]').forEach(b=>b.onclick=()=>play(b.dataset.play,true));
+ L.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>play(b.dataset.jump,true));
+ if(scrollTop)window.scrollTo({top:0,behavior:'smooth'});
+}
+render(false);
+</script>
+</body>
+</html>
