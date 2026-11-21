@@ -1,0 +1,1241 @@
+{
+ "title": "Psalm 119",
+ "source": "Asante Twi Bible (Nkwa Asɛm)",
+ "voice": "Sikayere",
+ "note": "Bible text spelling kept exactly as in the Asante Twi Bible. Native-speaker recordings by Sikayere.",
+ "listen_page": "https://nyamebadav.github.io/twi-sukuu-words/readings-listen.html#psalm119",
+ "verses": [
+  {
+   "verse": 1,
+   "ref": "Psalm 119:1",
+   "tw": "Nhyira nka wɔn a wɔn akwan yɛ pɛ na wɔnante sɛdeɛ Awurade mmara kyerɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v057.mp3",
+   "dur": 5.642
+  },
+  {
+   "verse": 2,
+   "ref": "Psalm 119:2",
+   "tw": "Nhyira nka wɔn a wɔkora nʼahyɛdeɛ, na wɔfiri wɔn akoma nyinaa mu hwehwɛ no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v127.mp3",
+   "dur": 7.184
+  },
+  {
+   "verse": 3,
+   "ref": "Psalm 119:3",
+   "tw": "Wɔnnyɛ mfomsoɔ biara; na wɔnam nʼakwan so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v128.mp3",
+   "dur": 4.754
+  },
+  {
+   "verse": 4,
+   "ref": "Psalm 119:4",
+   "tw": "Woayɛ nkyerɛkyerɛ pa ato hɔ a ɛsɛ sɛ wɔdi so pɛpɛɛpɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v129.mp3",
+   "dur": 5.93
+  },
+  {
+   "verse": 5,
+   "ref": "Psalm 119:5",
+   "tw": "Ao sɛ mʼakwan bɛyɛ tee sɛdeɛ wo ɔhyɛ nsɛm no teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v058.mp3",
+   "dur": 6.504
+  },
+  {
+   "verse": 6,
+   "ref": "Psalm 119:6",
+   "tw": "Sɛ mehwɛ wʼahyɛdeɛ no a ɛnneɛ, anka mʼanim rengu ase.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v130.mp3",
+   "dur": 5.094
+  },
+  {
+   "verse": 7,
+   "ref": "Psalm 119:7",
+   "tw": "Mede akoma a emu teɛ bɛkamfo wo ɛberɛ a meresua wo mmara a ɛtene no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v059.mp3",
+   "dur": 7.419
+  },
+  {
+   "verse": 8,
+   "ref": "Psalm 119:8",
+   "tw": "Mɛdi wo ɔhyɛ nsɛm so; na nnya me korakora.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v131.mp3",
+   "dur": 5.068
+  },
+  {
+   "verse": 9,
+   "ref": "Psalm 119:9",
+   "tw": "Aberanteɛ bɛyɛ dɛn na nʼakwan ho ate? Ɛsɛ sɛ ɔdi wʼasɛm so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v060.mp3",
+   "dur": 7.079
+  },
+  {
+   "verse": 10,
+   "ref": "Psalm 119:10",
+   "tw": "Mede mʼakoma nyinaa hwehwɛ wo; mma me mmane mfiri wo mmaransɛm ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v132.mp3",
+   "dur": 5.669
+  },
+  {
+   "verse": 11,
+   "ref": "Psalm 119:11",
+   "tw": "Mede wʼasɛm asie mʼakoma mu sɛdeɛ merenyɛ bɔne ntia wo.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v061.mp3",
+   "dur": 4.389
+  },
+  {
+   "verse": 12,
+   "ref": "Psalm 119:12",
+   "tw": "Ao Awurade, nkamfo wɔ wo; kyerɛkyerɛ me wo ɔhyɛ nsɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v062.mp3",
+   "dur": 7.21
+  },
+  {
+   "verse": 13,
+   "ref": "Psalm 119:13",
+   "tw": "Mede mʼano ka mmara a ɛfiri wʼanomu nyinaa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v133.mp3",
+   "dur": 4.728
+  },
+  {
+   "verse": 14,
+   "ref": "Psalm 119:14",
+   "tw": "Mʼani gye sɛ medi wʼahyɛdeɛ so te sɛdeɛ obi anigye ahonya bebree ho no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v134.mp3",
+   "dur": 7.784
+  },
+  {
+   "verse": 15,
+   "ref": "Psalm 119:15",
+   "tw": "Medwendwene wo nkyerɛkyerɛ ho na mehwehwɛ wʼakwan mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v135.mp3",
+   "dur": 5.12
+  },
+  {
+   "verse": 16,
+   "ref": "Psalm 119:16",
+   "tw": "Mʼani gye wo ɔhyɛ nsɛm ho; na merentoto wʼasɛm ase.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v136.mp3",
+   "dur": 5.198
+  },
+  {
+   "verse": 17,
+   "ref": "Psalm 119:17",
+   "tw": "Yɛ wo ɔsomfoɔ yie; na matena ase adi wʼasɛm so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v137.mp3",
+   "dur": 4.415
+  },
+  {
+   "verse": 18,
+   "ref": "Psalm 119:18",
+   "tw": "Bue mʼani na menhunu anwanwadeɛ a ɛwɔ wo mmara no mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v063.mp3",
+   "dur": 5.198
+  },
+  {
+   "verse": 19,
+   "ref": "Psalm 119:19",
+   "tw": "Meyɛ ɔnanani wɔ asase so; mfa wo mmaransɛm no nhinta me.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v064.mp3",
+   "dur": 6.087
+  },
+  {
+   "verse": 20,
+   "ref": "Psalm 119:20",
+   "tw": "Me kra tɔ baha ɛberɛ biara wɔ wo mmara ho anigyina enti.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v138.mp3",
+   "dur": 5.12
+  },
+  {
+   "verse": 21,
+   "ref": "Psalm 119:21",
+   "tw": "Woka ahantanfoɔ anim, wɔn a wɔadome wɔn, na wɔmane firi wo mmaransɛm ho no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v139.mp3",
+   "dur": 8.307
+  },
+  {
+   "verse": 22,
+   "ref": "Psalm 119:22",
+   "tw": "Yi kasatia ne animtiabuo firi me mu, ɛfiri sɛ medi wʼahyɛdeɛ so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v140.mp3",
+   "dur": 6.348
+  },
+  {
+   "verse": 23,
+   "ref": "Psalm 119:23",
+   "tw": "Ɛwom sɛ sodifoɔ hyia di me ho nsekuro, nanso wo ɔsomfoɔ bɛdwendwene wo ɔhyɛ nsɛm ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v141.mp3",
+   "dur": 9.143
+  },
+  {
+   "verse": 24,
+   "ref": "Psalm 119:24",
+   "tw": "Wʼahyɛdeɛ yɛ mʼanigyedeɛ na ɛyɛ me fotufoɔ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v065.mp3",
+   "dur": 5.068
+  },
+  {
+   "verse": 25,
+   "ref": "Psalm 119:25",
+   "tw": "Woabrɛ me ase ma meda mfuturo mu. Kyɛe me nkwa so sɛdeɛ wʼasɛm no teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v066.mp3",
+   "dur": 7.027
+  },
+  {
+   "verse": 26,
+   "ref": "Psalm 119:26",
+   "tw": "Mesesee mʼakwan na wogyee me so; kyerɛkyerɛ me wo ɔhyɛ nsɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v142.mp3",
+   "dur": 7.105
+  },
+  {
+   "verse": 27,
+   "ref": "Psalm 119:27",
+   "tw": "Ma mente deɛ ɛwɔ wo nkyerɛkyerɛ mu ase; na mɛdwendwene wʼanwanwadeɛ ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v143.mp3",
+   "dur": 7.576
+  },
+  {
+   "verse": 28,
+   "ref": "Psalm 119:28",
+   "tw": "Awerɛhoɔ ama me ɔkra atɔ baha; hyɛ me den sɛdeɛ wʼasɛm no kyerɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v067.mp3",
+   "dur": 6.583
+  },
+  {
+   "verse": 29,
+   "ref": "Psalm 119:29",
+   "tw": "Yi me firi nnaadaa akwan so; na fa wo mmara so dom me.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v144.mp3",
+   "dur": 4.65
+  },
+  {
+   "verse": 30,
+   "ref": "Psalm 119:30",
+   "tw": "Mafa nokorɛ kwan no so; mede mʼakoma adi wo mmara akyi.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v145.mp3",
+   "dur": 7.993
+  },
+  {
+   "verse": 31,
+   "ref": "Psalm 119:31",
+   "tw": "Ao Awurade, mekura wo nkyerɛkyerɛ mu denden mma mʼanim ngu ase.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v068.mp3",
+   "dur": 6.661
+  },
+  {
+   "verse": 32,
+   "ref": "Psalm 119:32",
+   "tw": "Metu mmirika wɔ wo mmaransɛm kwan no so, ɛfiri sɛ wama mʼakoma atɔ me yam.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v146.mp3",
+   "dur": 6.635
+  },
+  {
+   "verse": 33,
+   "ref": "Psalm 119:33",
+   "tw": "Kyerɛkyerɛ me, Ao Awurade, na menni wo ɔhyɛ nsɛm so, na mɛdi so akɔsi awieeɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v069.mp3",
+   "dur": 8.594
+  },
+  {
+   "verse": 34,
+   "ref": "Psalm 119:34",
+   "tw": "Ma me nteaseɛ, na mɛdi wo mmara so, na mede mʼakoma nyinaa bɛdi so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v147.mp3",
+   "dur": 11.546
+  },
+  {
+   "verse": 35,
+   "ref": "Psalm 119:35",
+   "tw": "Kyerɛ me wo mmaransɛm kwan no na ɛhɔ na menya anigyeɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v070.mp3",
+   "dur": 6.06
+  },
+  {
+   "verse": 36,
+   "ref": "Psalm 119:36",
+   "tw": "Dane mʼakoma kɔ wʼahyɛdeɛ ho na ɛmfiri pɛsɛmenkomenya ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v148.mp3",
+   "dur": 5.486
+  },
+  {
+   "verse": 37,
+   "ref": "Psalm 119:37",
+   "tw": "Yi mʼani firi nneɛma hunu so; na kyɛe me nkwa so sɛdeɛ wʼasɛm teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v149.mp3",
+   "dur": 6.975
+  },
+  {
+   "verse": 38,
+   "ref": "Psalm 119:38",
+   "tw": "Di ɛbɔ a woahyɛ wo ɔsomfoɔ no so, na wasuro wo.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v150.mp3",
+   "dur": 4.963
+  },
+  {
+   "verse": 39,
+   "ref": "Psalm 119:39",
+   "tw": "Yi animguaseɛ a ɛbɔ me hu no firi hɔ, ɛfiri sɛ wo mmara yɛ papa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v151.mp3",
+   "dur": 6.4
+  },
+  {
+   "verse": 40,
+   "ref": "Psalm 119:40",
+   "tw": "Mʼani agyina wo nkyerɛkyerɛ no! Kyɛe me nkwa so wɔ wo tenenee mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v071.mp3",
+   "dur": 7.001
+  },
+  {
+   "verse": 41,
+   "ref": "Psalm 119:41",
+   "tw": "Ao Awurade, ma wo dɔ a ɛnsa da no mmra me so, wo nkwagyeɛ no sɛdeɛ wo bɔhyɛ no teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v072.mp3",
+   "dur": 10.188
+  },
+  {
+   "verse": 42,
+   "ref": "Psalm 119:42",
+   "tw": "Afei, mɛbua deɛ ɔyi me ahi no, ɛfiri sɛ mewɔ wʼasɛm mu ahotosoɔ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v152.mp3",
+   "dur": 5.93
+  },
+  {
+   "verse": 43,
+   "ref": "Psalm 119:43",
+   "tw": "Nyi nokwasɛm no mfiri mʼanom, ɛfiri sɛ mʼanidasoɔ wɔ wo mmara mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v153.mp3",
+   "dur": 5.355
+  },
+  {
+   "verse": 44,
+   "ref": "Psalm 119:44",
+   "tw": "Mɛdi wo mmara so ɛberɛ biara akɔsi daa apem.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v154.mp3",
+   "dur": 4.78
+  },
+  {
+   "verse": 45,
+   "ref": "Psalm 119:45",
+   "tw": "Mede ahofadie bɛnante ɛfiri sɛ mahwehwɛ wo nkyerɛkyerɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v073.mp3",
+   "dur": 4.911
+  },
+  {
+   "verse": 46,
+   "ref": "Psalm 119:46",
+   "tw": "Mɛka wʼahyɛdeɛ ho asɛm wɔ ahemfo anim na mʼanim rengu ase,",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v155.mp3",
+   "dur": 6.191
+  },
+  {
+   "verse": 47,
+   "ref": "Psalm 119:47",
+   "tw": "ɛfiri sɛ mʼani gye wo mmaransɛm ho na medɔ no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v074.mp3",
+   "dur": 4.441
+  },
+  {
+   "verse": 48,
+   "ref": "Psalm 119:48",
+   "tw": "Mede anidie ma wo mmaransɛm a medɔ no, na medwendwene wo ɔhyɛ nsɛm ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v156.mp3",
+   "dur": 6.74
+  },
+  {
+   "verse": 49,
+   "ref": "Psalm 119:49",
+   "tw": "Kae asɛm a woaka akyerɛ wo ɔsomfoɔ, ɛfiri sɛ woama me anidasoɔ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v157.mp3",
+   "dur": 6.139
+  },
+  {
+   "verse": 50,
+   "ref": "Psalm 119:50",
+   "tw": "Mʼawerɛkyekyerɛ wɔ mʼamanehunu mu ne sɛ: Wo bɔhyɛ kyɛe me nkwa so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v075.mp3",
+   "dur": 6.661
+  },
+  {
+   "verse": 51,
+   "ref": "Psalm 119:51",
+   "tw": "Ahantanfoɔ bu me animtia bebree, nanso mennane mfiri wo mmara ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v158.mp3",
+   "dur": 6.818
+  },
+  {
+   "verse": 52,
+   "ref": "Psalm 119:52",
+   "tw": "Ao Awurade mekae wo tete mmara no, na menya awerɛkyekyerɛ wɔ mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v159.mp3",
+   "dur": 6.296
+  },
+  {
+   "verse": 53,
+   "ref": "Psalm 119:53",
+   "tw": "Abufuo hyɛ me ma, ɛsiane amumuyɛfoɔ a wɔapo wo mmara enti.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v160.mp3",
+   "dur": 4.728
+  },
+  {
+   "verse": 54,
+   "ref": "Psalm 119:54",
+   "tw": "Wo ɔhyɛ nsɛm yɛ me dwom tiban wɔ baabiara a mesoɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v076.mp3",
+   "dur": 5.773
+  },
+  {
+   "verse": 55,
+   "ref": "Psalm 119:55",
+   "tw": "Ao Awurade, anadwo mekae wo din, na mɛdi wo mmara so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v077.mp3",
+   "dur": 6.87
+  },
+  {
+   "verse": 56,
+   "ref": "Psalm 119:56",
+   "tw": "Yei ne adeɛ a meyɛ da biara, medi wo nkyerɛkyerɛ so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v161.mp3",
+   "dur": 6.296
+  },
+  {
+   "verse": 57,
+   "ref": "Psalm 119:57",
+   "tw": "Ao Awurade, wone me kyɛfa; mahyɛ bɔ sɛ mɛdi wo nsɛm so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v078.mp3",
+   "dur": 6.922
+  },
+  {
+   "verse": 58,
+   "ref": "Psalm 119:58",
+   "tw": "Mede mʼakoma nyinaa ahwehwɛ wo; hunu me mmɔbɔ sɛdeɛ wo bɔhyɛ no teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v162.mp3",
+   "dur": 5.46
+  },
+  {
+   "verse": 59,
+   "ref": "Psalm 119:59",
+   "tw": "Madwene mʼakwan ho na madane mʼanammɔntuo akyerɛ wʼahyɛdeɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v163.mp3",
+   "dur": 6.296
+  },
+  {
+   "verse": 60,
+   "ref": "Psalm 119:60",
+   "tw": "Mɛyɛ ntɛm, merentwentwɛn sɛ mɛdi wo mmaransɛm soɔ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v164.mp3",
+   "dur": 6.113
+  },
+  {
+   "verse": 61,
+   "ref": "Psalm 119:61",
+   "tw": "Ɛwom sɛ amumuyɛfoɔ de ahoma kyekyere me nanso me werɛ remfiri wo mmara.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v165.mp3",
+   "dur": 7.105
+  },
+  {
+   "verse": 62,
+   "ref": "Psalm 119:62",
+   "tw": "Ɔdasuom, mesɔre de wʼaseda ma wo wo mmara a ɛtene enti.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v079.mp3",
+   "dur": 7.027
+  },
+  {
+   "verse": 63,
+   "ref": "Psalm 119:63",
+   "tw": "Meyɛ wɔn a wɔsuro woɔ nyinaa adamfo, wɔn a wɔdi wo nkyerɛkyerɛ soɔ nyinaa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v080.mp3",
+   "dur": 7.288
+  },
+  {
+   "verse": 64,
+   "ref": "Psalm 119:64",
+   "tw": "Ao Awurade, wʼadɔeɛ ahyɛ asase so ma; kyerɛkyerɛ me wo ɔhyɛ nsɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v166.mp3",
+   "dur": 7.053
+  },
+  {
+   "verse": 65,
+   "ref": "Psalm 119:65",
+   "tw": "Wo ne wo ɔsomfoɔ nni no yie sɛdeɛ wʼasɛm teɛ, Ao Awurade.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v167.mp3",
+   "dur": 5.407
+  },
+  {
+   "verse": 66,
+   "ref": "Psalm 119:66",
+   "tw": "Kyerɛkyerɛ me nimdeɛ ne atemmuo pa, ɛfiri sɛ megye wo mmaransɛm no di.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v168.mp3",
+   "dur": 6.113
+  },
+  {
+   "verse": 67,
+   "ref": "Psalm 119:67",
+   "tw": "Ansa na merebɛhunu amane no, mefomm ɛkwan, na seesei deɛ, medi wʼasɛm so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v081.mp3",
+   "dur": 7.471
+  },
+  {
+   "verse": 68,
+   "ref": "Psalm 119:68",
+   "tw": "Woyɛ, na deɛ woyɛ nso yɛ; kyerɛkyerɛ me wo ɔhyɛ nsɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v082.mp3",
+   "dur": 6.452
+  },
+  {
+   "verse": 69,
+   "ref": "Psalm 119:69",
+   "tw": "Ahantanfoɔ de atorɔ afɔre me ho, nanso mede mʼakoma nyinaa di wo nkyerɛkyerɛ so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v169.mp3",
+   "dur": 7.288
+  },
+  {
+   "verse": 70,
+   "ref": "Psalm 119:70",
+   "tw": "Wɔn akoma yɛ den na wɔnni tema, nanso mʼani gye wo mmara ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v170.mp3",
+   "dur": 5.198
+  },
+  {
+   "verse": 71,
+   "ref": "Psalm 119:71",
+   "tw": "Ɛyɛ sɛ mehunuu amane sɛdeɛ mɛsua wo ɔhyɛ nsɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v171.mp3",
+   "dur": 4.78
+  },
+  {
+   "verse": 72,
+   "ref": "Psalm 119:72",
+   "tw": "Mmara a ɛfiri wʼanomu no som bo ma me sene dwetɛ ne sikakɔkɔɔ mpempem.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v083.mp3",
+   "dur": 6.949
+  },
+  {
+   "verse": 73,
+   "ref": "Psalm 119:73",
+   "tw": "Wo nsa na ɛbɔɔ me na ɛnwonoo me; ma me nteaseɛ a mede bɛsua wo mmaransɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v084.mp3",
+   "dur": 7.158
+  },
+  {
+   "verse": 74,
+   "ref": "Psalm 119:74",
+   "tw": "Sɛ wɔn a wɔsuro wo no hunu me a, ma wɔn ani nnye, ɛfiri sɛ mede mʼanidasoɔ ahyɛ wʼasɛm mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v172.mp3",
+   "dur": 8.62
+  },
+  {
+   "verse": 75,
+   "ref": "Psalm 119:75",
+   "tw": "Ao Awurade, menim sɛ wo mmara tene, na nokorɛdie mu na woatwe mʼaso.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v085.mp3",
+   "dur": 8.072
+  },
+  {
+   "verse": 76,
+   "ref": "Psalm 119:76",
+   "tw": "Ma wʼadɔeɛ a ɛnsa da nkyekyere me werɛ sɛdeɛ ɛbɔ a woahyɛ wo ɔsomfoɔ no teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v173.mp3",
+   "dur": 7.68
+  },
+  {
+   "verse": 77,
+   "ref": "Psalm 119:77",
+   "tw": "Ma wʼayamhyehyeɛ mmra me so, na mennya nkwa, ɛfiri sɛ mʼani ka wo mmara ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v086.mp3",
+   "dur": 7.654
+  },
+  {
+   "verse": 78,
+   "ref": "Psalm 119:78",
+   "tw": "Ma ahantanfoɔ ani nwu wɔ bɔne a wɔyɛɛ me, nanso, mɛdwendwene wo nkyerɛkyerɛ ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v174.mp3",
+   "dur": 8.046
+  },
+  {
+   "verse": 79,
+   "ref": "Psalm 119:79",
+   "tw": "Ma wɔn a wɔsuro wo no mmra me nkyɛn, wɔn a wɔte wo mmara ase no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v175.mp3",
+   "dur": 6.348
+  },
+  {
+   "verse": 80,
+   "ref": "Psalm 119:80",
+   "tw": "Ma mʼakoma nnya bembuo wɔ wo ɔhyɛ nsɛm ho, na mʼanim angu ase.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v176.mp3",
+   "dur": 7.915
+  },
+  {
+   "verse": 81,
+   "ref": "Psalm 119:81",
+   "tw": "Wo nkwagyeɛ ho anigyina ama me ɔkra atɔ baha, nanso mede mʼanidasoɔ ahyɛ wʼasɛm mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v087.mp3",
+   "dur": 10.162
+  },
+  {
+   "verse": 82,
+   "ref": "Psalm 119:82",
+   "tw": "Mahwɛ wo bɔhyɛ anim ama mʼani abu; meka sɛ, “Da bɛn na wobɛkyekyere me werɛ?”",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v088.mp3",
+   "dur": 7.497
+  },
+  {
+   "verse": 83,
+   "ref": "Psalm 119:83",
+   "tw": "Ɛwom sɛ mete sɛ nsã kotokuo a ɛsɛn wisie ano deɛ, nanso me werɛ remfiri wo ɔhyɛ nsɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v177.mp3",
+   "dur": 8.594
+  },
+  {
+   "verse": 84,
+   "ref": "Psalm 119:84",
+   "tw": "Wo ɔsomfoɔ ntwɛn nkɔsi da bɛn? Da bɛn na wobɛtwe wɔn a wɔtaa me no aso?",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v089.mp3",
+   "dur": 7.68
+  },
+  {
+   "verse": 85,
+   "ref": "Psalm 119:85",
+   "tw": "Ahantanfoɔ atu amena de asum me afidie, a ɛne wo mmara bɔ abira.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v178.mp3",
+   "dur": 5.956
+  },
+  {
+   "verse": 86,
+   "ref": "Psalm 119:86",
+   "tw": "Wo mmaransɛm nyinaa mu wɔ ahotosoɔ; boa me ɛfiri sɛ nnipa teetee me kwa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v090.mp3",
+   "dur": 6.269
+  },
+  {
+   "verse": 87,
+   "ref": "Psalm 119:87",
+   "tw": "Ɛkaa kakra bi na wɔyi me firi asase so, nanso mennyaa wo nkyerɛkyerɛ so die.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v179.mp3",
+   "dur": 7.784
+  },
+  {
+   "verse": 88,
+   "ref": "Psalm 119:88",
+   "tw": "Kyɛe me nkwa so sɛdeɛ wʼadɔeɛ teɛ, na mɛdi nkyerɛkyerɛ a ɛfiri wʼanomu no so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v180.mp3",
+   "dur": 6.504
+  },
+  {
+   "verse": 89,
+   "ref": "Psalm 119:89",
+   "tw": "Ao Awurade, wʼasɛm no tim hɔ daa; ɛgyina hɔ pintinn wɔ ɔsorosoro.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v091.mp3",
+   "dur": 5.878
+  },
+  {
+   "verse": 90,
+   "ref": "Psalm 119:90",
+   "tw": "Wo nokorɛdie kɔ so wɔ awoɔ ntoatoasoɔ nyinaa mu; wode asase sii hɔ, na ɛtim hɔ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v181.mp3",
+   "dur": 8.385
+  },
+  {
+   "verse": 91,
+   "ref": "Psalm 119:91",
+   "tw": "Wo mmara wɔ hɔ bɛsi ɛnnɛ, na nneɛma nyinaa som wo.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v182.mp3",
+   "dur": 5.12
+  },
+  {
+   "verse": 92,
+   "ref": "Psalm 119:92",
+   "tw": "Sɛ mʼani anka wo mmara no ho a, anka mʼamanehunu akum me.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v092.mp3",
+   "dur": 5.094
+  },
+  {
+   "verse": 93,
+   "ref": "Psalm 119:93",
+   "tw": "Me werɛ remfiri wo nkyerɛkyerɛ no, ɛfiri sɛ ɛno so na wonam akyɛe me nkwa so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v183.mp3",
+   "dur": 6.243
+  },
+  {
+   "verse": 94,
+   "ref": "Psalm 119:94",
+   "tw": "Gye me nkwa, na meyɛ wo dea; na mahwehwɛ wo nkyerɛkyerɛ no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v093.mp3",
+   "dur": 5.433
+  },
+  {
+   "verse": 95,
+   "ref": "Psalm 119:95",
+   "tw": "Amumuyɛfoɔ retwɛn sɛ wɔbɛsɛe me, nanso, mɛdwendwene wʼahyɛdeɛ ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v184.mp3",
+   "dur": 7.34
+  },
+  {
+   "verse": 96,
+   "ref": "Psalm 119:96",
+   "tw": "Mahunu sɛ pɛyɛ nyinaa wɔ deɛ ɛkɔpem; nanso wo mmaransɛm no nni hyeɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v185.mp3",
+   "dur": 5.773
+  },
+  {
+   "verse": 97,
+   "ref": "Psalm 119:97",
+   "tw": "Ao medɔ wo mmara no! Medwendwene ho ɛda mu nyinaa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v094.mp3",
+   "dur": 5.721
+  },
+  {
+   "verse": 98,
+   "ref": "Psalm 119:98",
+   "tw": "Wo mmaransɛm ma me hunu nyansa sene mʼatamfoɔ, ɛfiri sɛ ɛwɔ me nkyɛn daa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v186.mp3",
+   "dur": 7.811
+  },
+  {
+   "verse": 99,
+   "ref": "Psalm 119:99",
+   "tw": "Mewɔ nhunumu sene mʼakyerɛkyerɛfoɔ nyinaa, ɛfiri sɛ medwendwene wʼahyɛdeɛ ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v187.mp3",
+   "dur": 6.87
+  },
+  {
+   "verse": 100,
+   "ref": "Psalm 119:100",
+   "tw": "Mewɔ nteaseɛ sene mpanimfoɔ, ɛfiri sɛ medi wo nkyerɛkyerɛ so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v188.mp3",
+   "dur": 5.277
+  },
+  {
+   "verse": 101,
+   "ref": "Psalm 119:101",
+   "tw": "Memfaa me nan nsii ɛkwan bɔne biara so sɛdeɛ mɛtumi ayɛ ɔsetie ama wʼasɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v095.mp3",
+   "dur": 8.072
+  },
+  {
+   "verse": 102,
+   "ref": "Psalm 119:102",
+   "tw": "Memmane memfirii wo mmara ho, ɛfiri sɛ wʼankasa na woakyerɛkyerɛ me.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v189.mp3",
+   "dur": 6.139
+  },
+  {
+   "verse": 103,
+   "ref": "Psalm 119:103",
+   "tw": "Wo nsɛm yɛ me dɛ, ɛyɛ dɛ sene ɛwoɔ wɔ mʼanom.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v096.mp3",
+   "dur": 3.892
+  },
+  {
+   "verse": 104,
+   "ref": "Psalm 119:104",
+   "tw": "Menya nteaseɛ firi wo nkyerɛkyerɛ mu; enti mekyiri ɛkwan bɔne biara.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v190.mp3",
+   "dur": 6.191
+  },
+  {
+   "verse": 105,
+   "ref": "Psalm 119:105",
+   "tw": "Wʼasɛm yɛ me nan ase kanea ne mʼakwan so hann.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v097.mp3",
+   "dur": 4.519
+  },
+  {
+   "verse": 106,
+   "ref": "Psalm 119:106",
+   "tw": "Maka ntam ahyɛ mu kena sɛ mɛdi wo tenenee mmara no so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v191.mp3",
+   "dur": 7.236
+  },
+  {
+   "verse": 107,
+   "ref": "Psalm 119:107",
+   "tw": "Mahunu amane bebree; kyɛe me nkwa so, Ao Awurade, sɛdeɛ wʼasɛm teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v098.mp3",
+   "dur": 7.262
+  },
+  {
+   "verse": 108,
+   "ref": "Psalm 119:108",
+   "tw": "Ao Awurade, ma wʼani nsɔ mʼanom nkamfo a ɛfiri me pɛ mu, na kyerɛkyerɛ me wo mmara.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v192.mp3",
+   "dur": 7.158
+  },
+  {
+   "verse": 109,
+   "ref": "Psalm 119:109",
+   "tw": "Ɛwom sɛ daa metoto me nkwa ase, nanso me werɛ remfiri wo mmara.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v193.mp3",
+   "dur": 6.165
+  },
+  {
+   "verse": 110,
+   "ref": "Psalm 119:110",
+   "tw": "Amumuyɛfoɔ asum me afidie nanso memfom memfirii wo nkyerɛkyerɛ ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v194.mp3",
+   "dur": 5.251
+  },
+  {
+   "verse": 111,
+   "ref": "Psalm 119:111",
+   "tw": "Wʼahyɛdeɛ yɛ mʼagyapadeɛ afebɔɔ; ɛma mʼakoma ani gye.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v099.mp3",
+   "dur": 5.512
+  },
+  {
+   "verse": 112,
+   "ref": "Psalm 119:112",
+   "tw": "Mʼakoma ayɛ krado sɛ ɛbɛhwɛ wo ɔhyɛ nsɛm so akɔsi awieeɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v195.mp3",
+   "dur": 6.609
+  },
+  {
+   "verse": 113,
+   "ref": "Psalm 119:113",
+   "tw": "Mekyiri nnipa a wɔn adwene yɛ wɔn ntanta, na medɔ wo mmara.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v196.mp3",
+   "dur": 5.146
+  },
+  {
+   "verse": 114,
+   "ref": "Psalm 119:114",
+   "tw": "Wone me dwanekɔbea ne me kyɛm; mede mʼanidasoɔ ahyɛ wʼasɛm mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v100.mp3",
+   "dur": 6.113
+  },
+  {
+   "verse": 115,
+   "ref": "Psalm 119:115",
+   "tw": "Momfiri me so nkɔ, mo nnebɔneyɛfoɔ, na menni me Onyankopɔn mmaransɛm so!",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v197.mp3",
+   "dur": 6.374
+  },
+  {
+   "verse": 116,
+   "ref": "Psalm 119:116",
+   "tw": "Wowa me sɛdeɛ wo bɔhyɛ no teɛ, na mɛtena nkwa mu; mma mʼanidasoɔ nyɛ kwa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v101.mp3",
+   "dur": 6.74
+  },
+  {
+   "verse": 117,
+   "ref": "Psalm 119:117",
+   "tw": "Sɔ me mu, na menya nkwagyeɛ; na ɛberɛ biara mɛhwɛ wo ɔhyɛ nsɛm no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v102.mp3",
+   "dur": 7.68
+  },
+  {
+   "verse": 118,
+   "ref": "Psalm 119:118",
+   "tw": "Wopo wɔn a wɔfom wo ɔhyɛ nsɛm nyinaa, na wɔn nnaadaa no yɛ ɔkwa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v198.mp3",
+   "dur": 6.504
+  },
+  {
+   "verse": 119,
+   "ref": "Psalm 119:119",
+   "tw": "Woyi amumuyɛfoɔ nyinaa si nkyɛn sɛ dadeben; enti medɔ wʼahyɛdeɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v199.mp3",
+   "dur": 8.124
+  },
+  {
+   "verse": 120,
+   "ref": "Psalm 119:120",
+   "tw": "Wo ho suro ma me ho popo; wo mmara abɔ me hu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v200.mp3",
+   "dur": 4.127
+  },
+  {
+   "verse": 121,
+   "ref": "Psalm 119:121",
+   "tw": "Mayɛ deɛ ɛtene na ɛyɛ pɛ. Nnyaa me mma wɔn a wɔhyɛ me soɔ!",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v201.mp3",
+   "dur": 6.008
+  },
+  {
+   "verse": 122,
+   "ref": "Psalm 119:122",
+   "tw": "Hwɛ ma wo ɔsomfoɔ nni yie; mma ahantanfoɔ nhyɛ me so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v202.mp3",
+   "dur": 6.06
+  },
+  {
+   "verse": 123,
+   "ref": "Psalm 119:123",
+   "tw": "Mahwɛ wo nkwagyeɛ anim ama mʼani abu, ɛrehwehwɛ wo bɔhyɛ a ɛtene no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v203.mp3",
+   "dur": 7.105
+  },
+  {
+   "verse": 124,
+   "ref": "Psalm 119:124",
+   "tw": "Wo ne wo ɔsomfoɔ nni no sɛdeɛ wʼadɔeɛ teɛ na kyerɛkyerɛ me wo ɔhyɛ nsɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v204.mp3",
+   "dur": 6.713
+  },
+  {
+   "verse": 125,
+   "ref": "Psalm 119:125",
+   "tw": "Meyɛ wo ɔsomfoɔ; ma me nhunumu na mate wʼahyɛdeɛ ase.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v103.mp3",
+   "dur": 5.486
+  },
+  {
+   "verse": 126,
+   "ref": "Psalm 119:126",
+   "tw": "Ao Awurade, ɛberɛ aso sɛ woyɛ biribi; wɔrebu wo mmara so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v104.mp3",
+   "dur": 5.773
+  },
+  {
+   "verse": 127,
+   "ref": "Psalm 119:127",
+   "tw": "Esiane sɛ medɔ wo mmaransɛm sene sikakɔkɔɔ, anaa sikakɔkɔɔ amapa,",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v105.mp3",
+   "dur": 6.896
+  },
+  {
+   "verse": 128,
+   "ref": "Psalm 119:128",
+   "tw": "na medwene sɛ wo nkyerɛkyerɛ nyinaa yɛ enti mekyiri ɛkwan bɔne biara.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v205.mp3",
+   "dur": 7.523
+  },
+  {
+   "verse": 129,
+   "ref": "Psalm 119:129",
+   "tw": "Wʼahyɛdeɛ yɛ nwanwa; enti medi so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v106.mp3",
+   "dur": 3.84
+  },
+  {
+   "verse": 130,
+   "ref": "Psalm 119:130",
+   "tw": "Wo nsɛm ase teɛ ma hann; na ɛma ntetekwaa nya nteaseɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v107.mp3",
+   "dur": 8.542
+  },
+  {
+   "verse": 131,
+   "ref": "Psalm 119:131",
+   "tw": "Mebue mʼanom na megu ahome, na mʼani gyina wo mmaransɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v206.mp3",
+   "dur": 5.407
+  },
+  {
+   "verse": 132,
+   "ref": "Psalm 119:132",
+   "tw": "Dane wʼani hwɛ me na hunu me mmɔbɔ sɛdeɛ woyɛ daa ma wɔn a wɔdɔ wo din no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v207.mp3",
+   "dur": 9.613
+  },
+  {
+   "verse": 133,
+   "ref": "Psalm 119:133",
+   "tw": "Tutu mʼanammɔn sɛdeɛ wʼasɛm no teɛ. Mma bɔne biara nni me so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v108.mp3",
+   "dur": 5.146
+  },
+  {
+   "verse": 134,
+   "ref": "Psalm 119:134",
+   "tw": "Gye me firi nnipa nhyɛsoɔ mu, na madi wo nkyerɛkyerɛ so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v208.mp3",
+   "dur": 6.609
+  },
+  {
+   "verse": 135,
+   "ref": "Psalm 119:135",
+   "tw": "Ma wʼanim nhyerɛn wo ɔsomfoɔ so na kyerɛkyerɛ me wo ɔhyɛ nsɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v209.mp3",
+   "dur": 8.516
+  },
+  {
+   "verse": 136,
+   "ref": "Psalm 119:136",
+   "tw": "Nisuo adware me sɛ asutene ɛfiri sɛ nnipa nni wo mmara so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v109.mp3",
+   "dur": 5.721
+  },
+  {
+   "verse": 137,
+   "ref": "Psalm 119:137",
+   "tw": "Ɔteneneeni ne wo, Ao Awurade, na wo mmara nso yɛ pɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v110.mp3",
+   "dur": 5.12
+  },
+  {
+   "verse": 138,
+   "ref": "Psalm 119:138",
+   "tw": "Ahyɛdeɛ a woayɛ no tene; ɛyɛ deɛ wɔnya mu ahotosoɔ pa ara.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v210.mp3",
+   "dur": 7.471
+  },
+  {
+   "verse": 139,
+   "ref": "Psalm 119:139",
+   "tw": "Abufuo ahyɛ me ma, ɛfiri sɛ mʼatamfoɔ bu wɔn ani gu wo nsɛm no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v211.mp3",
+   "dur": 6.844
+  },
+  {
+   "verse": 140,
+   "ref": "Psalm 119:140",
+   "tw": "Wɔasɔ wo bɔhyɛ ahodoɔ no ahwɛ pa ara, na wo ɔsomfoɔ dɔ wɔn.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v212.mp3",
+   "dur": 6.243
+  },
+  {
+   "verse": 141,
+   "ref": "Psalm 119:141",
+   "tw": "Ɛwom sɛ mennka hwee na memfra deɛ, nanso me werɛ mfiri wo nkyerɛkyerɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v213.mp3",
+   "dur": 6.217
+  },
+  {
+   "verse": 142,
+   "ref": "Psalm 119:142",
+   "tw": "Wo tenenee wɔ hɔ daa na wo mmara no yɛ nokorɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v111.mp3",
+   "dur": 4.31
+  },
+  {
+   "verse": 143,
+   "ref": "Psalm 119:143",
+   "tw": "Ɔhaw ne ahohiahia aduru me, nanso wo mmaransɛm ma me ahosɛpɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v214.mp3",
+   "dur": 6.74
+  },
+  {
+   "verse": 144,
+   "ref": "Psalm 119:144",
+   "tw": "Wʼahyɛdeɛ yɛ nokorɛ daa; ma me nteaseɛ na manya nkwa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v112.mp3",
+   "dur": 4.362
+  },
+  {
+   "verse": 145,
+   "ref": "Psalm 119:145",
+   "tw": "Ao Awurade, mede mʼakoma nyinaa mefrɛ wo, gye me so, na mɛdi wo ɔhyɛ nsɛm no so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v113.mp3",
+   "dur": 6.687
+  },
+  {
+   "verse": 146,
+   "ref": "Psalm 119:146",
+   "tw": "Mesu mefrɛ wo, gye me nkwa na medi wʼahyɛdeɛ so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v114.mp3",
+   "dur": 5.747
+  },
+  {
+   "verse": 147,
+   "ref": "Psalm 119:147",
+   "tw": "Mesɔre anɔpahema, na mesu pɛ mmoa; mede me werɛ ahyɛ wo nsɛm mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v115.mp3",
+   "dur": 5.956
+  },
+  {
+   "verse": 148,
+   "ref": "Psalm 119:148",
+   "tw": "Mʼani gu so anadwo nyinaa, na mɛdwendwene wo bɔhyɛ ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v215.mp3",
+   "dur": 5.251
+  },
+  {
+   "verse": 149,
+   "ref": "Psalm 119:149",
+   "tw": "Tie me nne sɛdeɛ wʼadɔeɛ no teɛ; Ao Awurade, kyɛe me nkwa so sɛdeɛ wo mmara teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v116.mp3",
+   "dur": 6.557
+  },
+  {
+   "verse": 150,
+   "ref": "Psalm 119:150",
+   "tw": "Wɔn a wɔhyehyɛ atirimuɔdensɛm no abɛn, nanso wɔne wo mmara ntam ware.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v216.mp3",
+   "dur": 7.523
+  },
+  {
+   "verse": 151,
+   "ref": "Psalm 119:151",
+   "tw": "Ao Awurade, wo deɛ, wobɛn me, na wo mmaransɛm nyinaa yɛ nokorɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v217.mp3",
+   "dur": 5.904
+  },
+  {
+   "verse": 152,
+   "ref": "Psalm 119:152",
+   "tw": "Mmerɛ bi a atwam no, mesuaa wʼahyɛdeɛ a wode timiiɛ hɔ sɛ ɛntena hɔ daa no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v218.mp3",
+   "dur": 7.549
+  },
+  {
+   "verse": 153,
+   "ref": "Psalm 119:153",
+   "tw": "Hwɛ mʼamanehunu na gye me nkwa ɛfiri sɛ me werɛ mfirii wo mmara no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v117.mp3",
+   "dur": 5.878
+  },
+  {
+   "verse": 154,
+   "ref": "Psalm 119:154",
+   "tw": "Di mʼasɛm ma me na gye me. Kyɛe me nkwa so sɛdeɛ wo bɔhyɛ no teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v219.mp3",
+   "dur": 7.445
+  },
+  {
+   "verse": 155,
+   "ref": "Psalm 119:155",
+   "tw": "Nkwagyeɛ ne atirimuɔdenfoɔ ntam kwan ware, ɛfiri sɛ wɔnhwehwɛ wo ɔhyɛ nsɛm no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v220.mp3",
+   "dur": 6.975
+  },
+  {
+   "verse": 156,
+   "ref": "Psalm 119:156",
+   "tw": "Ao Awurade, wʼayamhyehyeɛ yɛ kɛseɛ; kyɛe me nkwa so sɛdeɛ wo mmara no teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v118.mp3",
+   "dur": 6.818
+  },
+  {
+   "verse": 157,
+   "ref": "Psalm 119:157",
+   "tw": "Atamfoɔ a wɔteetee me dɔɔso, nanso memmane memfirii wo nhyehyɛeɛ ho.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v221.mp3",
+   "dur": 5.747
+  },
+  {
+   "verse": 158,
+   "ref": "Psalm 119:158",
+   "tw": "Mehwɛ wɔn a wɔnni gyidie no a, wɔn ho yɛ me nwunu, ɛfiri sɛ wɔnni wʼasɛm so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v222.mp3",
+   "dur": 8.202
+  },
+  {
+   "verse": 159,
+   "ref": "Psalm 119:159",
+   "tw": "Hwɛ sɛdeɛ mʼani gye wo nkyerɛkyerɛ ho; Ao Awurade, kyɛe me nkwa so sɛdeɛ wʼadɔeɛ teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v223.mp3",
+   "dur": 7.497
+  },
+  {
+   "verse": 160,
+   "ref": "Psalm 119:160",
+   "tw": "Wo nsɛm nyinaa yɛ nokorɛ; na wo mmara a ɛtene no to rentwa da.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v119.mp3",
+   "dur": 4.78
+  },
+  {
+   "verse": 161,
+   "ref": "Psalm 119:161",
+   "tw": "Sodifoɔ taataa me kwa, nanso ɛyɛ wʼasɛm nko ara na mesuro.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v224.mp3",
+   "dur": 5.46
+  },
+  {
+   "verse": 162,
+   "ref": "Psalm 119:162",
+   "tw": "Mʼani gye wo bɔhyɛ ho te sɛ obi a wanya asadeɛ kɛseɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v225.mp3",
+   "dur": 5.407
+  },
+  {
+   "verse": 163,
+   "ref": "Psalm 119:163",
+   "tw": "Mekyiri nkontompo na medɔ wo mmara.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v226.mp3",
+   "dur": 3.5
+  },
+  {
+   "verse": 164,
+   "ref": "Psalm 119:164",
+   "tw": "Mekamfo wo mprɛnson da biara wo mmara a ɛtene no enti.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v120.mp3",
+   "dur": 5.303
+  },
+  {
+   "verse": 165,
+   "ref": "Psalm 119:165",
+   "tw": "Wɔn a wɔdɔ wo mmara no wɔ asomdwoeɛ mmoroso, na biribiara rentumi mma wɔnsunti.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v121.mp3",
+   "dur": 9.43
+  },
+  {
+   "verse": 166,
+   "ref": "Psalm 119:166",
+   "tw": "Ao Awurade, metwɛn wo nkwagyeɛ, na medi wo mmaransɛm so.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v122.mp3",
+   "dur": 4.885
+  },
+  {
+   "verse": 167,
+   "ref": "Psalm 119:167",
+   "tw": "Medi wʼahyɛdeɛ so na medɔ no yie.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v227.mp3",
+   "dur": 3.37
+  },
+  {
+   "verse": 168,
+   "ref": "Psalm 119:168",
+   "tw": "Medi wo nkyerɛkyerɛ ne wʼahyɛdeɛ so, na wonim mʼakwan nyinaa.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v228.mp3",
+   "dur": 4.78
+  },
+  {
+   "verse": 169,
+   "ref": "Psalm 119:169",
+   "tw": "Ao Awurade, ma me sufrɛ nnuru wʼanim; ma me nteaseɛ sɛdeɛ wʼasɛm no teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v123.mp3",
+   "dur": 6.008
+  },
+  {
+   "verse": 170,
+   "ref": "Psalm 119:170",
+   "tw": "Ma me nkotosrɛ nnuru wʼanim; na gye me sɛdeɛ wo bɔhyɛ no teɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v229.mp3",
+   "dur": 4.545
+  },
+  {
+   "verse": 171,
+   "ref": "Psalm 119:171",
+   "tw": "Ma nkamfo nhyɛ mʼanom ma; ɛfiri sɛ wokyerɛkyerɛ me wo ɔhyɛ nsɛm.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v230.mp3",
+   "dur": 5.329
+  },
+  {
+   "verse": 172,
+   "ref": "Psalm 119:172",
+   "tw": "Ma me tɛkrɛma nto wʼasɛm ho dwom, ɛfiri sɛ wo mmaransɛm nyinaa tene.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v124.mp3",
+   "dur": 5.747
+  },
+  {
+   "verse": 173,
+   "ref": "Psalm 119:173",
+   "tw": "Yɛ ahoboa bɛboa me, ɛfiri sɛ masɔ wo nkyerɛkyerɛ no mu.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v231.mp3",
+   "dur": 6.034
+  },
+  {
+   "verse": 174,
+   "ref": "Psalm 119:174",
+   "tw": "Ao Awurade, mʼani agyina wo nkwagyeɛ, na wo mmara yɛ mʼanigyedeɛ.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v125.mp3",
+   "dur": 6.818
+  },
+  {
+   "verse": 175,
+   "ref": "Psalm 119:175",
+   "tw": "Ma me ntena nkwa mu na matumi akamfo wo, na wo mmara nso awowa me.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v232.mp3",
+   "dur": 7.941
+  },
+  {
+   "verse": 176,
+   "ref": "Psalm 119:176",
+   "tw": "Mafom ɛkwan sɛ odwan a wayera. Hwehwɛ wo ɔsomfoɔ, ɛfiri sɛ me werɛ mfirii wo mmaransɛm no.",
+   "mp3": "https://nyamebadav.github.io/twi-sukuu-words/audio/readings/v126.mp3",
+   "dur": 8.725
+  }
+ ]
+}
